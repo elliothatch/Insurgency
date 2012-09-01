@@ -1,4 +1,4 @@
-// InsurgencyRiseAgainst.cpp : Defines the entry point for the console application.
+// Insurgency.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
