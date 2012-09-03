@@ -39,30 +39,8 @@ GameWorld::~GameWorld(void)
 		delete regIt->second;
 	}
 }
-std::pair<int,int> GameWorld::lookupRegionTilePos(std::pair<int,int> loc) const
-{	
-	std::pair<int,int> tileLoc;
-	//xcoord
-	if(loc.first>=0)
-		tileLoc.first=loc.first%REGIONSIZE;
-	else
-		tileLoc.first=REGIONSIZE+loc.first%REGIONSIZE;
-	if(tileLoc.first==REGIONSIZE)
-		tileLoc.first=0;
-	//y coord
-	if(loc.second>=0)
-		tileLoc.second=loc.second%REGIONSIZE;
-	else
-		tileLoc.second=REGIONSIZE+loc.second%REGIONSIZE;
-	if(tileLoc.second==REGIONSIZE)
-		tileLoc.second=0;
-	return tileLoc;
-}
-WorldTile* GameWorld::lookupTile(std::pair<int,int> loc) const
-{
-	std::pair<int,int> tileLoc (lookupRegionTilePos(loc));
-	return regionCoord.find(lookupRegion(loc))->second->getTile(tileLoc);
-}
+
+//add/remove
 void GameWorld::addItem(GameItem* lGameItem, std::pair<int,int> loc)
 {
 		std::map<std::pair<int,int>,std::vector<GameItem*>>::iterator pileIt = gameItemCoord.find(loc);
@@ -92,20 +70,96 @@ void GameWorld::removeItem(GameItem* lGameItem, std::pair<int,int> loc)
 			}
 		}
 }
-bool GameWorld::moveCreature(Creature* lCreature, std::pair<int,int> loc)
+void GameWorld::addCreature(Creature* lCreature, std::pair<int,int> loc)
 {
-	//if it is passable
-	if(lookupTile(loc)->isPassable())
-		{
-			//erase the old marker and place the creature in the new location
-			creatureCoord.erase(lCreature->getLocation());
-			lCreature->setLocation(loc);
-			creatureCoord[loc] = lCreature;
-			return true;
-		}
-	else
-		return false;
+	//add it to the vector
+	//creatureList.push_back(lCreature);
+	//add it to the coord map
+	//TODO: check if there is already a creature there, then act accordingly
+	creatureCoord[loc] = lCreature;
 }
+void GameWorld::removeCreature(Creature* lCreature, std::pair<int,int> loc)
+{
+	//remove it from the vector
+	//remove it from the coord map
+	std::map<std::pair<int,int>,Creature*>::iterator creatureIt = creatureCoord.find(loc);
+	if(creatureIt != creatureCoord.end() && creatureIt->second == lCreature)
+	{
+		creatureCoord.erase(creatureIt);
+	}
+}
+//create/destroy
+void GameWorld::createItem(GameItemTypeID lTypeID, std::pair<int,int> loc)
+{
+	GameItem* item = new GameItem(itemTypeDef.getTileType(lTypeID), loc);
+	addItem(item, loc);
+}
+void GameWorld::destroyItem(GameItem* lGameItem, std::pair<int,int> loc)
+{
+	removeItem(lGameItem, loc);
+	delete lGameItem;
+}
+void GameWorld::createCreature(CreatureTypeID lTypeID, std::pair<int,int> loc)
+{
+	Creature* creature = new Creature(creatureTypeDef.getCreatureType(lTypeID), loc);
+	addCreature(creature, loc);
+}
+void GameWorld::destroyCreature(Creature* lCreature, std::pair<int,int> loc)
+{
+	removeCreature(lCreature, loc);
+	//remove the components
+	for(int i = 0; i<lCreature->getNumComponents(); i++)
+	{
+		delete lCreature->getComponent(EntityComponentID(i));
+	}
+	delete lCreature;
+}
+//get entities
+std::vector<GameItem*>* GameWorld::getItemPile(std::pair<int,int> loc) const
+{
+	std::map<std::pair<int,int>,std::vector<GameItem*>>::const_iterator pileIt = gameItemCoord.find(loc);
+		//if there is a pile there
+		if(pileIt != gameItemCoord.end())
+		{
+			return const_cast<std::vector<GameItem*>*>(&(pileIt->second));
+		}
+		else
+			return NULL;
+}
+Creature* GameWorld::getCreature(std::pair<int,int> loc) const
+{
+	std::map<std::pair<int,int>, Creature*>::const_iterator creatureIt = creatureCoord.find(loc);
+	//if there is a creature there
+	if(creatureIt != creatureCoord.end())
+	{
+		return creatureIt->second;
+	}
+	else
+		return NULL;
+}
+//creatures
+std::vector<Creature*> GameWorld::getCreatureList(void) const
+{
+	//temporary list we will create
+	std::vector<Creature*> creatureList;
+	//convert map to vector
+	for(std::map<std::pair<int,int>, Creature*>::const_iterator creatureIt = creatureCoord.begin();
+		creatureIt != creatureCoord.end(); creatureIt++)
+	{
+		creatureList.push_back(creatureIt->second);
+	}
+	//return the local vector
+	return creatureList;
+}
+Creature* GameWorld::getPlayerCreature(void) const
+{
+	return playerCreature;
+}
+void GameWorld::setPlayerCreature(Creature* lCreature)
+{
+	playerCreature = lCreature;
+}
+//events
 void GameWorld::moveGameItem(GameItem* lGameItem, std::pair<int,int> loc)
 {
 	//remove the item from the old pile
@@ -137,6 +191,51 @@ void GameWorld::moveGameItem(GameItem* lGameItem, std::pair<int,int> loc)
 	//add the item to the pile
 	gameItemCoord[loc].push_back(lGameItem);
 }
+bool GameWorld::moveCreature(Creature* lCreature, std::pair<int,int> loc)
+{
+	//if it is passable
+	if(lookupTile(loc)->isPassable())
+		{
+			//erase the old marker and place the creature in the new location
+			creatureCoord.erase(lCreature->getLocation());
+			lCreature->setLocation(loc);
+			creatureCoord[loc] = lCreature;
+			return true;
+		}
+	else
+		return false;
+}
+//lookup world-space
+WorldTile* GameWorld::lookupTile(std::pair<int,int> loc) const
+{
+	std::pair<int,int> tileLoc (lookupRegionTilePos(loc));
+	return regionCoord.find(lookupRegion(loc))->second->getTile(tileLoc);
+}
+std::pair<int,int> GameWorld::lookupRegion(std::pair<int,int> loc) const 
+{
+	return std::pair<int,int>  (int(floor(float(loc.first)/float(REGIONSIZE))),
+								int(floor(float(loc.second)/float(REGIONSIZE))));
+}
+std::pair<int,int> GameWorld::lookupRegionTilePos(std::pair<int,int> loc) const
+{	
+	std::pair<int,int> tileLoc;
+	//xcoord
+	if(loc.first>=0)
+		tileLoc.first=loc.first%REGIONSIZE;
+	else
+		tileLoc.first=REGIONSIZE+loc.first%REGIONSIZE;
+	if(tileLoc.first==REGIONSIZE)
+		tileLoc.first=0;
+	//y coord
+	if(loc.second>=0)
+		tileLoc.second=loc.second%REGIONSIZE;
+	else
+		tileLoc.second=REGIONSIZE+loc.second%REGIONSIZE;
+	if(tileLoc.second==REGIONSIZE)
+		tileLoc.second=0;
+	return tileLoc;
+}
+//set world-space
 void GameWorld::fillArea(std::pair<int,int> point1, std::pair<int,int> point2)
 {
 	const int x1 = point1.first;
@@ -172,90 +271,4 @@ void GameWorld::setTile(std::pair<int,int> loc, WorldTile* lTile)
 	std::pair<int,int> regionLoc = lookupRegion(loc);
 	std::pair<int,int> tileLoc = lookupRegionTilePos(loc);
 	regionCoord.at(regionLoc)->setTile(tileLoc,lTile);
-}
-void GameWorld::addCreature(Creature* lCreature, std::pair<int,int> loc)
-{
-	//add it to the vector
-	//creatureList.push_back(lCreature);
-	//add it to the coord map
-	//TODO: check if there is already a creature there, then act accordingly
-	creatureCoord[loc] = lCreature;
-}
-void GameWorld::removeCreature(Creature* lCreature, std::pair<int,int> loc)
-{
-	//remove it from the vector
-	//remove it from the coord map
-	std::map<std::pair<int,int>,Creature*>::iterator creatureIt = creatureCoord.find(loc);
-	if(creatureIt != creatureCoord.end() && creatureIt->second == lCreature)
-	{
-		creatureCoord.erase(creatureIt);
-	}
-}
-std::vector<GameItem*>* GameWorld::getItemPile(std::pair<int,int> loc) const
-{
-	std::map<std::pair<int,int>,std::vector<GameItem*>>::const_iterator pileIt = gameItemCoord.find(loc);
-		//if there is a pile there
-		if(pileIt != gameItemCoord.end())
-		{
-			return const_cast<std::vector<GameItem*>*>(&(pileIt->second));
-		}
-		else
-			return NULL;
-}
-Creature* GameWorld::getCreature(std::pair<int,int> loc) const
-{
-	std::map<std::pair<int,int>, Creature*>::const_iterator creatureIt = creatureCoord.find(loc);
-	//if there is a creature there
-	if(creatureIt != creatureCoord.end())
-	{
-		return creatureIt->second;
-	}
-	else
-		return NULL;
-}
-std::vector<Creature*> GameWorld::getCreatureList(void) const
-{
-	//temporary list we will create
-	std::vector<Creature*> creatureList;
-	//convert map to vector
-	for(std::map<std::pair<int,int>, Creature*>::const_iterator creatureIt = creatureCoord.begin();
-		creatureIt != creatureCoord.end(); creatureIt++)
-	{
-		creatureList.push_back(creatureIt->second);
-	}
-	//return the local vector
-	return creatureList;
-}
-void GameWorld::setPlayerCreature(Creature* lCreature)
-{
-	playerCreature = lCreature;
-}
-Creature* GameWorld::getPlayerCreature(void) const
-{
-	return playerCreature;
-}
-void GameWorld::createItem(GameItemTypeID lTypeID, std::pair<int,int> loc)
-{
-	GameItem* item = new GameItem(itemTypeDef.getTileType(lTypeID), loc);
-	addItem(item, loc);
-}
-void GameWorld::destroyItem(GameItem* lGameItem, std::pair<int,int> loc)
-{
-	removeItem(lGameItem, loc);
-	delete lGameItem;
-}
-void GameWorld::createCreature(CreatureTypeID lTypeID, std::pair<int,int> loc)
-{
-	Creature* creature = new Creature(creatureTypeDef.getCreatureType(lTypeID), loc);
-	addCreature(creature, loc);
-}
-void GameWorld::destroyCreature(Creature* lCreature, std::pair<int,int> loc)
-{
-	removeCreature(lCreature, loc);
-	//remove the components
-	for(int i = 0; i<lCreature->getNumComponents(); i++)
-	{
-		delete lCreature->getComponent(EntityComponentID(i));
-	}
-	delete lCreature;
 }

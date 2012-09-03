@@ -20,26 +20,37 @@ public:
 	void removeItem(GameItem* lGameItem, std::pair<int,int> loc); //DOES NOT DELETE ITEM
 	void addCreature(Creature* lCreature, std::pair<int,int> loc); //does not create creature
 	void removeCreature(Creature* lCreature, std::pair<int,int> loc); //does not delete creature
+
 	//create/destroy
-	
 	void createItem(GameItemTypeID lTypeID, std::pair<int,int> loc);
 	void destroyItem(GameItem* lGameItem, std::pair<int,int> loc);
 	void createCreature(CreatureTypeID lTypeID, std::pair<int,int> loc);
 	void destroyCreature(Creature* lCreature, std::pair<int,int> loc);
 
+	//get entities
 	std::vector<GameItem*>* getItemPile(std::pair<int,int> loc) const;
 	Creature* getCreature(std::pair<int,int> loc) const;
 
 	std::vector<Creature*> getCreatureList(void) const;
 	
-	void setPlayerCreature(Creature* lCreature);
 	Creature* getPlayerCreature(void) const;
+	void setPlayerCreature(Creature* lCreature);
 
 	//events in the world
-	bool moveCreature(Creature* lCreature, std::pair<int,int> loc);
 	void moveGameItem(GameItem* lGameItem, std::pair<int,int> loc);
+	bool moveCreature(Creature* lCreature, std::pair<int,int> loc);
+	
+	//public for testing
+	WorldTile* lookupTile(std::pair<int,int> loc) const;
+	void setTile(std::pair<int,int> loc, WorldTile* lTile); //assumes the region exists
+	//testing
+	void test(std::pair<int,int> point1, std::pair<int,int> point2){fillArea(point1, point2);}
 private:
+	void fillArea(std::pair<int,int> point1, std::pair<int,int> point2);
+	std::pair<int,int> lookupRegion(std::pair<int,int> loc) const;
+	std::pair<int,int> lookupRegionTilePos(std::pair<int,int> loc) const;
 
+	//members
 	//tile type definitions
 	//public for test
 public:
@@ -53,23 +64,7 @@ private:
 	//std::vector<Creature*> creatureList;
 	std::map<std::pair<int,int>,Creature*> creatureCoord;
 	std::map<std::pair<int,int>, WorldRegion*> regionCoord;
-
 	//special pointer to the player's creature
 	Creature* playerCreature;
-
-	void fillArea(std::pair<int,int> point1, std::pair<int,int> point2);
-
-	std::pair<int,int> lookupRegion(std::pair<int,int> loc) const 
-	{
-		return std::pair<int,int>  (int(floor(float(loc.first)/float(REGIONSIZE))),
-									int(floor(float(loc.second)/float(REGIONSIZE))));}
-	std::pair<int,int> lookupRegionTilePos(std::pair<int,int> loc) const;
-	//public for testing
-public:
-	WorldTile* lookupTile(std::pair<int,int> loc) const;
-	void setTile(std::pair<int,int> loc, WorldTile* lTile); //assumes the region exists
-
-	//testing
-	void test(std::pair<int,int> point1, std::pair<int,int> point2){fillArea(point1, point2);}
 };
 
