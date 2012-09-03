@@ -34,6 +34,18 @@
     <Filter Include="Header Files\CursesIO\Input Sources">
       <UniqueIdentifier>{22d8a432-37e9-4145-91de-71da2eb9d5bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameEntity">
+      <UniqueIdentifier>{0c060c30-89c3-4b4d-b878-d428ac9ccbe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameEntity\EntityComponent">
+      <UniqueIdentifier>{ec97f188-a749-49eb-ad54-f5ceb780f0eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEntity">
+      <UniqueIdentifier>{2d0262fb-abf5-4e57-a785-32fdf8b7601e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameEntity\EntityComponent">
+      <UniqueIdentifier>{d819ced7-09d2-4d92-90e9-248df8da89d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -43,15 +55,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Creature.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameWorld.h">
@@ -96,17 +99,8 @@
     <ClInclude Include="InputMessages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EntityComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EntityComponentEnum.h">
       <Filter>Header Files\GameWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="InventoryComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameItemType.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameItemTypeDef.h">
       <Filter>Header Files</Filter>
@@ -114,16 +108,7 @@
     <ClInclude Include="IGameItemTypeDef.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="CreatureType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CreatureTypeDef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CreatureStatEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEntityType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ICreatureTypeDef.h">
@@ -150,15 +135,36 @@
     <ClInclude Include="colorListCurses.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Creature.h">
+      <Filter>Header Files\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponent.h">
+      <Filter>Header Files\GameEntity\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryComponent.h">
+      <Filter>Header Files\GameEntity\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="CreatureStatEffect.h">
+      <Filter>Header Files\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEntity.h">
+      <Filter>Header Files\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEntityType.h">
+      <Filter>Header Files\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="CreatureType.h">
+      <Filter>Header Files\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItem.h">
+      <Filter>Header Files\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItemType.h">
+      <Filter>Header Files\GameEntity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Creature.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WorldRegion.cpp">
@@ -185,9 +191,6 @@
     <ClCompile Include="CharacterInputSourceCurses.cpp">
       <Filter>Source Files\CursesIO</Filter>
     </ClCompile>
-    <ClCompile Include="InventoryComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameItemTypeDef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -209,11 +212,32 @@
     <ClCompile Include="Insurgency.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameEntity.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Creature.cpp">
+      <Filter>Source Files\GameEntity</Filter>
     </ClCompile>
     <ClCompile Include="CreatureType.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEntity.cpp">
+      <Filter>Source Files\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItem.cpp">
+      <Filter>Source Files\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryComponent.cpp">
+      <Filter>Source Files\GameEntity\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityComponent.cpp">
+      <Filter>Source Files\GameEntity\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="CreatureStatEffect.cpp">
+      <Filter>Source Files\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItemType.cpp">
+      <Filter>Source Files\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEntityType.cpp">
+      <Filter>Source Files\GameEntity</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

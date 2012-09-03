@@ -4,31 +4,24 @@ typedef unsigned int GameItemTypeID; //unique type identifier for this item
 //typedef unsigned int GameItemClassID; //non-unique type for catagorizing items (i.e. AssaultRifle01 [low quality])
 enum GameItemClassID
 {
-	NOITEMCLASS = 0,
-	assaultRifle01,
+	GameItemClass_NoClass = 0,
+	GameItemClass_AssaultRifle01,
+	GameItemClassCount
 };
 
 class GameItemType : public GameEntityType
 {
 public:
 
-	GameItemType(void)
-		:GameEntityType(),
-		 m_type(NULL),
-		 m_class(NOITEMCLASS)
-	{
-	}
-
-	~GameItemType(void)
-	{
-	}
+	GameItemType(void);
+	~GameItemType(void);
 
 	//getters
-	GameItemTypeID getTypeID(void) const {return m_type;}
-	GameItemClassID getClassID(void) const {return m_class;}
+	GameItemTypeID getTypeID(void) const;
+	GameItemClassID getClassID(void) const;
 	//setters
-	void setTypeID(GameItemTypeID lType) {m_type = lType;}
-	void setClassID(GameItemClassID lClass) {m_class = lClass;}
+	void setTypeID(GameItemTypeID lType);
+	void setClassID(GameItemClassID lClass);
 
 private:
 	GameItemTypeID m_type;

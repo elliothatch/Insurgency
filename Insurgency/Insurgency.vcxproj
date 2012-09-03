@@ -120,13 +120,17 @@
   <ItemGroup>
     <ClCompile Include="CharacterInputSourceCurses.cpp" />
     <ClCompile Include="Creature.cpp" />
+    <ClCompile Include="CreatureStatEffect.cpp" />
     <ClCompile Include="CreatureType.cpp" />
     <ClCompile Include="CreatureTypeDef.cpp" />
     <ClCompile Include="CursesGameWorldWindow.cpp" />
     <ClCompile Include="CursesWindow.cpp" />
+    <ClCompile Include="EntityComponent.cpp" />
     <ClCompile Include="GameEntity.cpp" />
+    <ClCompile Include="GameEntityType.cpp" />
     <ClCompile Include="GameItem.cpp" />
     <ClCompile Include="GameIOCurses.cpp" />
+    <ClCompile Include="GameItemType.cpp" />
     <ClCompile Include="GameItemTypeDef.cpp" />
     <ClCompile Include="GameTurnTimer.cpp" />
     <ClCompile Include="GameWorld.cpp" />

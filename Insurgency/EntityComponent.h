@@ -4,20 +4,14 @@ class EntityComponent
 {
 public:
 
-	EntityComponent(EntityComponentID lType)
-		:type(lType)
-	{
-	}
+	EntityComponent(EntityComponentID lType);
 
-	virtual ~EntityComponent(void)
-	{
-	}
-
+	virtual ~EntityComponent(void);
 	virtual EntityComponent* clone() const = 0;
 
-	EntityComponentID getType() {return type;}
+	EntityComponentID getType();
 
 private:
-	const EntityComponentID type;
+	const EntityComponentID m_type;
 };
 

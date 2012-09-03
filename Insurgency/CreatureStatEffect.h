@@ -3,24 +3,19 @@ class CreatureStatEffect
 {
 public:
 
-	CreatureStatEffect(void)
-	{
-	}
+	CreatureStatEffect(void);
+	~CreatureStatEffect(void);
 
-	~CreatureStatEffect(void)
-	{
-	}
+	int getAffectedStat(void) const;
+	int getAmount(void) const;
+	int getTimeRemaining(void) const;
 
-	int getAffectedStat(void) const {return affectedStat;}
-	int getAmount(void) const {return amount;}
-	int getTimeRemaining(void) const {return timeRemaining;}
-
-	void changeTimeRemaining(int amount) {timeRemaining += amount;}
+	void changeTimeRemaining(int amount);
 
 private:
 	
-	int affectedStat;
-	int amount;
-	int timeRemaining;
+	int m_affectedStat;
+	int m_amount;
+	int m_timeRemaining;
 };
 

@@ -10,7 +10,7 @@ GameItemTypeDef::GameItemTypeDef(void)
 	}
 	itemTypes[1].setLName("Kalashnikov");
 	itemTypes[1].setSName("AK-47");
-	itemTypes[1].setClassID(assaultRifle01);
+	itemTypes[1].setClassID(GameItemClass_AssaultRifle01);
 }
 
 
