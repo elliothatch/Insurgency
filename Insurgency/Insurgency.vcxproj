@@ -97,7 +97,6 @@
     <ClInclude Include="GameItemTypeDef.h" />
     <ClInclude Include="GameTurnTimer.h" />
     <ClInclude Include="GameWorld.h" />
-    <ClInclude Include="global.h" />
     <ClInclude Include="ICreatureTypeDef.h" />
     <ClInclude Include="IGameInput.h" />
     <ClInclude Include="IGameItemTypeDef.h" />
@@ -134,7 +133,6 @@
     <ClCompile Include="GameItemTypeDef.cpp" />
     <ClCompile Include="GameTurnTimer.cpp" />
     <ClCompile Include="GameWorld.cpp" />
-    <ClCompile Include="global.cpp" />
     <ClCompile Include="Insurgency.cpp" />
     <ClCompile Include="InsurgencyGame.cpp" />
     <ClCompile Include="InsurgencyProg.cpp" />

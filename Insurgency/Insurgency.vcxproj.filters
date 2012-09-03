@@ -117,9 +117,6 @@
     <ClInclude Include="GameTurnTimer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="global.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CreatureInputSourceCurses.h">
       <Filter>Header Files\CursesIO\Input Sources</Filter>
     </ClInclude>
@@ -198,9 +195,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameTurnTimer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="global.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InsurgencyGame.cpp">
