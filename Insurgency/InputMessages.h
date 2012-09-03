@@ -1,7 +1,7 @@
 #pragma once
 #include "GameEntity.h"
 #include "GameItem.h"
-#include "IGameWorld.h"
+#include "GameWorld.h"
 enum InputMessageID
 {
 	NOMESSAGE = 0,
@@ -30,18 +30,18 @@ public:
 class Msg_EntityDropItem :public InputMessage
 {
 public:
-	Msg_EntityDropItem(GameEntity* lGEntity, GameItem* const lGItem, std::pair<int,int> loc, IGameWorld& lGWorld)
+	Msg_EntityDropItem(GameEntity* lGEntity, GameItem* const lGItem, std::pair<int,int> loc, GameWorld& lGWorld)
 		:InputMessage(ENTITYDROPITEM), gEntity(lGEntity), gItem(lGItem), location(loc), gWorld(lGWorld) {}
 	virtual ~Msg_EntityDropItem(void) {}
 	GameEntity* getEntity(void) const {return gEntity;}
 	GameItem* const getItem(void) const {return gItem;}
 	std::pair<int,int> getLocation(void) const {return location;}
-	IGameWorld& getWorld(void) const {return gWorld;}
+	GameWorld& getWorld(void) const {return gWorld;}
 private:
 	GameEntity* gEntity;
 	GameItem* const gItem;
 	std::pair<int,int> location;
-	IGameWorld& gWorld;
+	GameWorld& gWorld;
 };
 
 class Msg_OpenPauseMenu :public InputMessage

@@ -39,7 +39,7 @@ GameIOCurses::~GameIOCurses(void)
 
 //output
 
-void GameIOCurses::drawGameWorld(const IGameWorld& lWorld, std::pair<int,int> lCenterLoc)
+void GameIOCurses::drawGameWorld(const GameWorld& lWorld, std::pair<int,int> lCenterLoc)
 {
 	//temp check, only window is the gameworld window
 	std::vector<CursesWindow*>::iterator winIt(windowList.begin());

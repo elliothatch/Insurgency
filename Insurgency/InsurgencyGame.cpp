@@ -3,7 +3,7 @@
 
 
 InsurgencyGame::InsurgencyGame(const IWorldTileTypeDef& lWorldTileTypeDef, const IGameItemTypeDef& lGameItemTypeDef,
-				   const ICreatureTypeDef& lCreatureTypeDef, IGameWorld& lGameWorld, IGameTurnTimer& lGameTurnTimer)
+				   const ICreatureTypeDef& lCreatureTypeDef, GameWorld& lGameWorld, GameTurnTimer& lGameTurnTimer)
 				   :m_WorldTileTypeDef(lWorldTileTypeDef),
 				    m_GameItemTypeDef(lGameItemTypeDef),
 					m_CreatureTypeDef(lCreatureTypeDef),

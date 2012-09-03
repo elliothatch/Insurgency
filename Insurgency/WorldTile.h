@@ -1,19 +1,19 @@
 #pragma once
-#include "iworldtile.h"
+#include <string>
+#include "WorldTileType.h"
 
-class WorldTile :
-	public IWorldTile
+class WorldTile
 {
 public:
 	WorldTile(const WorldTileType& lType);
 	~WorldTile(void);
 
-	virtual bool isPassable(void) {return type.getPassable();}
-	virtual bool isTransparent(void) {return type.getTransparent();}
-	virtual std::string getTitle(void) {return type.getTitle();}
+	bool isPassable(void) {return type.getPassable();}
+	bool isTransparent(void) {return type.getTransparent();}
+	std::string getTitle(void) {return type.getTitle();}
 
 	//temp curses test code
-	virtual char getDispCh(void) {return type.getDispCh();}
+	char getDispCh(void) {return type.getDispCh();}
 
 private:
 	const WorldTileType& type;

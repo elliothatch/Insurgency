@@ -2,9 +2,8 @@
 #include "GameTurnTimer.h"
 
 
-GameTurnTimer::GameTurnTimer(IGameWorld& lGameWorld)
-	:IGameTurnTimer(lGameWorld),
-	gameWorld(lGameWorld),
+GameTurnTimer::GameTurnTimer(GameWorld& lGameWorld)
+	:gameWorld(lGameWorld),
 	curTurn(0)
 {
 }

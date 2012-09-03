@@ -11,7 +11,7 @@ CursesGameWorldWindow::~CursesGameWorldWindow(void)
 {
 }
 
-void CursesGameWorldWindow::refWin(const IGameWorld& lGameWorld, std::pair<int,int> lCenterLoc)
+void CursesGameWorldWindow::refWin(const GameWorld& lGameWorld, std::pair<int,int> lCenterLoc)
 {
 	//const chtype attrVisible = A_NORMAL;
 	//const chtype attrRemembered = COLOR_PAIR(BBLACK_BLACK);

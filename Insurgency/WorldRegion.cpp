@@ -31,7 +31,7 @@ WorldRegion::~WorldRegion(void)
 	}
 }
 
-IWorldTile* WorldRegion::getTile(std::pair<int,int> loc)
+WorldTile* WorldRegion::getTile(std::pair<int,int> loc)
 {
 	if(loc.first < REGIONSIZE && loc.second < REGIONSIZE)
 		return tiles[loc.first][loc.second];
@@ -39,7 +39,7 @@ IWorldTile* WorldRegion::getTile(std::pair<int,int> loc)
 		return NULL;
 }
 
-void WorldRegion::setTile(std::pair<int,int> loc, IWorldTile* tile)
+void WorldRegion::setTile(std::pair<int,int> loc, WorldTile* tile)
 {
 	if(tiles[loc.first][loc.second])
 	{

@@ -14,7 +14,7 @@ public:
 	virtual ~GameIOCurses(void);
 
 	//output
-	virtual void drawGameWorld(const IGameWorld& lWorld, std::pair<int,int> lCenterLoc);
+	virtual void drawGameWorld(const GameWorld& lWorld, std::pair<int,int> lCenterLoc);
 	void createGameWorldWindow(int lStartY, int lStartX, int lHeight, int lWidth);
 
 	//input

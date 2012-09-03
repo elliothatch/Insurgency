@@ -57,15 +57,6 @@
     <ClInclude Include="GameWorld.h">
       <Filter>Header Files\GameWorld</Filter>
     </ClInclude>
-    <ClInclude Include="IGameWorld.h">
-      <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="IWorldRegion.h">
-      <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="IWorldTile.h">
-      <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
     <ClInclude Include="IWorldTileTypeDef.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
@@ -121,9 +112,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IGameItemTypeDef.h">
-      <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="IGameTurnTimer.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="CreatureType.h">

@@ -102,8 +102,6 @@
     <ClInclude Include="IGameInput.h" />
     <ClInclude Include="IGameItemTypeDef.h" />
     <ClInclude Include="IGameOutput.h" />
-    <ClInclude Include="IGameTurnTimer.h" />
-    <ClInclude Include="IGameWorld.h" />
     <ClInclude Include="IInputSource.h" />
     <ClInclude Include="IInputSourceCurses.h" />
     <ClInclude Include="InputMessages.h" />
@@ -111,8 +109,6 @@
     <ClInclude Include="InsurgencyGame.h" />
     <ClInclude Include="InsurgencyProg.h" />
     <ClInclude Include="InventoryComponent.h" />
-    <ClInclude Include="IWorldRegion.h" />
-    <ClInclude Include="IWorldTile.h" />
     <ClInclude Include="IWorldTileTypeDef.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

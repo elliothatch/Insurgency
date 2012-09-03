@@ -3,8 +3,7 @@
 
 
 WorldTile::WorldTile(const WorldTileType& lType)
-	:IWorldTile(lType),
-	type(lType)
+	:type(lType)
 {
 }
 

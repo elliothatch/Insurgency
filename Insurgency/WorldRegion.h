@@ -1,24 +1,22 @@
 #pragma once
-#include "iworldregion.h"
 #include "WorldTile.h"
-class WorldRegion :
-	public IWorldRegion
+class WorldRegion
 {
 public:
 #define REGIONSIZE 10
 
 	WorldRegion(void);
-	virtual ~WorldRegion(void);
+	~WorldRegion(void);
 
-	virtual IWorldTile* getTile(std::pair<int,int> loc);
-	virtual void setTile(std::pair<int,int> loc, IWorldTile* lTile); //deletes old tile
-	virtual void save(void);
-	virtual void load(void);
+	WorldTile* getTile(std::pair<int,int> loc);
+	void setTile(std::pair<int,int> loc, WorldTile* lTile); //deletes old tile
+	void save(void);
+	void load(void);
 
-	virtual int getSize() const {return REGIONSIZE;}
+	int getSize() const {return REGIONSIZE;}
 
 private:
-	IWorldTile* tiles[REGIONSIZE][REGIONSIZE];
+	WorldTile* tiles[REGIONSIZE][REGIONSIZE];
 
 };
 

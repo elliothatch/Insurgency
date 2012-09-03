@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "IGameWorld.h"
+#include "GameWorld.h"
 class IGameOutput
 {
 public:
@@ -13,6 +13,6 @@ public:
 	{
 	}
 	
-	virtual void drawGameWorld(const IGameWorld& lWorld, std::pair<int,int> lCenterLoc) = 0;
+	virtual void drawGameWorld(const GameWorld& lWorld, std::pair<int,int> lCenterLoc) = 0;
 };
 

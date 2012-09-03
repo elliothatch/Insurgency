@@ -5,8 +5,7 @@
 GameWorld::GameWorld(const IWorldTileTypeDef& lWorldTileTypeDef,
 					 const ICreatureTypeDef& lCreatureTypeDef,
 					 const IGameItemTypeDef& lGameItemTypeDef)
-	:IGameWorld(lWorldTileTypeDef, lCreatureTypeDef, lGameItemTypeDef),
-	 tileTypeDef(lWorldTileTypeDef),
+	:tileTypeDef(lWorldTileTypeDef),
 	 creatureTypeDef(lCreatureTypeDef),
 	 itemTypeDef(lGameItemTypeDef)
 {
@@ -35,7 +34,7 @@ GameWorld::~GameWorld(void)
 		delete creatureIt->second;
 	}
 	//delete World Regions
-	for(std::map<std::pair<int,int>, IWorldRegion*>::iterator regIt = regionCoord.begin(); regIt != regionCoord.end(); regIt++)
+	for(std::map<std::pair<int,int>, WorldRegion*>::iterator regIt = regionCoord.begin(); regIt != regionCoord.end(); regIt++)
 	{
 		delete regIt->second;
 	}
@@ -59,7 +58,7 @@ std::pair<int,int> GameWorld::lookupRegionTilePos(std::pair<int,int> loc) const
 		tileLoc.second=0;
 	return tileLoc;
 }
-IWorldTile* GameWorld::lookupTile(std::pair<int,int> loc) const
+WorldTile* GameWorld::lookupTile(std::pair<int,int> loc) const
 {
 	std::pair<int,int> tileLoc (lookupRegionTilePos(loc));
 	return regionCoord.find(lookupRegion(loc))->second->getTile(tileLoc);
@@ -168,7 +167,7 @@ void GameWorld::fillArea(std::pair<int,int> point1, std::pair<int,int> point2)
 			}
 		}
 }
-void GameWorld::setTile(std::pair<int,int> loc, IWorldTile* lTile)
+void GameWorld::setTile(std::pair<int,int> loc, WorldTile* lTile)
 {
 	std::pair<int,int> regionLoc = lookupRegion(loc);
 	std::pair<int,int> tileLoc = lookupRegionTilePos(loc);
