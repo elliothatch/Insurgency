@@ -14,33 +14,32 @@ public:
 	Creature(const CreatureType& lType, std::pair<int,int> loc);
 	virtual ~Creature(void);
 
-	unsigned int getActTurnRem(void) {return actTurnRem;}
+	unsigned int getActTurnRem(void);
+	void changeActTurnRem(unsigned int amount);
 
-	void changeActTurnRem(unsigned int amount) {actTurnRem += amount;}
-	
 	//get stats
-	int getSpeed(void) {return adjustedStats[SPEED];}
-	int getStrength(void) {return adjustedStats[STRENGTH];}
-
-	int getBaseSpeed(void) {return baseStats[SPEED];}
-	int getBaseStrength(void) {return baseStats[STRENGTH];}
+	int getSpeed(void);
+	int getStrength(void);
+	//base stats
+	int getBaseSpeed(void);
+	int getBaseStrength(void);
 
 	//change stats
-	void addTempStatEffect(CreatureStatEffect* lStatEffect);
-	void changeSpeedBase(int amount) {baseStats[SPEED] += amount;}
-	void changeStrengthBase(int amount) {baseStats[STRENGTH] += amount;}
+	void addTempStatEffect(CreatureStatEffect lStatEffect);
+	void changeSpeedBase(int amount);
+	void changeStrengthBase(int amount);
 
 	//update the creature's turn
 	void turnUpdate(void);
 private:
-	std::array<int, STATNUM> baseStats;
-	std::array<int, STATNUM> adjustedStats;
+	std::array<int, CreatureStatCount> m_baseStats;
+	std::array<int, CreatureStatCount> m_adjustedStats;
 
-	std::vector<CreatureStatEffect*> statEffects;
+	std::vector<CreatureStatEffect> m_statEffects;
 
 	//how many turns until the action is finished.
 	//interruptable actions need a little more framework
-	unsigned int actTurnRem;
+	unsigned int m_actTurnRem;
 
 	//don't think I need these
 	CreatureTypeID m_type;
@@ -48,7 +47,7 @@ private:
 };
 
 
-inline bool compareStatEffectTimeRemaining(CreatureStatEffect* a, CreatureStatEffect* b)
+inline bool compareStatEffectTimeRemaining(CreatureStatEffect a, CreatureStatEffect b)
 	{
-		return (a->getTimeRemaining() < b->getTimeRemaining());
+		return (a.getTimeRemaining() < b.getTimeRemaining());
 	}

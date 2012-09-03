@@ -10,7 +10,7 @@ CreatureTypeDef::CreatureTypeDef(void)
 	}
 	creatureTypes[1].setLName("Insurgent");
 	creatureTypes[1].setSName("Elliot Hatch");
-	creatureTypes[1].setClassID(insurgent01);
+	creatureTypes[1].setClassID(CreatureClass_Insurgent01);
 	creatureTypes[1].setSpeed(5);
 	creatureTypes[1].setStrength(6);
 }

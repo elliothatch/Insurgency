@@ -2,6 +2,6 @@
 
 enum EntityComponentID
 {
-	INVENTORY = 0,
-	COMPONENTNUM
+	EntityComponent_Inventory = 0,
+	EntityComponent_Count
 };

@@ -9,7 +9,7 @@ GameItem::GameItem(const GameItemType& lItemType, std::pair<int,int> loc)
 {
 	setLName(lItemType.getLName());
 	setSName(lItemType.getSName());
-	m_components = lItemType.getComponents();
+	m_components = lItemType.cloneComponents();
 }
 
 

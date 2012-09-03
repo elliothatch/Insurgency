@@ -13,6 +13,8 @@ public:
 	{
 	}
 
+	virtual EntityComponent* clone() const = 0;
+
 	EntityComponentID getType() {return type;}
 
 private:

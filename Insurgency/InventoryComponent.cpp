@@ -3,13 +3,18 @@
 
 
 InventoryComponent::InventoryComponent(void)
-	:EntityComponent(INVENTORY)
+	:EntityComponent(EntityComponent_Inventory)
 {
 }
 
 
 InventoryComponent::~InventoryComponent(void)
 {
+}
+
+InventoryComponent* InventoryComponent::clone() const
+{
+	return new InventoryComponent(*this);
 }
 
 void InventoryComponent::addEntity(GameEntity* lEntity)

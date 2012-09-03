@@ -9,6 +9,7 @@ class InventoryComponent :
 public:
 	InventoryComponent(void);
 	virtual ~InventoryComponent(void);
+	virtual InventoryComponent* clone() const;
 	void addEntity(GameEntity* lEntity);
 	void removeEntity(GameEntity* lEntity);
 
