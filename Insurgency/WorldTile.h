@@ -1,10 +1,12 @@
 #pragma once
 #include <string>
+#include <memory>
 #include "WorldTileType.h"
 
 class WorldTile
 {
 public:
+	typedef std::unique_ptr<WorldTile> ptr;
 	WorldTile(const WorldTileType& lType);
 	~WorldTile(void);
 

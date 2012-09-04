@@ -3,8 +3,8 @@
 
 
 GameTurnTimer::GameTurnTimer(GameWorld& lGameWorld)
-	:gameWorld(lGameWorld),
-	curTurn(0)
+	:m_gameWorld(lGameWorld),
+	m_curTurn(0)
 {
 }
 
@@ -16,11 +16,11 @@ GameTurnTimer::~GameTurnTimer(void)
 void GameTurnTimer::advanceTurn(void)
 {
 	//get the list of creatures and iterate through, updating each ones' turn
-	std::vector<Creature*> creatureList = gameWorld.getCreatureList();
-	for(std::vector<Creature*>::iterator creatureIt = creatureList.begin();
+	std::set<Creature::ptr>& creatureList = m_gameWorld.getCreatureSet();
+	for(std::set<Creature::ptr>::iterator creatureIt = creatureList.begin();
 		creatureIt != creatureList.end(); creatureIt++)
 	{
-		Creature* curCreature = *creatureIt;
+		Creature& curCreature = **creatureIt;
 		/*
 		if(curCreature->getActTurnRem() == 0)
 		{
@@ -44,33 +44,33 @@ void GameTurnTimer::advanceTurn(void)
 				processNPCTurn();
 		}
 	*/
-		curCreature->turnUpdate();
+		curCreature.turnUpdate();
 	}
-	curTurn++;
+	m_curTurn++;
 }
 
 std::vector<Creature*> GameTurnTimer::getCreaturesCanMove(void) const
 {
 	//the vector we return
 	std::vector<Creature*> movableCreatures;
-	//temp vector
-	std::vector<Creature*> creatureList = gameWorld.getCreatureList();
-	for(std::vector<Creature*>::iterator creatureIt = creatureList.begin();
+	//temp set
+	std::set<Creature::ptr>& creatureList = m_gameWorld.getCreatureSet();
+	for(std::set<Creature::ptr>::iterator creatureIt = creatureList.begin();
 		creatureIt != creatureList.end(); creatureIt++)
 	{
-		Creature* curCreature = *creatureIt;
+		Creature& curCreature = **creatureIt;
 		//if the creature can move, add it to the list
-		if(curCreature->getActTurnRem() == 0)
+		if(curCreature.getActTurnRem() == 0)
 		{
-			movableCreatures.push_back(curCreature);
+			movableCreatures.push_back(&curCreature);
 		}
 	}
 	//sort the list by speed in decending order (front = 0, back = 10, etc), that way we can pop the back after a creature moves
 	std::sort(movableCreatures.begin(), movableCreatures.end(), compareCreatureMoveOrder);
-	return movableCreatures;
+	return std::move(movableCreatures);
 }
 
-void GameTurnTimer::moveCreature(Creature* lCreature, std::pair<int,int> loc)
+void GameTurnTimer::moveCreature(Creature& lCreature, std::pair<int,int> loc)
 {
 }
 

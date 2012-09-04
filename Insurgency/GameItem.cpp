@@ -2,8 +2,8 @@
 #include "GameItem.h"
 
 
-GameItem::GameItem(const GameItemType& lItemType, std::pair<int,int> loc)
-	:GameEntity(loc),
+GameItem::GameItem(const GameItemType& lItemType)
+	:GameEntity(),
 	m_type(lItemType.getTypeID()),
 	m_class(lItemType.getClassID())
 {

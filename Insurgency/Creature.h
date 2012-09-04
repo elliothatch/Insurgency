@@ -5,13 +5,15 @@
 #include <vector>
 #include <algorithm>
 #include <array>
+#include <memory>
 
 class Creature :
 	public GameEntity
 {
-
 public:
-	Creature(const CreatureType& lType, std::pair<int,int> loc);
+	typedef std::unique_ptr<Creature> ptr;
+
+	Creature(const CreatureType& lType);
 	virtual ~Creature(void);
 
 	unsigned int getActTurnRem(void);
@@ -45,7 +47,6 @@ private:
 	CreatureTypeID m_type;
 	CreatureClassID m_class;
 };
-
 
 inline bool compareStatEffectTimeRemaining(CreatureStatEffect a, CreatureStatEffect b)
 	{

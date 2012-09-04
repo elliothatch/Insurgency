@@ -1,11 +1,13 @@
 #pragma once
 #include "gameentity.h"
 #include "GameItemType.h"
+#include <memory>
 class GameItem :
 	public GameEntity
 {
 public:
-	GameItem(const GameItemType& lItemType, std::pair<int,int> loc);
+	typedef std::unique_ptr<GameItem> ptr;
+	GameItem(const GameItemType& lItemType);
 	virtual ~GameItem(void);
 
 	//getters

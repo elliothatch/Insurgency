@@ -21,23 +21,29 @@ int _tmain(int argc, _TCHAR* argv[])
 	GameWorld world(tileTypeDef, creatureTypeDef, itemTypeDef);
 	GameTurnTimer turnTimer(world);
 	world.test(std::pair<int,int>(-100,-100), std::pair<int,int>(100,100));
-	world.setTile(std::pair<int,int>(0,0), new WorldTile(world.tileTypeDef.getTileType(128)));
-	world.setTile(std::pair<int,int>(6,-3), new WorldTile(world.tileTypeDef.getTileType(128)));
-	world.setTile(std::pair<int,int>(-2,-4), new WorldTile(world.tileTypeDef.getTileType(128)));
+	WorldTile::ptr tile01(new WorldTile(world.m_tileTypeDef.getTileType(128)));
+	WorldTile::ptr tile02(new WorldTile(world.m_tileTypeDef.getTileType(128)));
+	WorldTile::ptr tile03(new WorldTile(world.m_tileTypeDef.getTileType(128)));
+
+	world.setTile(std::pair<int,int>(0,0),std::move(tile01));
+	world.setTile(std::pair<int,int>(6,-3),std::move(tile02));
+	world.setTile(std::pair<int,int>(-2,-4),std::move(tile03));
 	
-	world.createItem(1,std::pair<int,int>(0,0));
+	GameItem& item1(world.createItem(1));
+	world.addItemToWorld(item1, std::pair<int,int>(0,0));
 	std::vector<GameItem*>* itemPile = world.getItemPile(std::pair<int,int>(0,0));
 	std::cout<<itemPile->at(0)->getLName()<<std::endl;
 	std::cout<<itemPile->at(0)->getSName()<<std::endl;
-	world.destroyItem(itemPile->at(0),std::pair<int,int>(0,0));
+	world.destroyItem(*itemPile->at(0));
 
-	world.createCreature(1,std::pair<int,int>(0,0));
+	Creature& creature1(world.createCreature(1));
+	world.addCreatureToWorld(creature1,std::pair<int,int>(0,0));
 	Creature* creature = world.getCreature(std::pair<int,int>(0,0));
 	std::cout<<creature->getLName()<<std::endl;
 	std::cout<<creature->getSName()<<std::endl;
 	std::cout<<creature->getSpeed()<<std::endl;
 	std::cout<<creature->getStrength()<<std::endl;
-	world.destroyCreature(creature,std::pair<int,int>(0,0));
+	world.destroyCreature(*creature);
 	std::system("PAUSE");
 	/*
 	world.lookupTile(std::pair<int,int>(0,0))->setType(world.tileTypeDef.getTileType(128));

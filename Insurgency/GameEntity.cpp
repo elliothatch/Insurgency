@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include "GameEntity.h"
 
-GameEntity::GameEntity(std::pair<int,int> loc)
-		:location(loc),
-		lName("lNameE"),
-		sName("sNameE")
+GameEntity::GameEntity()
+		:m_location(std::pair<int,int>(0,0)),
+		m_lName("lNameE"),
+		m_sName("sNameE"),
+		m_isEnclosed(false)
 {
 }
 
@@ -15,16 +16,19 @@ GameEntity::~GameEntity()
 //getters
 std::pair<int,int> GameEntity::getLocation(void) const 
 {
-	return location;
+	return m_location;
 }
-
+bool GameEntity::getIsEnclosed(void) const
+{
+	return m_isEnclosed;
+}
 std::string  GameEntity::getLName(void) const
 {
-	return lName;
+	return m_lName;
 }
 std::string GameEntity::getSName(void) const 
 {
-	return sName;
+	return m_sName;
 }
 EntityComponent* GameEntity::getComponent(EntityComponentID index) const
 {
@@ -40,17 +44,20 @@ int GameEntity::getNumComponents(void) const
 //setters
 void GameEntity::setLocation(std::pair<int,int> loc)
 {
-	location = loc;
+	m_location = loc;
 }
-
+void GameEntity::setIsEnclosed(bool b)
+{
+	m_isEnclosed = b;
+}
 void GameEntity::setLName(std::string str) 
 {
-	lName = str;
+	m_lName = str;
 }
 
 void GameEntity::setSName(std::string str) 
 {
-	sName = str;
+	m_sName = str;
 }
 
 void GameEntity::addComponent(std::unique_ptr<EntityComponent> lComponent, EntityComponentID lType)

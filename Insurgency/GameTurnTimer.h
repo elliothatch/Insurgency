@@ -21,15 +21,15 @@ public:
 	std::vector<Creature*> getCreaturesCanMove(void) const;
 
 	//creature interactions
-	void moveCreature(Creature* lCreature, std::pair<int,int> loc);
+	void moveCreature(Creature& lCreature, std::pair<int,int> loc);
 
 private:
 	//note: this should probably be replaced with an AI object or something
 	//void processNPCTurn(void);
 
 private:
-	GameWorld& gameWorld;
-	unsigned long curTurn;
+	GameWorld& m_gameWorld;
+	unsigned long m_curTurn;
 };
 
 inline bool compareCreatureMoveOrder(Creature* a, Creature* b)

@@ -7,6 +7,7 @@
 #include "WorldRegion.h"
 #include "WorldTile.h"
 #include <map>
+#include <set>
 #include <algorithm>
 class GameWorld
 {
@@ -16,33 +17,33 @@ public:
 			  const IGameItemTypeDef& lGameItemTypeDef);
 	~GameWorld(void);
 	
-	void addItem(GameItem* lGameItem, std::pair<int,int> loc);	  //DOES NOT CREATE ITEM
-	void removeItem(GameItem* lGameItem, std::pair<int,int> loc); //DOES NOT DELETE ITEM
-	void addCreature(Creature* lCreature, std::pair<int,int> loc); //does not create creature
-	void removeCreature(Creature* lCreature, std::pair<int,int> loc); //does not delete creature
+	void addItemToWorld(GameItem& lGameItem, std::pair<int,int> loc);	  //DOES NOT CREATE ITEM
+	void removeItemFromWorld(GameItem& lGameItem); //DOES NOT DELETE ITEM
+	void addCreatureToWorld(Creature& lCreature, std::pair<int,int> loc); //does not create creature
+	void removeCreatureFromWorld(Creature& lCreature); //does not delete creature
 
 	//create/destroy
-	void createItem(GameItemTypeID lTypeID, std::pair<int,int> loc);
-	void destroyItem(GameItem* lGameItem, std::pair<int,int> loc);
-	void createCreature(CreatureTypeID lTypeID, std::pair<int,int> loc);
-	void destroyCreature(Creature* lCreature, std::pair<int,int> loc);
+	GameItem& createItem(GameItemTypeID lTypeID);
+	void destroyItem(GameItem& lGameItem);
+	Creature& createCreature(CreatureTypeID lTypeID);
+	void destroyCreature(Creature& lCreature);
 
 	//get entities
 	std::vector<GameItem*>* getItemPile(std::pair<int,int> loc) const;
 	Creature* getCreature(std::pair<int,int> loc) const;
 
-	std::vector<Creature*> getCreatureList(void) const;
+	std::set<Creature::ptr>& getCreatureSet(void) const;
 	
 	Creature* getPlayerCreature(void) const;
-	void setPlayerCreature(Creature* lCreature);
+	void setPlayerCreature(Creature& lCreature);
 
 	//events in the world
-	void moveGameItem(GameItem* lGameItem, std::pair<int,int> loc);
-	bool moveCreature(Creature* lCreature, std::pair<int,int> loc);
+	void moveGameItem(GameItem& lGameItem, std::pair<int,int> loc);
+	bool moveCreature(Creature& lCreature, std::pair<int,int> loc);
 	
 	//public for testing
-	WorldTile* lookupTile(std::pair<int,int> loc) const;
-	void setTile(std::pair<int,int> loc, WorldTile* lTile); //assumes the region exists
+	WorldTile& lookupTile(std::pair<int,int> loc) const;
+	void setTile(std::pair<int,int> loc, WorldTile::ptr lTile); //assumes the region exists
 	//testing
 	void test(std::pair<int,int> point1, std::pair<int,int> point2){fillArea(point1, point2);}
 private:
@@ -54,17 +55,21 @@ private:
 	//tile type definitions
 	//public for test
 public:
-	const IWorldTileTypeDef& tileTypeDef;
-	const ICreatureTypeDef& creatureTypeDef;
-	const IGameItemTypeDef& itemTypeDef;
+	const IWorldTileTypeDef& m_tileTypeDef;
+	const ICreatureTypeDef& m_creatureTypeDef;
+	const IGameItemTypeDef& m_itemTypeDef;
 private:
+	std::map<std::pair<int,int>, WorldRegion::ptr> m_regionCoord;
 
-	std::map<std::pair<int,int>,std::vector<GameItem*>> gameItemCoord;
-	//this vector is useful for iterating through turns... probably can just do that from the map.
-	//std::vector<Creature*> creatureList;
-	std::map<std::pair<int,int>,Creature*> creatureCoord;
-	std::map<std::pair<int,int>, WorldRegion*> regionCoord;
+	//hold the items, regardless of if they are on the map, held by a creature, etc.
+	std::set<GameItem::ptr> m_gameItems;
+	std::set<Creature::ptr> m_creatures;
+
+	std::map<std::pair<int,int>,std::vector<GameItem*>> m_gameItemCoord;
+	std::map<std::pair<int,int>,Creature*> m_creatureCoord;
+
+
 	//special pointer to the player's creature
-	Creature* playerCreature;
+	Creature* m_playerCreature;
 };
 

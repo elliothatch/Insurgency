@@ -2,8 +2,8 @@
 #include "Creature.h"
 
 
-Creature::Creature(const CreatureType& lType, std::pair<int,int> loc)
-	:GameEntity(loc),
+Creature::Creature(const CreatureType& lType)
+	:GameEntity(),
 	m_type(lType.getTypeID()),
 	m_class(lType.getClassID()),
 	m_baseStats(lType.getBaseStats()),

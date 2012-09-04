@@ -4,49 +4,27 @@
 
 WorldRegion::WorldRegion(void)
 {
-	for(int i = 0; i<REGIONSIZE; i++)
-	{
-		for(int j = 0; j<REGIONSIZE; j++)
-		{
-			if(tiles[i][j])
-			{
-			tiles[i][j] = NULL;
-			}
-		}
-	}
 }
-
 
 WorldRegion::~WorldRegion(void)
 {
-	for(int i = 0; i<REGIONSIZE; i++)
-	{
-		for(int j = 0; j<REGIONSIZE; j++)
-		{
-			if(tiles[i][j])
-			{
-			delete tiles[i][j];
-			}
-		}
-	}
 }
 
-WorldTile* WorldRegion::getTile(std::pair<int,int> loc)
+WorldTile& WorldRegion::getTile(std::pair<int,int> loc)
 {
-	if(loc.first < REGIONSIZE && loc.second < REGIONSIZE)
-		return tiles[loc.first][loc.second];
-	else
-		return NULL;
+
+	if(!(loc.first < REGIONSIZE && loc.second < REGIONSIZE))
+		throw std::out_of_range("Out of Range");
+		
+		return *tiles[loc.first][loc.second];
 }
 
-void WorldRegion::setTile(std::pair<int,int> loc, WorldTile* tile)
+void WorldRegion::setTile(std::pair<int,int> loc, WorldTile::ptr tile)
 {
-	if(tiles[loc.first][loc.second])
-	{
-		delete tiles[loc.first][loc.second];
-		tiles[loc.first][loc.second] = NULL;
-	}
-	tiles[loc.first][loc.second] = tile;
+	if(!(loc.first < REGIONSIZE && loc.second < REGIONSIZE))
+		throw std::out_of_range("Out of Range");
+
+	tiles[loc.first][loc.second] = std::move(tile);
 }
 
 void WorldRegion::save(void)
