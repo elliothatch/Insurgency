@@ -6,7 +6,7 @@ class WorldRegion
 {
 public:
 	typedef std::unique_ptr<WorldRegion> ptr;
-#define REGIONSIZE 10
+	static const int kRegionSize = 10;
 
 	WorldRegion(void);
 	~WorldRegion(void);
@@ -16,10 +16,10 @@ public:
 	void save(void);
 	void load(void);
 
-	int getSize() const {return REGIONSIZE;}
+	int getSize() const {return kRegionSize;}
 
 private:
-	WorldTile::ptr tiles[REGIONSIZE][REGIONSIZE];
+	std::array<std::array<WorldTile::ptr, kRegionSize>, kRegionSize> tiles;
 
 };
 

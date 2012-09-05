@@ -4,7 +4,7 @@
 
 GameItemTypeDef::GameItemTypeDef(void)
 {
-	for(int i = 0; i<MAXITEMTYPES; i++)
+	for(int i = 0; i<kMaxItemTypes; i++)
 	{
 		itemTypes[i].setTypeID(i);
 	}

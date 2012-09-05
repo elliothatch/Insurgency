@@ -31,9 +31,3 @@ private:
 	GameWorld& m_gameWorld;
 	unsigned long m_curTurn;
 };
-
-inline bool compareCreatureMoveOrder(Creature* a, Creature* b)
-{
-	//the one with a higher speed goes first
-	return (a->getSpeed() > b->getSpeed());
-}

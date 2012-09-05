@@ -46,6 +46,12 @@
     <Filter Include="Source Files\GameEntity\EntityComponent">
       <UniqueIdentifier>{d819ced7-09d2-4d92-90e9-248df8da89d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TypeDefs">
+      <UniqueIdentifier>{e28be573-d069-4e64-9946-c84f1c7b6ff8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TypeDefs">
+      <UniqueIdentifier>{6ed4f5e2-c774-4e65-a4b4-f69f95bd1aae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -70,9 +76,6 @@
       <Filter>Header Files\GameWorld</Filter>
     </ClInclude>
     <ClInclude Include="WorldTileType.h">
-      <Filter>Header Files\GameWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldTileTypeDef.h">
       <Filter>Header Files\GameWorld</Filter>
     </ClInclude>
     <ClInclude Include="IGameOutput.h">
@@ -102,14 +105,8 @@
     <ClInclude Include="EntityComponentEnum.h">
       <Filter>Header Files\GameWorld</Filter>
     </ClInclude>
-    <ClInclude Include="GameItemTypeDef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IGameItemTypeDef.h">
       <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="CreatureTypeDef.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ICreatureTypeDef.h">
       <Filter>Header Files\Interfaces</Filter>
@@ -125,9 +122,6 @@
     </ClInclude>
     <ClInclude Include="InputSourceListCurses.h">
       <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="InsurgencyProg.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="colorListCurses.h">
       <Filter>Header Files</Filter>
@@ -159,6 +153,15 @@
     <ClInclude Include="GameItemType.h">
       <Filter>Header Files\GameEntity</Filter>
     </ClInclude>
+    <ClInclude Include="CreatureTypeDef.h">
+      <Filter>Header Files\TypeDefs</Filter>
+    </ClInclude>
+    <ClInclude Include="GameItemTypeDef.h">
+      <Filter>Header Files\TypeDefs</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldTileTypeDef.h">
+      <Filter>Header Files\TypeDefs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -168,9 +171,6 @@
       <Filter>Source Files\GameWorld</Filter>
     </ClCompile>
     <ClCompile Include="WorldTile.cpp">
-      <Filter>Source Files\GameWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldTileTypeDef.cpp">
       <Filter>Source Files\GameWorld</Filter>
     </ClCompile>
     <ClCompile Include="GameWorld.cpp">
@@ -188,19 +188,10 @@
     <ClCompile Include="CharacterInputSourceCurses.cpp">
       <Filter>Source Files\CursesIO</Filter>
     </ClCompile>
-    <ClCompile Include="GameItemTypeDef.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CreatureTypeDef.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameTurnTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InsurgencyGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InsurgencyProg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Insurgency.cpp">
@@ -232,6 +223,18 @@
     </ClCompile>
     <ClCompile Include="GameEntityType.cpp">
       <Filter>Source Files\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldTileType.cpp">
+      <Filter>Source Files\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldTileTypeDef.cpp">
+      <Filter>Source Files\TypeDefs</Filter>
+    </ClCompile>
+    <ClCompile Include="CreatureTypeDef.cpp">
+      <Filter>Source Files\TypeDefs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItemTypeDef.cpp">
+      <Filter>Source Files\TypeDefs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -4,36 +4,27 @@ class WorldTileType
 {
 public:
 
-	WorldTileType(void)
-		:passable(true),
-		transparent(true)
-	{
-		title = "Tile";
-		dispCh = '.';
-	}
-
-	~WorldTileType(void)
-	{
-	}
+	WorldTileType(void);
+	~WorldTileType(void);
 	//getters
-	bool getPassable() const {return passable;}
-	bool getTransparent() const {return transparent;}
-	std::string getTitle() const {return title;}
+	bool getPassable() const;
+	bool getTransparent() const;
+	std::string getTitle() const;
 	//temp
-	char getDispCh() const {return dispCh;}
+	char getDispCh() const;
 
 	//setters
-	void setPassable(bool val) {passable = val;}
-	void setTransparent(bool val) {transparent = val;}
-	void setTitle(std::string lTitle) {title = lTitle;}
+	void setPassable(bool val);
+	void setTransparent(bool val);
+	void setTitle(std::string lTitle);
 	//temp
-	void setDispCh(char lChar) {dispCh = lChar;}
+	void setDispCh(char lChar);
 
 private:
-	std::string title;
-	bool passable;
-	bool transparent;
+	std::string m_title;
+	bool m_passable;
+	bool m_transparent;
 	//temp
-	char dispCh;
+	char m_dispCh;
 };
 

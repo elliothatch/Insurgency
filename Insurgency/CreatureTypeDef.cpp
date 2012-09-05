@@ -4,7 +4,7 @@
 
 CreatureTypeDef::CreatureTypeDef(void)
 {
-	for(int i = 0; i<MAXCREATURETYPES; i++)
+	for(int i = 0; i<kMaxCreatureTypes; i++)
 	{
 		creatureTypes[i].setTypeID(i);
 	}

@@ -7,7 +7,8 @@ GameWorld::GameWorld(const IWorldTileTypeDef& lWorldTileTypeDef,
 					 const IGameItemTypeDef& lGameItemTypeDef)
 	:m_tileTypeDef(lWorldTileTypeDef),
 	 m_creatureTypeDef(lCreatureTypeDef),
-	 m_itemTypeDef(lGameItemTypeDef)
+	 m_itemTypeDef(lGameItemTypeDef),
+	 m_playerCreature(NULL)
 {
 	
 }
@@ -159,25 +160,25 @@ WorldTile& GameWorld::lookupTile(std::pair<int,int> loc) const
 }
 std::pair<int,int> GameWorld::lookupRegion(std::pair<int,int> loc) const 
 {
-	return std::pair<int,int>  (int(floor(float(loc.first)/float(REGIONSIZE))),
-								int(floor(float(loc.second)/float(REGIONSIZE))));
+	return std::pair<int,int>  (int(floor(float(loc.first)/float(WorldRegion::kRegionSize))),
+								int(floor(float(loc.second)/float(WorldRegion::kRegionSize))));
 }
 std::pair<int,int> GameWorld::lookupRegionTilePos(std::pair<int,int> loc) const
-{	
+{
 	std::pair<int,int> tileLoc;
 	//xcoord
 	if(loc.first>=0)
-		tileLoc.first=loc.first%REGIONSIZE;
+		tileLoc.first=loc.first%WorldRegion::kRegionSize;
 	else
-		tileLoc.first=REGIONSIZE+loc.first%REGIONSIZE;
-	if(tileLoc.first==REGIONSIZE)
+		tileLoc.first=WorldRegion::kRegionSize+loc.first%WorldRegion::kRegionSize;
+	if(tileLoc.first==WorldRegion::kRegionSize)
 		tileLoc.first=0;
 	//y coord
 	if(loc.second>=0)
-		tileLoc.second=loc.second%REGIONSIZE;
+		tileLoc.second=loc.second%WorldRegion::kRegionSize;
 	else
-		tileLoc.second=REGIONSIZE+loc.second%REGIONSIZE;
-	if(tileLoc.second==REGIONSIZE)
+		tileLoc.second=WorldRegion::kRegionSize+loc.second%WorldRegion::kRegionSize;
+	if(tileLoc.second==WorldRegion::kRegionSize)
 		tileLoc.second=0;
 	return tileLoc;
 }
@@ -194,9 +195,9 @@ void GameWorld::fillArea(std::pair<int,int> point1, std::pair<int,int> point2)
 		const std::pair<int,int> pointRegion = lookupRegion(point1);
 		const int xReg = pointRegion.first;
 		const int yReg = pointRegion.second;
-		for(int i=0; i<width/REGIONSIZE; i++)
+		for(int i=0; i<width/WorldRegion::kRegionSize; i++)
 		{
-			for(int j = 0; j<height/REGIONSIZE; j++)
+			for(int j = 0; j<height/WorldRegion::kRegionSize; j++)
 			{
 				WorldRegion::ptr temp(new WorldRegion());
 				std::pair<int,int> loc (xReg+i,yReg+j);
