@@ -8,7 +8,7 @@ class GameItem :
 public:
 	typedef std::unique_ptr<GameItem> ptr;
 	GameItem(const GameItemType& lItemType);
-	virtual ~GameItem(void);
+	~GameItem(void);
 
 	//getters
 	//NOTE: probably won't even need to store type and class in the item

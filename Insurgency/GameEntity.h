@@ -7,8 +7,7 @@ class GameEntity
 public:
 
 	GameEntity();
-
-	virtual ~GameEntity(void);
+	~GameEntity(void);
 
 	//getters
 	std::pair<int,int> getLocation(void) const;

@@ -14,7 +14,7 @@ public:
 	typedef std::unique_ptr<Creature> ptr;
 
 	Creature(const CreatureType& lType);
-	virtual ~Creature(void);
+	~Creature(void);
 
 	unsigned int getActTurnRem(void);
 	void changeActTurnRem(unsigned int amount);
