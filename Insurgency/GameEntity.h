@@ -5,7 +5,9 @@ class GameEntity
 {
 public:
 
-	GameEntity();
+	//GameEntity();
+	GameEntity(std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents);
+	GameEntity(std::string lLName, std::string lSName, std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents);
 	~GameEntity(void);
 
 	//getters

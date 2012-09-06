@@ -8,7 +8,7 @@ GameWorld::GameWorld(const IWorldTileTypeDef& lWorldTileTypeDef,
 	:m_tileTypeDef(lWorldTileTypeDef),
 	 m_creatureTypeDef(lCreatureTypeDef),
 	 m_itemTypeDef(lGameItemTypeDef),
-	 m_playerCreature(NULL)
+	 m_playerCreature(nullptr)
 {
 	
 }
@@ -108,7 +108,7 @@ std::vector<GameItem*>* GameWorld::getItemPile(std::pair<int,int> loc) const
 			return const_cast<std::vector<GameItem*>*>(&pileIt->second);
 		}
 		else
-			return NULL;
+			return nullptr;
 }
 Creature* GameWorld::getCreature(std::pair<int,int> loc) const
 {
@@ -119,7 +119,7 @@ Creature* GameWorld::getCreature(std::pair<int,int> loc) const
 		return creatureIt->second;
 	}
 	else
-		return NULL;
+		return nullptr;
 }
 //creatures
 std::set<Creature::ptr>& GameWorld::getCreatureSet(void) const

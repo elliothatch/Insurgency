@@ -3,16 +3,13 @@
 
 
 Creature::Creature(const CreatureType& lType)
-	:GameEntity(),
+	:GameEntity(lType.getLName(), lType.getSName(), std::move(lType.cloneComponents())),
 	m_type(lType.getTypeID()),
 	m_class(lType.getClassID()),
 	m_baseStats(lType.getBaseStats()),
 	m_adjustedStats(lType.getBaseStats()),
 	m_actTurnRem(0)
 {
-	setLName(lType.getLName());
-	setSName(lType.getSName());
-	m_components = lType.cloneComponents();
 }
 
 

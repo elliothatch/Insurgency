@@ -1,10 +1,29 @@
 #include "stdafx.h"
 #include "GameEntity.h"
 
+/*
 GameEntity::GameEntity()
 		:m_location(std::pair<int,int>(0,0)),
 		m_lName("lNameE"),
 		m_sName("sNameE"),
+		m_isEnclosed(false)
+{
+}
+*/
+
+GameEntity::GameEntity(std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents)
+		:m_components(std::move(lComponents)),
+		m_location(std::pair<int,int>(0,0)),
+		m_lName("lNameE"),
+		m_sName("sNameE"),
+		m_isEnclosed(false)
+{
+}
+GameEntity::GameEntity(std::string lLName, std::string lSName, std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents)
+		:m_components(std::move(lComponents)),
+		m_location(std::pair<int,int>(0,0)),
+		m_lName(lLName),
+		m_sName(lSName),
 		m_isEnclosed(false)
 {
 }
@@ -35,7 +54,7 @@ EntityComponent* GameEntity::getComponent(EntityComponentID::E index) const
 	if(m_components.at(index))
 		return m_components.at(index).get();
 	else
-		return NULL;
+		return nullptr;
 }
 int GameEntity::getNumComponents(void) const
 {
