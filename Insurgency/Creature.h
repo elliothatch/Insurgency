@@ -34,8 +34,8 @@ public:
 	//update the creature's turn
 	void turnUpdate(void);
 private:
-	std::array<int, CreatureStatCount> m_baseStats;
-	std::array<int, CreatureStatCount> m_adjustedStats;
+	std::array<int, CreatureStat::Count> m_baseStats;
+	std::array<int, CreatureStat::Count> m_adjustedStats;
 
 	std::vector<CreatureStatEffect> m_statEffects;
 
@@ -45,7 +45,7 @@ private:
 
 	//don't think I need these
 	CreatureTypeID m_type;
-	CreatureClassID m_class;
+	CreatureClassID::E m_class;
 };
 
 inline bool compareStatEffectTimeRemaining(CreatureStatEffect a, CreatureStatEffect b)

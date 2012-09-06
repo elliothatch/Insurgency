@@ -16,3 +16,13 @@ GameItem::GameItem(const GameItemType& lItemType)
 GameItem::~GameItem(void)
 {
 }
+
+GameItemTypeID GameItem::getType(void) const 
+{
+	return m_type;
+}
+
+GameItemClassID::E GameItem::getClass(void) const
+{
+	return m_class;
+}

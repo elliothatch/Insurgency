@@ -4,7 +4,7 @@
 GameItemType::GameItemType(void)
 	:GameEntityType(),
 	m_type(NULL),
-	m_class(GameItemClass_NoClass)
+	m_class(GameItemClassID::None)
 {
 }
 
@@ -17,7 +17,7 @@ GameItemTypeID GameItemType::getTypeID(void) const
 {
 	return m_type;
 }
-GameItemClassID GameItemType::getClassID(void) const 
+GameItemClassID::E GameItemType::getClassID(void) const 
 {
 	return m_class;
 }
@@ -26,7 +26,7 @@ void GameItemType::setTypeID(GameItemTypeID lType)
 {
 	m_type = lType;
 }
-void GameItemType::setClassID(GameItemClassID lClass)
+void GameItemType::setClassID(GameItemClassID::E lClass)
 {
 	m_class = lClass;
 }

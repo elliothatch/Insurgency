@@ -102,9 +102,6 @@
     <ClInclude Include="InputMessages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EntityComponentEnum.h">
-      <Filter>Header Files\GameWorld</Filter>
-    </ClInclude>
     <ClInclude Include="IGameItemTypeDef.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
@@ -161,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="WorldTileTypeDef.h">
       <Filter>Header Files\TypeDefs</Filter>
+    </ClInclude>
+    <ClInclude Include="CreatureStat.h">
+      <Filter>Header Files\GameEntity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -12,11 +12,11 @@ public:
 
 	//getters
 	//NOTE: probably won't even need to store type and class in the item
-	GameItemTypeID getType(void) const {return m_type;}
-	GameItemClassID getClass(void) const {return m_class;}
+	GameItemTypeID getType(void) const;
+	GameItemClassID::E getClass(void) const;
 
 private:
 	GameItemTypeID m_type;
-	GameItemClassID m_class;
+	GameItemClassID::E m_class;
 };
 

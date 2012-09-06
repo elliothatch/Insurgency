@@ -82,13 +82,13 @@
     <ClInclude Include="colorListCurses.h" />
     <ClInclude Include="CreatureInputSourceCurses.h" />
     <ClInclude Include="Creature.h" />
+    <ClInclude Include="CreatureStat.h" />
     <ClInclude Include="CreatureStatEffect.h" />
     <ClInclude Include="CreatureType.h" />
     <ClInclude Include="CreatureTypeDef.h" />
     <ClInclude Include="CursesGameWorldWindow.h" />
     <ClInclude Include="CursesWindow.h" />
     <ClInclude Include="EntityComponent.h" />
-    <ClInclude Include="EntityComponentEnum.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameEntityType.h" />
     <ClInclude Include="GameItem.h" />

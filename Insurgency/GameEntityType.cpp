@@ -19,10 +19,10 @@ std::string GameEntityType::getSName(void) const
 {
 	return m_sName;
 }
-std::map<EntityComponentID, std::unique_ptr<EntityComponent>> GameEntityType::cloneComponents(void) const 
+std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> GameEntityType::cloneComponents(void) const 
 {
-	std::map<EntityComponentID, std::unique_ptr<EntityComponent>> retComps;
-	for(std::map<EntityComponentID, std::unique_ptr<EntityComponent>>::const_iterator compIt(m_components.begin());
+	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> retComps;
+	for(std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>>::const_iterator compIt(m_components.begin());
 		compIt != m_components.end(); compIt++)
 	{
 		retComps[compIt->first] = std::unique_ptr<EntityComponent>(compIt->second->clone());
@@ -38,7 +38,7 @@ void GameEntityType::setSName(std::string str)
 {
 	m_sName = str;
 }
-void GameEntityType::addComponent(std::unique_ptr<EntityComponent> lComponent, EntityComponentID lType) 
+void GameEntityType::addComponent(std::unique_ptr<EntityComponent> lComponent, EntityComponentID::E lType) 
 {
 	m_components[lType] = std::move(lComponent);
 }

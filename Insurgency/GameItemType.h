@@ -2,11 +2,14 @@
 #include "GameEntityType.h"
 typedef unsigned int GameItemTypeID; //unique type identifier for this item
 //typedef unsigned int GameItemClassID; //non-unique type for catagorizing items (i.e. AssaultRifle01 [low quality])
-enum GameItemClassID
+struct GameItemClassID
 {
-	GameItemClass_NoClass = 0,
-	GameItemClass_AssaultRifle01,
-	GameItemClassCount
+	enum E
+	{
+		None = 0,
+		AssaultRifle01,
+		Count
+	};
 };
 
 class GameItemType : public GameEntityType
@@ -18,12 +21,12 @@ public:
 
 	//getters
 	GameItemTypeID getTypeID(void) const;
-	GameItemClassID getClassID(void) const;
+	GameItemClassID::E getClassID(void) const;
 	//setters
 	void setTypeID(GameItemTypeID lType);
-	void setClassID(GameItemClassID lClass);
+	void setClassID(GameItemClassID::E lClass);
 
 private:
 	GameItemTypeID m_type;
-	GameItemClassID m_class;
+	GameItemClassID::E m_class;
 };

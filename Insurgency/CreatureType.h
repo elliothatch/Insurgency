@@ -1,21 +1,20 @@
 #pragma once
 #include "GameEntityType.h"
+#include "CreatureStat.h"
 #include <array>
 typedef unsigned int CreatureTypeID; //unique type identifier for this creature type
 //non-unique type for catagorizing creatures (i.e. policePatrol01 [weak police patrolman]) (note, only for where they spawn)
-enum CreatureClassID
+struct CreatureClassID
 {
-	CreatureClass_NoClass = 0,
-	CreatureClass_Insurgent01,
-	CreatureClassCount
-	
-};
-enum CreatureStat
+	enum E
 	{
-		CreatureStat_Speed = 0,
-		CreatureStat_Strength,
-		CreatureStatCount,
+		None = 0,
+		Insurgent01,
+		Count
+	
 	};
+};
+
 
 class CreatureType : public GameEntityType
 {
@@ -26,17 +25,17 @@ public:
 
 	//getters
 	CreatureTypeID getTypeID(void) const;
-	CreatureClassID getClassID(void) const;
-	std::array<int,CreatureStatCount> getBaseStats(void) const;
+	CreatureClassID::E getClassID(void) const;
+	std::array<int,CreatureStat::Count> getBaseStats(void) const;
 	//setters
 	void setTypeID(CreatureTypeID lType);
-	void setClassID(CreatureClassID lClass);
+	void setClassID(CreatureClassID::E lClass);
 	void setSpeed(int amount);
 	void setStrength(int amount);
 
 private:
 	CreatureTypeID m_type;
-	CreatureClassID m_class;
-	std::array<int, CreatureStatCount> m_baseStats;
+	CreatureClassID::E m_class;
+	std::array<int, CreatureStat::Count> m_baseStats;
 };
 

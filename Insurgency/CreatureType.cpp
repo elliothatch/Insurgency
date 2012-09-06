@@ -4,9 +4,9 @@
 CreatureType::CreatureType(void)
 	:GameEntityType(),
 	m_type(NULL),
-	m_class(CreatureClass_NoClass)
+	m_class(CreatureClassID::None)
 {
-	for(int i=0; i<CreatureStatCount; i++)
+	for(int i=0; i<CreatureStat::Count; i++)
 	{
 		m_baseStats[i] = 0;
 	}
@@ -21,11 +21,11 @@ CreatureTypeID CreatureType::getTypeID(void) const
 {
 	return m_type;
 }
-CreatureClassID CreatureType::getClassID(void) const 
+CreatureClassID::E CreatureType::getClassID(void) const 
 {
 	return m_class;
 }
-std::array<int,CreatureStatCount> CreatureType::getBaseStats(void) const 
+std::array<int,CreatureStat::Count> CreatureType::getBaseStats(void) const 
 {
 	return m_baseStats;
 }
@@ -34,15 +34,15 @@ void CreatureType::setTypeID(CreatureTypeID lType)
 {
 	m_type = lType;
 }
-void CreatureType::setClassID(CreatureClassID lClass) 
+void CreatureType::setClassID(CreatureClassID::E lClass) 
 {
 	m_class = lClass;
 }
 void CreatureType::setSpeed(int amount) 
 {
-	m_baseStats[CreatureStat_Speed] = amount;
+	m_baseStats[CreatureStat::Speed] = amount;
 }
 void CreatureType::setStrength(int amount) 
 {
-	m_baseStats[CreatureStat_Strength] = amount;
+	m_baseStats[CreatureStat::Strength] = amount;
 }

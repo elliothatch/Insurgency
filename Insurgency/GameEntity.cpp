@@ -30,7 +30,7 @@ std::string GameEntity::getSName(void) const
 {
 	return m_sName;
 }
-EntityComponent* GameEntity::getComponent(EntityComponentID index) const
+EntityComponent* GameEntity::getComponent(EntityComponentID::E index) const
 {
 	if(m_components.at(index))
 		return m_components.at(index).get();
@@ -60,7 +60,7 @@ void GameEntity::setSName(std::string str)
 	m_sName = str;
 }
 
-void GameEntity::addComponent(std::unique_ptr<EntityComponent> lComponent, EntityComponentID lType)
+void GameEntity::addComponent(std::unique_ptr<EntityComponent> lComponent)
 {
-	m_components[lType] = std::move(lComponent);
+	m_components[lComponent->getType()] = std::move(lComponent);
 }

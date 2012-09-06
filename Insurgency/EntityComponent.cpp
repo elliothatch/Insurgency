@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "EntityComponent.h"
 
-EntityComponent::EntityComponent(EntityComponentID lType)
+EntityComponent::EntityComponent(EntityComponentID::E lType)
 		:m_type(lType)
 {
 }
@@ -10,7 +10,7 @@ EntityComponent::~EntityComponent()
 {
 }
 
-EntityComponentID EntityComponent::getType()
+EntityComponentID::E EntityComponent::getType()
 {
 	return m_type;
 }

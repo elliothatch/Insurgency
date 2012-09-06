@@ -1,17 +1,26 @@
 #pragma once
-#include "EntityComponentEnum.h"
+
+struct EntityComponentID
+{
+	enum E
+	{
+		Inventory,
+		Count
+	};
+};
+
 class EntityComponent
 {
 public:
 
-	EntityComponent(EntityComponentID lType);
+	EntityComponent(EntityComponentID::E lType);
 
 	virtual ~EntityComponent(void);
 	virtual EntityComponent* clone() const = 0;
 
-	EntityComponentID getType();
+	EntityComponentID::E getType();
 
 private:
-	const EntityComponentID m_type;
+	const EntityComponentID::E m_type;
 };
 

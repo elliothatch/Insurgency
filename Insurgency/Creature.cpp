@@ -32,19 +32,19 @@ void Creature::changeActTurnRem(unsigned int amount)
 //get stats
 int Creature::getSpeed(void) 
 {
-	return m_adjustedStats[CreatureStat_Speed];
+	return m_adjustedStats[CreatureStat::Speed];
 }
 int Creature::getStrength(void)
 {
-	return m_adjustedStats[CreatureStat_Strength];
+	return m_adjustedStats[CreatureStat::Strength];
 }
 int Creature::getBaseSpeed(void)
 {
-	return m_baseStats[CreatureStat_Speed];
+	return m_baseStats[CreatureStat::Speed];
 }
 int Creature::getBaseStrength(void)
 {
-	return m_baseStats[CreatureStat_Strength];
+	return m_baseStats[CreatureStat::Strength];
 }
 //change stats
 void Creature::addTempStatEffect(CreatureStatEffect lStatEffect)
@@ -58,11 +58,11 @@ void Creature::addTempStatEffect(CreatureStatEffect lStatEffect)
 }
 void Creature::changeSpeedBase(int amount) 
 {
-	m_baseStats[CreatureStat_Speed] += amount;
+	m_baseStats[CreatureStat::Speed] += amount;
 }
 void Creature::changeStrengthBase(int amount)
 {
-	m_baseStats[CreatureStat_Strength] += amount;
+	m_baseStats[CreatureStat::Strength] += amount;
 }
 void Creature::turnUpdate(void)
 {
