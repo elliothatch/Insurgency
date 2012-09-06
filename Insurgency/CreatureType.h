@@ -15,7 +15,6 @@ struct CreatureClassID
 	};
 };
 
-
 class CreatureType : public GameEntityType
 {
 public:

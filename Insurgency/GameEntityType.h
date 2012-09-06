@@ -8,7 +8,7 @@ class GameEntityType
 public:
 
 	GameEntityType(void);
-	virtual ~GameEntityType(void);
+	~GameEntityType(void);
 
 	//getters
 	std::string getLName(void) const;
