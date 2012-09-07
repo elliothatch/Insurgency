@@ -43,6 +43,15 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::cout<<creature->getSName()<<std::endl;
 	std::cout<<creature->getSpeed()<<std::endl;
 	std::cout<<creature->getStrength()<<std::endl;
+	if(creature->getComponent(EntityComponentID::Inventory))
+	{
+		InventoryComponent* inventory(dynamic_cast<InventoryComponent*>(creature->getComponent(EntityComponentID::Inventory)));
+		std::cout<<"Has Inventory Component\n";
+		inventory->addEntity(item1);
+		std::cout<<inventory->getNumItems()<<std::endl;
+	}
+	if(creature->getComponent(EntityComponentID::Gun))
+		std::cout<<"Has Gun Component\n";
 	world.destroyCreature(*creature);
 	std::system("PAUSE");
 	/*

@@ -17,17 +17,37 @@ InventoryComponent* InventoryComponent::clone() const
 	return new InventoryComponent(*this);
 }
 
-void InventoryComponent::addEntity(GameEntity* lEntity)
+void InventoryComponent::addEntity(GameEntity& lEntity)
 {
-	storage.push_back(lEntity);
+	m_storage.push_back(&lEntity);
 }
 
-void InventoryComponent::removeEntity(GameEntity* lEntity)
+void InventoryComponent::removeEntity(GameEntity& lEntity)
 {
-	std::vector<GameEntity*>::iterator storageIt = std::find(storage.begin(), storage.end(), lEntity);
+	std::vector<GameEntity*>::iterator storageIt = std::find(m_storage.begin(), m_storage.end(), &lEntity);
 	//if the item is found in the inventory
-	if(storageIt != storage.end())
+	if(storageIt != m_storage.end())
 	{
-		storage.erase(storageIt);
+		m_storage.erase(storageIt);
 	}
+}
+
+GameEntity& InventoryComponent::getEntityAtIndex(int index) const
+{
+	return *m_storage.at(index);
+}
+
+void InventoryComponent::removeEntityAtIndex(int index)
+{
+	m_storage.erase(m_storage.begin() + index);
+}
+
+int InventoryComponent::getNumItems() const
+{
+	return m_storage.size();
+}
+
+std::vector<GameEntity*> InventoryComponent::getItemList() const
+{
+	return m_storage;
 }

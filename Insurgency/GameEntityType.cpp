@@ -38,7 +38,7 @@ void GameEntityType::setSName(std::string str)
 {
 	m_sName = str;
 }
-void GameEntityType::addComponent(std::unique_ptr<EntityComponent> lComponent, EntityComponentID::E lType) 
+void GameEntityType::addComponent(std::unique_ptr<EntityComponent> lComponent) 
 {
-	m_components[lType] = std::move(lComponent);
+	m_components[lComponent->getType()] = std::move(lComponent);
 }

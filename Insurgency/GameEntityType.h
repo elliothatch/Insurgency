@@ -18,7 +18,7 @@ public:
 	void setLName(std::string str);
 	void setSName(std::string str);
 
-	void addComponent(std::unique_ptr<EntityComponent> lComponent, EntityComponentID::E lType);
+	void addComponent(std::unique_ptr<EntityComponent> lComponent);
 
 private:
 	std::string m_lName;

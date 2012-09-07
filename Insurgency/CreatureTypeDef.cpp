@@ -13,6 +13,8 @@ CreatureTypeDef::CreatureTypeDef(void)
 	creatureTypes[1].setClassID(CreatureClassID::Insurgent01);
 	creatureTypes[1].setSpeed(5);
 	creatureTypes[1].setStrength(6);
+	std::unique_ptr<InventoryComponent> inv1(new InventoryComponent());
+	creatureTypes[1].addComponent(std::move(inv1));
 }
 
 

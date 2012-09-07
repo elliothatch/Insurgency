@@ -10,10 +10,16 @@ public:
 	InventoryComponent(void);
 	virtual ~InventoryComponent(void);
 	virtual InventoryComponent* clone() const;
-	void addEntity(GameEntity* lEntity);
-	void removeEntity(GameEntity* lEntity);
+
+	void addEntity(GameEntity& lEntity);
+	void removeEntity(GameEntity& lEntity);
+
+	GameEntity& getEntityAtIndex(int index) const;
+	void removeEntityAtIndex(int index);
+
+	int getNumItems() const;
+	std::vector<GameEntity*> getItemList() const;
 
 private:
-	std::vector<GameEntity*> storage;
+	std::vector<GameEntity*> m_storage;
 };
-

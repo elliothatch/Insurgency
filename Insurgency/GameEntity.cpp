@@ -51,7 +51,7 @@ std::string GameEntity::getSName(void) const
 }
 EntityComponent* GameEntity::getComponent(EntityComponentID::E index) const
 {
-	if(m_components.at(index))
+	if(m_components.find(index) != m_components.end())
 		return m_components.at(index).get();
 	else
 		return nullptr;
