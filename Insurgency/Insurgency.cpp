@@ -2,19 +2,17 @@
 //
 
 #include "stdafx.h"
-#include "GameWorld.h"
-#include "GameIOCurses.h"
-#include "WorldTileTypeDef.h"
-#include "GameItemTypeDef.h"
-#include "CreatureTypeDef.h"
-#include "GameTurnTimer.h"
-#include "CreatureInputSourceCurses.h"
+#include "SFMLApp.h"
 #include <iostream>
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//testing stuff
 	{
+		SFMLApp app;
+		return app.OnExecute();
+	}
+		/*
 	WorldTileTypeDef tileTypeDef;
 	CreatureTypeDef creatureTypeDef;
 	GameItemTypeDef itemTypeDef;
@@ -54,17 +52,20 @@ int _tmain(int argc, _TCHAR* argv[])
 		std::cout<<"Has Gun Component\n";
 	world.destroyCreature(*creature);
 	std::system("PAUSE");
+	*/
 	/*
 	world.lookupTile(std::pair<int,int>(0,0))->setType(world.tileTypeDef.getTileType(128));
 	world.lookupTile(std::pair<int,int>(-5,-2))->setType(world.tileTypeDef.getTileType(64));
 	world.lookupTile(std::pair<int,int>(1,6))->setType(world.tileTypeDef.getTileType(64));
 	world.lookupTile(std::pair<int,int>(-3,4))->setType(world.tileTypeDef.getTileType(64));
 	*/
+	/*
 	GameIOCurses gameIO;
 	gameIO.createGameWorldWindow(1,1,20,20);
 	gameIO.drawGameWorld(world,std::pair<int,int>(0,0));
 	//std::cout<<world.lookupTile(std::pair<int,int>(5,5))->getTitle()<<std::endl;
 	}
+	*/
 	/*
 	WorldTileTypeDef tileTypeDef;
 	CreatureTypeDef creatureTypeDef;
@@ -96,11 +97,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 	*/
+	/*
 		#define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
 	_CrtDumpMemoryLeaks();
 	system("PAUSE");
-	return 0;
+	*/
+	//return 0;
 }
 

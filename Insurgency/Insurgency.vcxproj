@@ -54,7 +54,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;$(VSInstallDir)\VC\lib\sfml-audio-d.lib;$(VSInstallDir)\VC\lib\sfml-graphics-d.lib;$(VSInstallDir)\VC\lib\sfml-main-d.lib;$(VSInstallDir)\VC\lib\sfml-network-d.lib;$(VSInstallDir)\VC\lib\sfml-system-d.lib;$(VSInstallDir)\VC\lib\sfml-window-d.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -72,7 +72,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;$(VSInstallDir)\VC\lib\sfml-audio-d.lib;$(VSInstallDir)\VC\lib\sfml-graphics-d.lib;$(VSInstallDir)\VC\lib\sfml-main-d.lib;$(VSInstallDir)\VC\lib\sfml-network-d.lib;$(VSInstallDir)\VC\lib\sfml-system-d.lib;$(VSInstallDir)\VC\lib\sfml-window-d.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -95,6 +95,7 @@
     <ClInclude Include="GameIOCurses.h" />
     <ClInclude Include="GameItemType.h" />
     <ClInclude Include="GameItemTypeDef.h" />
+    <ClInclude Include="GameState_InsurgencyGame.h" />
     <ClInclude Include="GameTurnTimer.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="ICreatureTypeDef.h" />
@@ -108,6 +109,20 @@
     <ClInclude Include="InsurgencyGame.h" />
     <ClInclude Include="InventoryComponent.h" />
     <ClInclude Include="IWorldTileTypeDef.h" />
+    <ClInclude Include="SFML-Template\AnimatedSprite.h" />
+    <ClInclude Include="SFML-Template\FontManager.h" />
+    <ClInclude Include="SFML-Template\Functor.h" />
+    <ClInclude Include="SFML-Template\GameStateBase.h" />
+    <ClInclude Include="SFML-Template\ImageManager.h" />
+    <ClInclude Include="SFML-Template\SFMLButton.h" />
+    <ClInclude Include="SFML-Template\SFMLEvent.h" />
+    <ClInclude Include="SFML-Template\SFMLGUIElement.h" />
+    <ClInclude Include="SFML-Template\SFMLStateMessage.h" />
+    <ClInclude Include="SFML-Template\SoundManager.h" />
+    <ClInclude Include="SFML-Template\SpriteManager.h" />
+    <ClInclude Include="SFML-Template\TextureManager.h" />
+    <ClInclude Include="SFMLApp.h" />
+    <ClInclude Include="SFMLGameWorldWindow.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="WorldTileType.h" />
@@ -130,11 +145,29 @@
     <ClCompile Include="GameIOCurses.cpp" />
     <ClCompile Include="GameItemType.cpp" />
     <ClCompile Include="GameItemTypeDef.cpp" />
+    <ClCompile Include="GameState_InsurgencyGame.cpp" />
     <ClCompile Include="GameTurnTimer.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Insurgency.cpp" />
     <ClCompile Include="InsurgencyGame.cpp" />
     <ClCompile Include="InventoryComponent.cpp" />
+    <ClCompile Include="SFML-Template\AnimatedSprite.cpp" />
+    <ClCompile Include="SFML-Template\FontManager.cpp" />
+    <ClCompile Include="SFML-Template\GameStateBase.cpp" />
+    <ClCompile Include="SFML-Template\ImageManager.cpp" />
+    <ClCompile Include="SFML-Template\SFMLButton.cpp" />
+    <ClCompile Include="SFML-Template\SFMLEvent.cpp" />
+    <ClCompile Include="SFML-Template\SFMLGUIElement.cpp" />
+    <ClCompile Include="SFML-Template\SoundManager.cpp" />
+    <ClCompile Include="SFML-Template\SpriteManager.cpp" />
+    <ClCompile Include="SFML-Template\TextureManager.cpp" />
+    <ClCompile Include="SFMLApp.cpp" />
+    <ClCompile Include="SFMLApp_OnCleanup.cpp" />
+    <ClCompile Include="SFMLApp_OnEvent.cpp" />
+    <ClCompile Include="SFMLApp_OnInit.cpp" />
+    <ClCompile Include="SFMLApp_OnRender.cpp" />
+    <ClCompile Include="SFMLApp_OnUpdate.cpp" />
+    <ClCompile Include="SFMLGameWorldWindow.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

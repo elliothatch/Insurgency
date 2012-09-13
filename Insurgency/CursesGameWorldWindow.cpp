@@ -60,7 +60,7 @@ void CursesGameWorldWindow::refWin(const GameWorld& lGameWorld, std::pair<int,in
 						//{
 			//testing stuff - yeah I know...
 			wattron(main, COLOR_PAIR(WHITE_BLACK));
-							mvwaddch(main,i,j,lGameWorld.lookupTile(tPair).getDispCh());
+							mvwaddch(main,i,j,lGameWorld.lookupTile(tPair).getDisplayID());
 			if(!lGameWorld.lookupTile(tPair).isPassable())
 			{
 				//setCharFGColor(i,j, WHITE);

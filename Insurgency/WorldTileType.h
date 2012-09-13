@@ -3,7 +3,7 @@
 class WorldTileType
 {
 public:
-
+	typedef unsigned int DisplayID;
 	WorldTileType(void);
 	~WorldTileType(void);
 	//getters
@@ -11,20 +11,19 @@ public:
 	bool getTransparent() const;
 	std::string getTitle() const;
 	//temp
-	char getDispCh() const;
+	DisplayID getDisplayID() const;
 
 	//setters
 	void setPassable(bool val);
 	void setTransparent(bool val);
 	void setTitle(std::string lTitle);
 	//temp
-	void setDispCh(char lChar);
+	void setDisplayID(DisplayID dispID);
 
 private:
 	std::string m_title;
 	bool m_passable;
 	bool m_transparent;
-	//temp
-	char m_dispCh;
+	DisplayID m_displayID;
 };
 

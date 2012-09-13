@@ -15,7 +15,7 @@ public:
 	std::string getTitle(void) {return type.getTitle();}
 
 	//temp curses test code
-	char getDispCh(void) {return type.getDispCh();}
+	WorldTileType::DisplayID getDisplayID(void) const {return type.getDisplayID();}
 
 private:
 	const WorldTileType& type;

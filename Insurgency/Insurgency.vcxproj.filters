@@ -13,15 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\GameWorld">
-      <UniqueIdentifier>{5849e08c-2227-44d6-88e4-ced07835ed0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Interfaces">
-      <UniqueIdentifier>{f9fd0ed3-ce21-446b-8813-04825735bdc4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameWorld">
-      <UniqueIdentifier>{91a30d85-731d-49b2-b613-f6c7d7523a98}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\CursesIO">
       <UniqueIdentifier>{39a4990a-2082-485d-b84b-e8d936c2bf9d}</UniqueIdentifier>
     </Filter>
@@ -34,23 +25,50 @@
     <Filter Include="Header Files\CursesIO\Input Sources">
       <UniqueIdentifier>{22d8a432-37e9-4145-91de-71da2eb9d5bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\GameEntity">
+    <Filter Include="SFML-Template">
+      <UniqueIdentifier>{12ca767a-dd0a-44db-87ac-e14ed94c45e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SFMLApp">
+      <UniqueIdentifier>{73e72f89-9b3a-41eb-9e5f-6715bc2dbdc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InsurgencyGame">
+      <UniqueIdentifier>{e88acfc1-82d1-4dca-824d-b1af8b89f38c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InsurgencyGame\Header Files">
+      <UniqueIdentifier>{ab0c4088-0bdd-4cab-8965-ab67fa479fca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InsurgencyGame\Header Files\GameEntity">
       <UniqueIdentifier>{0c060c30-89c3-4b4d-b878-d428ac9ccbe9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\GameEntity\EntityComponent">
+    <Filter Include="InsurgencyGame\Header Files\GameEntity\EntityComponent">
       <UniqueIdentifier>{ec97f188-a749-49eb-ad54-f5ceb780f0eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEntity">
-      <UniqueIdentifier>{2d0262fb-abf5-4e57-a785-32fdf8b7601e}</UniqueIdentifier>
+    <Filter Include="InsurgencyGame\Header Files\GameWorld">
+      <UniqueIdentifier>{5849e08c-2227-44d6-88e4-ced07835ed0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameEntity\EntityComponent">
-      <UniqueIdentifier>{d819ced7-09d2-4d92-90e9-248df8da89d3}</UniqueIdentifier>
+    <Filter Include="InsurgencyGame\Header Files\Interfaces">
+      <UniqueIdentifier>{f9fd0ed3-ce21-446b-8813-04825735bdc4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\TypeDefs">
+    <Filter Include="InsurgencyGame\Header Files\TypeDefs">
       <UniqueIdentifier>{e28be573-d069-4e64-9946-c84f1c7b6ff8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\TypeDefs">
+    <Filter Include="InsurgencyGame\Source Files">
+      <UniqueIdentifier>{1d6ee661-0e74-43cc-ab8d-622e2f8499f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InsurgencyGame\Source Files\GameEntity">
+      <UniqueIdentifier>{2d0262fb-abf5-4e57-a785-32fdf8b7601e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InsurgencyGame\Source Files\GameEntity\EntityComponent">
+      <UniqueIdentifier>{d819ced7-09d2-4d92-90e9-248df8da89d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InsurgencyGame\Source Files\GameWorld">
+      <UniqueIdentifier>{91a30d85-731d-49b2-b613-f6c7d7523a98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InsurgencyGame\Source Files\TypeDefs">
       <UniqueIdentifier>{6ed4f5e2-c774-4e65-a4b4-f69f95bd1aae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SFML-Insurgency">
+      <UniqueIdentifier>{2506aa9f-7bcb-4c4f-80d1-93d0e3a98af0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -64,34 +82,34 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameWorld.h">
-      <Filter>Header Files\GameWorld</Filter>
+      <Filter>InsurgencyGame\Header Files\GameWorld</Filter>
     </ClInclude>
     <ClInclude Include="IWorldTileTypeDef.h">
-      <Filter>Header Files\Interfaces</Filter>
+      <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="WorldRegion.h">
-      <Filter>Header Files\GameWorld</Filter>
+      <Filter>InsurgencyGame\Header Files\GameWorld</Filter>
     </ClInclude>
     <ClInclude Include="WorldTile.h">
-      <Filter>Header Files\GameWorld</Filter>
+      <Filter>InsurgencyGame\Header Files\GameWorld</Filter>
     </ClInclude>
     <ClInclude Include="WorldTileType.h">
-      <Filter>Header Files\GameWorld</Filter>
+      <Filter>InsurgencyGame\Header Files\GameWorld</Filter>
     </ClInclude>
     <ClInclude Include="IGameOutput.h">
-      <Filter>Header Files\Interfaces</Filter>
+      <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="GameIOCurses.h">
       <Filter>Header Files\CursesIO</Filter>
     </ClInclude>
     <ClInclude Include="IGameInput.h">
-      <Filter>Header Files\Interfaces</Filter>
+      <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="IInputSource.h">
-      <Filter>Header Files\Interfaces</Filter>
+      <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="IInputSourceCurses.h">
-      <Filter>Header Files\Interfaces</Filter>
+      <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="CursesGameWorldWindow.h">
       <Filter>Header Files\CursesIO\Windows</Filter>
@@ -103,64 +121,109 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IGameItemTypeDef.h">
-      <Filter>Header Files\Interfaces</Filter>
+      <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="ICreatureTypeDef.h">
-      <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="GameTurnTimer.h">
-      <Filter>Header Files</Filter>
+      <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="CreatureInputSourceCurses.h">
       <Filter>Header Files\CursesIO\Input Sources</Filter>
     </ClInclude>
-    <ClInclude Include="InsurgencyGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InputSourceListCurses.h">
-      <Filter>Header Files\Interfaces</Filter>
+      <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="colorListCurses.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Creature.h">
-      <Filter>Header Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
     </ClInclude>
     <ClInclude Include="EntityComponent.h">
-      <Filter>Header Files\GameEntity\EntityComponent</Filter>
+      <Filter>InsurgencyGame\Header Files\GameEntity\EntityComponent</Filter>
     </ClInclude>
     <ClInclude Include="InventoryComponent.h">
-      <Filter>Header Files\GameEntity\EntityComponent</Filter>
+      <Filter>InsurgencyGame\Header Files\GameEntity\EntityComponent</Filter>
     </ClInclude>
     <ClInclude Include="CreatureStatEffect.h">
-      <Filter>Header Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
     </ClInclude>
     <ClInclude Include="GameEntity.h">
-      <Filter>Header Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
     </ClInclude>
     <ClInclude Include="GameEntityType.h">
-      <Filter>Header Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
     </ClInclude>
     <ClInclude Include="CreatureType.h">
-      <Filter>Header Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
     </ClInclude>
     <ClInclude Include="GameItem.h">
-      <Filter>Header Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
     </ClInclude>
     <ClInclude Include="GameItemType.h">
-      <Filter>Header Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
     </ClInclude>
     <ClInclude Include="CreatureTypeDef.h">
-      <Filter>Header Files\TypeDefs</Filter>
+      <Filter>InsurgencyGame\Header Files\TypeDefs</Filter>
     </ClInclude>
     <ClInclude Include="GameItemTypeDef.h">
-      <Filter>Header Files\TypeDefs</Filter>
+      <Filter>InsurgencyGame\Header Files\TypeDefs</Filter>
     </ClInclude>
     <ClInclude Include="WorldTileTypeDef.h">
-      <Filter>Header Files\TypeDefs</Filter>
+      <Filter>InsurgencyGame\Header Files\TypeDefs</Filter>
     </ClInclude>
     <ClInclude Include="CreatureStat.h">
-      <Filter>Header Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\AnimatedSprite.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\FontManager.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\Functor.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\GameStateBase.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\ImageManager.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\SFMLButton.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\SFMLEvent.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\SFMLGUIElement.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\SFMLStateMessage.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\SoundManager.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\SpriteManager.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML-Template\TextureManager.h">
+      <Filter>SFML-Template</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMLApp.h">
+      <Filter>SFMLApp</Filter>
+    </ClInclude>
+    <ClInclude Include="InsurgencyGame.h">
+      <Filter>InsurgencyGame\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTurnTimer.h">
+      <Filter>InsurgencyGame\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_InsurgencyGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMLGameWorldWindow.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -168,13 +231,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WorldRegion.cpp">
-      <Filter>Source Files\GameWorld</Filter>
+      <Filter>InsurgencyGame\Source Files\GameWorld</Filter>
     </ClCompile>
     <ClCompile Include="WorldTile.cpp">
-      <Filter>Source Files\GameWorld</Filter>
+      <Filter>InsurgencyGame\Source Files\GameWorld</Filter>
     </ClCompile>
     <ClCompile Include="GameWorld.cpp">
-      <Filter>Source Files\GameWorld</Filter>
+      <Filter>InsurgencyGame\Source Files\GameWorld</Filter>
     </ClCompile>
     <ClCompile Include="CursesGameWorldWindow.cpp">
       <Filter>Source Files\CursesIO</Filter>
@@ -188,53 +251,107 @@
     <ClCompile Include="CharacterInputSourceCurses.cpp">
       <Filter>Source Files\CursesIO</Filter>
     </ClCompile>
-    <ClCompile Include="GameTurnTimer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InsurgencyGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Insurgency.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Creature.cpp">
-      <Filter>Source Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Source Files\GameEntity</Filter>
     </ClCompile>
     <ClCompile Include="CreatureType.cpp">
-      <Filter>Source Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Source Files\GameEntity</Filter>
     </ClCompile>
     <ClCompile Include="GameEntity.cpp">
-      <Filter>Source Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Source Files\GameEntity</Filter>
     </ClCompile>
     <ClCompile Include="GameItem.cpp">
-      <Filter>Source Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Source Files\GameEntity</Filter>
     </ClCompile>
     <ClCompile Include="InventoryComponent.cpp">
-      <Filter>Source Files\GameEntity\EntityComponent</Filter>
+      <Filter>InsurgencyGame\Source Files\GameEntity\EntityComponent</Filter>
     </ClCompile>
     <ClCompile Include="EntityComponent.cpp">
-      <Filter>Source Files\GameEntity\EntityComponent</Filter>
+      <Filter>InsurgencyGame\Source Files\GameEntity\EntityComponent</Filter>
     </ClCompile>
     <ClCompile Include="CreatureStatEffect.cpp">
-      <Filter>Source Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Source Files\GameEntity</Filter>
     </ClCompile>
     <ClCompile Include="GameItemType.cpp">
-      <Filter>Source Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Source Files\GameEntity</Filter>
     </ClCompile>
     <ClCompile Include="GameEntityType.cpp">
-      <Filter>Source Files\GameEntity</Filter>
+      <Filter>InsurgencyGame\Source Files\GameEntity</Filter>
     </ClCompile>
     <ClCompile Include="WorldTileType.cpp">
-      <Filter>Source Files\GameWorld</Filter>
+      <Filter>InsurgencyGame\Source Files\GameWorld</Filter>
     </ClCompile>
     <ClCompile Include="WorldTileTypeDef.cpp">
-      <Filter>Source Files\TypeDefs</Filter>
+      <Filter>InsurgencyGame\Source Files\TypeDefs</Filter>
     </ClCompile>
     <ClCompile Include="CreatureTypeDef.cpp">
-      <Filter>Source Files\TypeDefs</Filter>
+      <Filter>InsurgencyGame\Source Files\TypeDefs</Filter>
     </ClCompile>
     <ClCompile Include="GameItemTypeDef.cpp">
-      <Filter>Source Files\TypeDefs</Filter>
+      <Filter>InsurgencyGame\Source Files\TypeDefs</Filter>
+    </ClCompile>
+    <ClCompile Include="SFML-Template\AnimatedSprite.cpp">
+      <Filter>SFML-Template</Filter>
+    </ClCompile>
+    <ClCompile Include="SFML-Template\FontManager.cpp">
+      <Filter>SFML-Template</Filter>
+    </ClCompile>
+    <ClCompile Include="SFML-Template\GameStateBase.cpp">
+      <Filter>SFML-Template</Filter>
+    </ClCompile>
+    <ClCompile Include="SFML-Template\ImageManager.cpp">
+      <Filter>SFML-Template</Filter>
+    </ClCompile>
+    <ClCompile Include="SFML-Template\SFMLButton.cpp">
+      <Filter>SFML-Template</Filter>
+    </ClCompile>
+    <ClCompile Include="SFML-Template\SFMLEvent.cpp">
+      <Filter>SFML-Template</Filter>
+    </ClCompile>
+    <ClCompile Include="SFML-Template\SFMLGUIElement.cpp">
+      <Filter>SFML-Template</Filter>
+    </ClCompile>
+    <ClCompile Include="SFML-Template\SoundManager.cpp">
+      <Filter>SFML-Template</Filter>
+    </ClCompile>
+    <ClCompile Include="SFML-Template\SpriteManager.cpp">
+      <Filter>SFML-Template</Filter>
+    </ClCompile>
+    <ClCompile Include="SFML-Template\TextureManager.cpp">
+      <Filter>SFML-Template</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLApp.cpp">
+      <Filter>SFMLApp</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLApp_OnUpdate.cpp">
+      <Filter>SFMLApp</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLApp_OnCleanup.cpp">
+      <Filter>SFMLApp</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLApp_OnEvent.cpp">
+      <Filter>SFMLApp</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLApp_OnInit.cpp">
+      <Filter>SFMLApp</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLApp_OnRender.cpp">
+      <Filter>SFMLApp</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTurnTimer.cpp">
+      <Filter>InsurgencyGame\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InsurgencyGame.cpp">
+      <Filter>InsurgencyGame\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_InsurgencyGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLGameWorldWindow.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

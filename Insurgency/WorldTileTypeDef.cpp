@@ -19,7 +19,7 @@ WorldTileTypeDef::WorldTileTypeDef(void)
 		tileTypes[i].setPassable(1);
 		tileTypes[i].setTransparent(1);
 		//temp
-		tileTypes[i].setDispCh('.');
+		tileTypes[i].setDisplayID('.');
 	}
 	//Half-walls
 	for(int i = kHalfWallValue; i<kWallValue; i++)
@@ -27,7 +27,7 @@ WorldTileTypeDef::WorldTileTypeDef(void)
 		tileTypes[i].setPassable(0);
 		tileTypes[i].setTransparent(1);
 		//temp
-		tileTypes[i].setDispCh('-');
+		tileTypes[i].setDisplayID('-');
 		//Half-walls break to their respective ground
 		//tileTypes[i].breakChild = i-kHalfWallValue;
 		//tileTypes[i].dispCh = '-';
@@ -39,7 +39,7 @@ WorldTileTypeDef::WorldTileTypeDef(void)
 		tileTypes[i].setPassable(0);
 		tileTypes[i].setTransparent(0);
 		//temp
-		tileTypes[i].setDispCh('#');
+		tileTypes[i].setDisplayID('#');
 		//Walls break to their respective half-wall
 		//tileTypes[i].breakChild = i-kHalfWallValue;
 		//tileTypes[i].dispCh = '#';
