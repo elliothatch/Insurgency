@@ -8,8 +8,9 @@ CreatureTypeDef::CreatureTypeDef(void)
 	{
 		creatureTypes[i].setTypeID(i);
 	}
-	creatureTypes[1].setLName("Insurgent");
+	creatureTypes[1].setLName("insurgent");
 	creatureTypes[1].setSName("Elliot Hatch");
+	creatureTypes[1].setDName("insurgent");
 	creatureTypes[1].setClassID(CreatureClassID::Insurgent01);
 	creatureTypes[1].setSpeed(5);
 	creatureTypes[1].setStrength(6);

@@ -7,6 +7,8 @@
 #include "GameWorld.h"
 #include "GameTurnTimer.h"
 
+#include <sstream>
+
 class GameState_InsurgencyGame
 	:public GameStateBase
 {
@@ -28,7 +30,11 @@ private:
 	WorldTileTypeDef m_tileTypeDef;
 	CreatureTypeDef m_creatureTypeDef;
 	GameItemTypeDef m_itemTypeDef;
-	GameWorld m_world;
+	GameWorld m_gameWorld;
 	GameTurnTimer m_turnTimer;
+	SFMLGameWorldWindow* m_gameWorldWindow;
+	sf::Text* m_canMoveCounter;
+	sf::Text* m_playerCoord;
+	bool m_playerCanAct;
 };
 

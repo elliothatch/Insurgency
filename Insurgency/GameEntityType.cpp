@@ -2,7 +2,7 @@
 #include "GameEntityType.h"
 
 GameEntityType::GameEntityType(void)
-	:m_lName("lName"), m_sName("sName")
+	:m_lName("lName"), m_sName("sName"), m_dName("dName")
 {
 }
 
@@ -11,13 +11,18 @@ GameEntityType::~GameEntityType(void)
 }
 
 //getters
-std::string GameEntityType::getLName(void) const 
+const std::string& GameEntityType::getLName(void) const 
 {
 	return m_lName;
 }
-std::string GameEntityType::getSName(void) const 
+const std::string& GameEntityType::getSName(void) const 
 {
 	return m_sName;
+}
+
+const std::string& GameEntityType::getDName(void) const
+{
+	return m_dName;
 }
 std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> GameEntityType::cloneComponents(void) const 
 {
@@ -30,13 +35,17 @@ std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> GameEntityType:
 	return std::move(retComps);
 }
 //setters
-void GameEntityType::setLName(std::string str)
+void GameEntityType::setLName(const std::string& str)
 {
 	m_lName = str;
 }
-void GameEntityType::setSName(std::string str)
+void GameEntityType::setSName(const std::string& str)
 {
 	m_sName = str;
+}
+void GameEntityType::setDName(const std::string& str)
+{
+	m_dName = str;
 }
 void GameEntityType::addComponent(std::unique_ptr<EntityComponent> lComponent) 
 {

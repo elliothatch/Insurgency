@@ -49,6 +49,31 @@ void GameTurnTimer::advanceTurn(void)
 	m_curTurn++;
 }
 
+Creature& GameTurnTimer::nextCreatureTurn(void)
+{
+	while(m_actingCreatures.size() == 0) //may be able to remove
+	{
+		advanceTurn();
+		m_actingCreatures = getCreaturesCanMove();
+	}
+
+	std::vector<Creature*>::iterator creatureIt(m_actingCreatures.end() - 1);
+	if((*creatureIt)->getActTurnRem() == 0)
+		return **creatureIt;
+	else //the last creature in the list cannot move anymore
+	{
+		m_actingCreatures.pop_back();
+		while(m_actingCreatures.size() == 0) //if that was the last creature
+		{
+			m_curTurn++;
+			advanceTurn();
+			m_actingCreatures = getCreaturesCanMove();
+		}
+		creatureIt = m_actingCreatures.end() - 1;
+		return **creatureIt;
+	}
+}
+
 std::vector<Creature*> GameTurnTimer::getCreaturesCanMove(void) const
 {
 	//the vector we return
@@ -71,10 +96,40 @@ std::vector<Creature*> GameTurnTimer::getCreaturesCanMove(void) const
 	return std::move(movableCreatures);
 }
 
-void GameTurnTimer::moveCreature(Creature& lCreature, std::pair<int,int> loc)
+bool GameTurnTimer::moveCreature(Creature& lCreature, std::pair<int,int> loc)
 {
+	if(m_gameWorld.moveCreature(lCreature, loc))
+	{
+		lCreature.changeActTurnRem(lCreature.getSpeed());
+		return true;
+	}
+	return false;
 }
 
+bool GameTurnTimer::moveCreatureRight(Creature& lCreature)
+{
+	std::pair<int,int> loc(lCreature.getLocation());
+	loc.first += 1;
+	return moveCreature(lCreature,loc);
+}
+bool GameTurnTimer::moveCreatureUp(Creature& lCreature)
+{
+	std::pair<int,int> loc(lCreature.getLocation());
+	loc.second -= 1;
+	return moveCreature(lCreature,loc);
+}
+bool GameTurnTimer::moveCreatureLeft(Creature& lCreature)
+{
+	std::pair<int,int> loc(lCreature.getLocation());
+	loc.first -= 1;
+	return moveCreature(lCreature,loc);
+}
+bool GameTurnTimer::moveCreatureDown(Creature& lCreature)
+{
+	std::pair<int,int> loc(lCreature.getLocation());
+	loc.second += 1;
+	return moveCreature(lCreature,loc);
+}
 /*
 void GameTurnTimer::processNPCTurns(void)
 {

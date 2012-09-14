@@ -17,11 +17,16 @@ public:
 	~GameTurnTimer(void);
 
 	void advanceTurn(void);
+	Creature& nextCreatureTurn(void);
 	//void processNPCTurns(void);
 	std::vector<Creature*> getCreaturesCanMove(void) const;
 
 	//creature interactions
-	void moveCreature(Creature& lCreature, std::pair<int,int> loc);
+	bool moveCreature(Creature& lCreature, std::pair<int,int> loc);
+	bool moveCreatureRight(Creature& lCreature);
+	bool moveCreatureUp(Creature& lCreature);
+	bool moveCreatureLeft(Creature& lCreature);
+	bool moveCreatureDown(Creature& lCreature);
 
 private:
 	//note: this should probably be replaced with an AI object or something
@@ -30,4 +35,5 @@ private:
 private:
 	GameWorld& m_gameWorld;
 	unsigned long m_curTurn;
+	std::vector<Creature*> m_actingCreatures;
 };

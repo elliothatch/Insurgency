@@ -14,16 +14,15 @@ GameEntity::GameEntity()
 GameEntity::GameEntity(std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents)
 		:m_components(std::move(lComponents)),
 		m_location(std::pair<int,int>(0,0)),
-		m_lName("lNameE"),
-		m_sName("sNameE"),
+		m_lName("lNameE"), m_sName("sNameE"), m_dName("dNameE"),
 		m_isEnclosed(false)
 {
 }
-GameEntity::GameEntity(std::string lLName, std::string lSName, std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents)
+GameEntity::GameEntity(const std::string& lLName, const std::string& lSName, const std::string& lDName,
+	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents)
 		:m_components(std::move(lComponents)),
 		m_location(std::pair<int,int>(0,0)),
-		m_lName(lLName),
-		m_sName(lSName),
+		m_lName(lLName), m_sName(lSName), m_dName(lDName),
 		m_isEnclosed(false)
 {
 }
@@ -41,13 +40,17 @@ bool GameEntity::getIsEnclosed(void) const
 {
 	return m_isEnclosed;
 }
-std::string  GameEntity::getLName(void) const
+const std::string&  GameEntity::getLName(void) const
 {
 	return m_lName;
 }
-std::string GameEntity::getSName(void) const 
+const std::string& GameEntity::getSName(void) const 
 {
 	return m_sName;
+}
+const std::string& GameEntity::getDName(void) const
+{
+	return m_dName;
 }
 EntityComponent* GameEntity::getComponent(EntityComponentID::E index) const
 {
@@ -69,16 +72,19 @@ void GameEntity::setIsEnclosed(bool b)
 {
 	m_isEnclosed = b;
 }
-void GameEntity::setLName(std::string str) 
+void GameEntity::setLName(const std::string& str) 
 {
 	m_lName = str;
 }
 
-void GameEntity::setSName(std::string str) 
+void GameEntity::setSName(const std::string& str) 
 {
 	m_sName = str;
 }
-
+void GameEntity::setDName(const std::string& str)
+{
+	m_dName = str;
+}
 void GameEntity::addComponent(std::unique_ptr<EntityComponent> lComponent)
 {
 	m_components[lComponent->getType()] = std::move(lComponent);

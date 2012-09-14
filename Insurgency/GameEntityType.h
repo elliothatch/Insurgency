@@ -11,17 +11,20 @@ public:
 	~GameEntityType(void);
 
 	//getters
-	std::string getLName(void) const;
-	std::string getSName(void) const;
+	const std::string& getLName(void) const;
+	const std::string& getSName(void) const;
+	const std::string& getDName(void) const;
 	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> cloneComponents(void) const;
 	//setters
-	void setLName(std::string str);
-	void setSName(std::string str);
+	void setLName(const std::string& str);
+	void setSName(const std::string& str);
+	void setDName(const std::string& str);
 
 	void addComponent(std::unique_ptr<EntityComponent> lComponent);
 
 private:
-	std::string m_lName;
-	std::string m_sName;
+	std::string m_lName; //dName + modifiers            - mutable
+	std::string m_sName; //short name OR personal name  - mutable
+	std::string m_dName; //Name used in Descriptions    - non-mutable
 	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> m_components;
 };

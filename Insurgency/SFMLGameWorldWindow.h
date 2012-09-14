@@ -7,14 +7,16 @@ class SFMLGameWorldWindow
 	:public SFMLGUIElement
 {
 public:
-	SFMLGameWorldWindow(const sf::Vector2f& lPixelDimentions, const GameWorld& lGameWorld, const sf::IntRect& lWorldRect);
+	SFMLGameWorldWindow(const sf::Vector2f& lPixelDimentions, const GameWorld& lGameWorld,
+		const std::pair<int,int>& lWorldCenter, const std::pair<int,int>& lWorldSize);
+	SFMLGameWorldWindow(const GameWorld& lGameWorld, const std::pair<int,int>& lWorldCenter, const std::pair<int,int>& lWorldSize);
 	virtual ~SFMLGameWorldWindow(void);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual sf::FloatRect getLocalBounds(void) const;
 	virtual sf::FloatRect getGlobalBounds(void) const;
 	
-	void updateTiles();
+	void updateTiles(const std::pair<int,int>& lCenterPos);
 
 private:
 	sf::RectangleShape m_rectangle;

@@ -8,8 +8,9 @@ GameItemTypeDef::GameItemTypeDef(void)
 	{
 		itemTypes[i].setTypeID(i);
 	}
-	itemTypes[1].setLName("Kalashnikov");
+	itemTypes[1].setLName("kalashnikov");
 	itemTypes[1].setSName("AK-47");
+	itemTypes[1].setDName("AK-47");
 	itemTypes[1].setClassID(GameItemClassID::AssaultRifle01);
 }
 

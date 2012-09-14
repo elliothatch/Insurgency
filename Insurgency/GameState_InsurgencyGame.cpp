@@ -6,8 +6,9 @@ GameState_InsurgencyGame::GameState_InsurgencyGame(void)
 	: m_tileTypeDef(),
 	m_creatureTypeDef(),
 	m_itemTypeDef(),
-	m_world(m_tileTypeDef, m_creatureTypeDef, m_itemTypeDef),
-	m_turnTimer(m_world)
+	m_gameWorld(m_tileTypeDef, m_creatureTypeDef, m_itemTypeDef),
+	m_turnTimer(m_gameWorld),
+	m_playerCanAct(false)
 {
 }
 
@@ -18,25 +19,69 @@ GameState_InsurgencyGame::~GameState_InsurgencyGame(void)
 
 void GameState_InsurgencyGame::OnAwake(void)
 {
-	m_world.test(std::pair<int,int>(-100,-100), std::pair<int,int>(100,100));
-	WorldTile::ptr tile01(new WorldTile(m_world.m_tileTypeDef.getTileType(130)));
-	WorldTile::ptr tile02(new WorldTile(m_world.m_tileTypeDef.getTileType(130)));
-	WorldTile::ptr tile03(new WorldTile(m_world.m_tileTypeDef.getTileType(130)));
+	m_gameWorld.test(std::pair<int,int>(-100,-100), std::pair<int,int>(100,100));
+	WorldTile::ptr tile01(new WorldTile(m_gameWorld.m_tileTypeDef.getTileType(130)));
+	WorldTile::ptr tile02(new WorldTile(m_gameWorld.m_tileTypeDef.getTileType(130)));
+	WorldTile::ptr tile03(new WorldTile(m_gameWorld.m_tileTypeDef.getTileType(130)));
 
-	m_world.setTile(std::pair<int,int>(0,0),std::move(tile01));
-	m_world.setTile(std::pair<int,int>(6,-3),std::move(tile02));
-	m_world.setTile(std::pair<int,int>(-2,-4),std::move(tile03));
+	m_gameWorld.setTile(std::pair<int,int>(0,0),std::move(tile01));
+	m_gameWorld.setTile(std::pair<int,int>(6,-3),std::move(tile02));
+	m_gameWorld.setTile(std::pair<int,int>(-2,-4),std::move(tile03));
 
-	std::unique_ptr<SFMLGameWorldWindow> gameWorldWindow(new SFMLGameWorldWindow(sf::Vector2f(160.0,240.0),m_world,sf::IntRect(-10,-10,20,20)));
+	GameItem& item1(m_gameWorld.createItem(1));
+	m_gameWorld.addItemToWorld(item1, std::pair<int,int>(1,0));
 
+	Creature& creature1(m_gameWorld.createCreature(1));
+	m_gameWorld.addCreatureToWorld(creature1,std::pair<int,int>(2,0));
+	m_gameWorld.setPlayerCreature(creature1);
 
+	std::unique_ptr<SFMLGameWorldWindow> gameWorldWindow(new SFMLGameWorldWindow(m_gameWorld,std::pair<int,int>(0,0),std::pair<int,int>(20,20)));
+	m_gameWorldWindow = gameWorldWindow.get();
+
+	std::unique_ptr<sf::Text> canMoveCounter(new sf::Text());
+	canMoveCounter->setPosition(300,300);
+	canMoveCounter->setString("No");
+	m_canMoveCounter = canMoveCounter.get();
+	std::unique_ptr<sf::Text> playerCoord(new sf::Text());
+	playerCoord->setPosition(300,100);
+	playerCoord->setString("a");
+	m_playerCoord = playerCoord.get();
 	addDrawable(std::move(gameWorldWindow));
+	addDrawable(std::move(canMoveCounter));
+	addDrawable(std::move(playerCoord));
 }
 void GameState_InsurgencyGame::OnUpdate(void)
 {
+	if(m_playerCanAct && m_gameWorld.getPlayerCreature()->getActTurnRem() != 0)
+		m_playerCanAct = false;
+	if(!m_playerCanAct)
+	{
+		Creature& creature = m_turnTimer.nextCreatureTurn();
+		if(&creature == m_gameWorld.getPlayerCreature()) //it is now the player's turn
+		{
+			m_playerCanAct = true;
+			m_gameWorldWindow->updateTiles(std::pair<int,int>(0,0));
+		}
+		else
+		{
+			//process NPC turns
+			creature.changeActTurnRem(10);
+		}
+	}
 }
 void GameState_InsurgencyGame::OnRender(sf::RenderTarget& target)
 {
+	if(m_playerCanAct)
+		m_canMoveCounter->setString("Yes");
+	else
+		m_canMoveCounter->setString("no");
+	std::stringstream pCoord;
+	pCoord <<'(';
+	pCoord<<m_gameWorld.getPlayerCreature()->getLocation().first;
+	pCoord<<',';
+	pCoord<<m_gameWorld.getPlayerCreature()->getLocation().second;
+	pCoord<<')';
+	m_playerCoord->setString(pCoord.str());
 	GameStateBase::drawDisplayList(target);
 }
 void GameState_InsurgencyGame::OnCleanup(void)
@@ -52,10 +97,25 @@ void GameState_InsurgencyGame::OnResume(void)
 
 void GameState_InsurgencyGame::OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift)
 {
+	if(m_playerCanAct)
+	{
 	switch(key)
 	{
+	case sf::Keyboard::Right:
+		m_turnTimer.moveCreatureRight(*m_gameWorld.getPlayerCreature());
+		break;
+	case sf::Keyboard::Up:
+		m_turnTimer.moveCreatureUp(*m_gameWorld.getPlayerCreature());
+		break;
+	case sf::Keyboard::Left:
+		m_turnTimer.moveCreatureLeft(*m_gameWorld.getPlayerCreature());
+		break;
+	case sf::Keyboard::Down:
+		m_turnTimer.moveCreatureDown(*m_gameWorld.getPlayerCreature());
+		break;
 	case sf::Keyboard::Escape:
 		m_messages.push_back(new SFMLStateMessage_Close());
 		break;
+	}
 	}
 }

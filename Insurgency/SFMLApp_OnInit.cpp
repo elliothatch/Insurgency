@@ -36,6 +36,10 @@ bool SFMLApp::OnInit(void)
 	sf::Sprite concretewall(cursesA, sf::IntRect(3*8,2*12,8,12));
 	concretewall.setColor(sf::Color(150,150,150,255));
 	spriteManager.addSprite(concretewall,"CursesA_concrete wall");
+	sf::Sprite insurgent(cursesA, sf::IntRect(0,4*12,8,12));
+	spriteManager.addSprite(insurgent, "CursesA_insurgent");
+	sf::Sprite ak47(cursesA, sf::IntRect(8*8,2*12,8,12));
+	spriteManager.addSprite(ak47, "CursesA_AK-47");
 
 	std::unique_ptr<GameState_InsurgencyGame> insurgencyGameState(new GameState_InsurgencyGame());
 	registerState(std::move(insurgencyGameState), "InsurgencyGame");
