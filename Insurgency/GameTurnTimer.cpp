@@ -51,9 +51,8 @@ void GameTurnTimer::advanceTurn(void)
 
 Creature& GameTurnTimer::nextCreatureTurn(void)
 {
-	while(m_actingCreatures.size() == 0) //may be able to remove
+	if(m_actingCreatures.size() == 0) //may be able to remove
 	{
-		advanceTurn();
 		m_actingCreatures = getCreaturesCanMove();
 	}
 
@@ -65,7 +64,6 @@ Creature& GameTurnTimer::nextCreatureTurn(void)
 		m_actingCreatures.pop_back();
 		while(m_actingCreatures.size() == 0) //if that was the last creature
 		{
-			m_curTurn++;
 			advanceTurn();
 			m_actingCreatures = getCreaturesCanMove();
 		}
@@ -94,6 +92,11 @@ std::vector<Creature*> GameTurnTimer::getCreaturesCanMove(void) const
 	std::sort(movableCreatures.begin(), movableCreatures.end(), 
 		[](Creature* a, Creature* b) {return (a->getSpeed() > b->getSpeed());});
 	return std::move(movableCreatures);
+}
+
+unsigned int GameTurnTimer::getTurnCount() const
+{
+	return m_curTurn;
 }
 
 bool GameTurnTimer::moveCreature(Creature& lCreature, std::pair<int,int> loc)
@@ -130,9 +133,8 @@ bool GameTurnTimer::moveCreatureDown(Creature& lCreature)
 	loc.second += 1;
 	return moveCreature(lCreature,loc);
 }
-/*
-void GameTurnTimer::processNPCTurns(void)
+
+void GameTurnTimer::waitCreature(Creature& lCreature)
 {
-	//check for NPCs who can move
+	lCreature.changeActTurnRem(1);
 }
-*/

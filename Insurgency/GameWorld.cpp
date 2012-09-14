@@ -143,7 +143,7 @@ void GameWorld::moveGameItem(GameItem& lGameItem, std::pair<int,int> loc)
 bool GameWorld::moveCreature(Creature& lCreature, std::pair<int,int> loc)
 {
 	//if it is passable
-	if(lookupTile(loc).isPassable())
+	if(lookupTile(loc).isPassable() && !getCreature(loc))
 		{
 			removeCreatureFromWorld(lCreature);
 			addCreatureToWorld(lCreature, loc);

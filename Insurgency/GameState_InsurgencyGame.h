@@ -33,7 +33,7 @@ private:
 	GameWorld m_gameWorld;
 	GameTurnTimer m_turnTimer;
 	SFMLGameWorldWindow* m_gameWorldWindow;
-	sf::Text* m_canMoveCounter;
+	sf::Text* m_turnCounter;
 	sf::Text* m_playerCoord;
 	bool m_playerCanAct;
 };

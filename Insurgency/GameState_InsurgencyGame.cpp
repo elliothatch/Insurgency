@@ -34,20 +34,20 @@ void GameState_InsurgencyGame::OnAwake(void)
 	Creature& creature1(m_gameWorld.createCreature(1));
 	m_gameWorld.addCreatureToWorld(creature1,std::pair<int,int>(2,0));
 	m_gameWorld.setPlayerCreature(creature1);
+	Creature& creature2(m_gameWorld.createCreature(1));
+	m_gameWorld.addCreatureToWorld(creature2, std::pair<int,int>(-5,5));
 
 	std::unique_ptr<SFMLGameWorldWindow> gameWorldWindow(new SFMLGameWorldWindow(m_gameWorld,std::pair<int,int>(0,0),std::pair<int,int>(20,20)));
 	m_gameWorldWindow = gameWorldWindow.get();
 
-	std::unique_ptr<sf::Text> canMoveCounter(new sf::Text());
-	canMoveCounter->setPosition(300,300);
-	canMoveCounter->setString("No");
-	m_canMoveCounter = canMoveCounter.get();
+	std::unique_ptr<sf::Text> turnCounter(new sf::Text());
+	turnCounter->setPosition(300,300);
+	m_turnCounter = turnCounter.get();
 	std::unique_ptr<sf::Text> playerCoord(new sf::Text());
 	playerCoord->setPosition(300,100);
-	playerCoord->setString("a");
 	m_playerCoord = playerCoord.get();
 	addDrawable(std::move(gameWorldWindow));
-	addDrawable(std::move(canMoveCounter));
+	addDrawable(std::move(turnCounter));
 	addDrawable(std::move(playerCoord));
 }
 void GameState_InsurgencyGame::OnUpdate(void)
@@ -65,16 +65,16 @@ void GameState_InsurgencyGame::OnUpdate(void)
 		else
 		{
 			//process NPC turns
-			creature.changeActTurnRem(10);
+			if(!m_turnTimer.moveCreatureRight(creature))
+				m_turnTimer.waitCreature(creature);
 		}
 	}
 }
 void GameState_InsurgencyGame::OnRender(sf::RenderTarget& target)
 {
-	if(m_playerCanAct)
-		m_canMoveCounter->setString("Yes");
-	else
-		m_canMoveCounter->setString("no");
+	std::stringstream turnCount;
+	turnCount<<m_turnTimer.getTurnCount();
+	m_turnCounter->setString(turnCount.str());
 	std::stringstream pCoord;
 	pCoord <<'(';
 	pCoord<<m_gameWorld.getPlayerCreature()->getLocation().first;
@@ -112,6 +112,9 @@ void GameState_InsurgencyGame::OnKeyPressed(sf::Keyboard::Key key, bool alt, boo
 		break;
 	case sf::Keyboard::Down:
 		m_turnTimer.moveCreatureDown(*m_gameWorld.getPlayerCreature());
+		break;
+	case sf::Keyboard::Period:
+		m_turnTimer.waitCreature(*m_gameWorld.getPlayerCreature());
 		break;
 	case sf::Keyboard::Escape:
 		m_messages.push_back(new SFMLStateMessage_Close());

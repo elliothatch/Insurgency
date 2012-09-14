@@ -21,12 +21,16 @@ public:
 	//void processNPCTurns(void);
 	std::vector<Creature*> getCreaturesCanMove(void) const;
 
+	unsigned int getTurnCount() const;
+
 	//creature interactions
 	bool moveCreature(Creature& lCreature, std::pair<int,int> loc);
 	bool moveCreatureRight(Creature& lCreature);
 	bool moveCreatureUp(Creature& lCreature);
 	bool moveCreatureLeft(Creature& lCreature);
 	bool moveCreatureDown(Creature& lCreature);
+
+	void waitCreature(Creature& lCreature);
 
 private:
 	//note: this should probably be replaced with an AI object or something
