@@ -19,9 +19,9 @@ GameState_InsurgencyGame::~GameState_InsurgencyGame(void)
 void GameState_InsurgencyGame::OnAwake(void)
 {
 	m_world.test(std::pair<int,int>(-100,-100), std::pair<int,int>(100,100));
-	WorldTile::ptr tile01(new WorldTile(m_world.m_tileTypeDef.getTileType(128)));
-	WorldTile::ptr tile02(new WorldTile(m_world.m_tileTypeDef.getTileType(128)));
-	WorldTile::ptr tile03(new WorldTile(m_world.m_tileTypeDef.getTileType(128)));
+	WorldTile::ptr tile01(new WorldTile(m_world.m_tileTypeDef.getTileType(130)));
+	WorldTile::ptr tile02(new WorldTile(m_world.m_tileTypeDef.getTileType(130)));
+	WorldTile::ptr tile03(new WorldTile(m_world.m_tileTypeDef.getTileType(130)));
 
 	m_world.setTile(std::pair<int,int>(0,0),std::move(tile01));
 	m_world.setTile(std::pair<int,int>(6,-3),std::move(tile02));

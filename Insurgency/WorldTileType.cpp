@@ -3,7 +3,7 @@
 
 WorldTileType::WorldTileType()
 	:m_passable(true), m_transparent(true),
-	m_title("Title"), m_displayID('.')
+	m_title("Title")
 	{
 	}
 
@@ -23,11 +23,6 @@ std::string WorldTileType::getTitle() const
 {
 	return m_title;
 }
-//temp
-WorldTileType::DisplayID WorldTileType::getDisplayID() const
-{
-	return m_displayID;
-}
 //setters
 void WorldTileType::setPassable(bool val)
 {
@@ -40,9 +35,4 @@ void WorldTileType::setTransparent(bool val)
 void WorldTileType::setTitle(std::string lTitle)
 {
 	m_title = lTitle;
-}
-//temp
-void WorldTileType::setDisplayID(WorldTileType::DisplayID dispID)
-{
-	m_displayID = dispID;
 }

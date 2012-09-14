@@ -19,9 +19,7 @@ SFMLGameWorldWindow::SFMLGameWorldWindow(const sf::Vector2f& lPixelDimentions, c
 			const int xIndex = xIt - m_tiles.begin();
 			const int yIndex = yIt - xIt->begin();
 			const WorldTile& curTile(m_gameWorld.lookupTile(std::pair<int,int>(lWorldRect.left+xIndex,lWorldRect.top+yIndex)));
-			std::stringstream tileID;
-			tileID << curTile.getDisplayID();
-			*yIt = SpriteManager::getInstance().getSprite("CursesA_"+tileID.str());
+			*yIt = SpriteManager::getInstance().getSprite("CursesA_"+curTile.getTitle());
 			const float xScale = tileWidth/(yIt->getLocalBounds().width);
 			const float yScale = tileHeight/(yIt->getLocalBounds().height);
 			yIt->setScale(xScale, yScale);

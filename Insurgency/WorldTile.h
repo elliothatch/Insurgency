@@ -10,14 +10,11 @@ public:
 	WorldTile(const WorldTileType& lType);
 	~WorldTile(void);
 
-	bool isPassable(void) {return type.getPassable();}
-	bool isTransparent(void) {return type.getTransparent();}
-	std::string getTitle(void) {return type.getTitle();}
-
-	//temp curses test code
-	WorldTileType::DisplayID getDisplayID(void) const {return type.getDisplayID();}
+	bool isPassable(void) const;
+	bool isTransparent(void) const;
+	std::string getTitle(void) const;
 
 private:
-	const WorldTileType& type;
+	const WorldTileType& m_type;
 };
 
