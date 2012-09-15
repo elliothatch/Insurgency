@@ -85,3 +85,8 @@ void Creature::turnUpdate(void)
 		}
 	}
 }
+
+InventoryComponent* Creature::getInventoryComponent()
+{
+	return dynamic_cast<InventoryComponent*>(getComponent(EntityComponentID::Inventory));
+}

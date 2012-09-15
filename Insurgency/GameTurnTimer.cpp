@@ -134,6 +134,26 @@ bool GameTurnTimer::moveCreatureDown(Creature& lCreature)
 	return moveCreature(lCreature,loc);
 }
 
+bool GameTurnTimer::creaturePickUpItem(Creature& lCreature, GameItem& lGameItem)
+{
+	if(m_gameWorld.putEntityInInventory(*lCreature.getInventoryComponent(), lGameItem))
+	{
+		lCreature.changeActTurnRem(3);
+		return true;
+	}
+	return false;
+}
+
+bool GameTurnTimer::creatureDropItem(Creature& lCreature, GameItem& lGameItem)
+{
+	if(m_gameWorld.removeEntityFromInventory(*lCreature.getInventoryComponent(), lGameItem))
+	{
+		lCreature.changeActTurnRem(3);
+		return true;
+	}
+	return false;
+}
+
 void GameTurnTimer::waitCreature(Creature& lCreature)
 {
 	lCreature.changeActTurnRem(1);

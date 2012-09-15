@@ -40,7 +40,9 @@ public:
 	//events in the world
 	void moveGameItem(GameItem& lGameItem, std::pair<int,int> loc);
 	bool moveCreature(Creature& lCreature, std::pair<int,int> loc);
-	
+	bool putEntityInInventory(InventoryComponent& lContainer, GameEntity& lTarget);
+	bool removeEntityFromInventory(InventoryComponent& lContainer, GameEntity& lTarget);
+
 	//public for testing
 	WorldTile& lookupTile(std::pair<int,int> loc) const;
 	void setTile(std::pair<int,int> loc, WorldTile::ptr lTile); //assumes the region exists

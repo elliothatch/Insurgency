@@ -30,6 +30,8 @@ void GameState_InsurgencyGame::OnAwake(void)
 
 	GameItem& item1(m_gameWorld.createItem(1));
 	m_gameWorld.addItemToWorld(item1, std::pair<int,int>(1,0));
+	GameItem& item2(m_gameWorld.createItem(2));
+	m_gameWorld.addItemToWorld(item2, std::pair<int,int>(1,3));
 
 	Creature& creature1(m_gameWorld.createCreature(1));
 	m_gameWorld.addCreatureToWorld(creature1,std::pair<int,int>(2,0));
@@ -46,9 +48,13 @@ void GameState_InsurgencyGame::OnAwake(void)
 	std::unique_ptr<sf::Text> playerCoord(new sf::Text());
 	playerCoord->setPosition(300,100);
 	m_playerCoord = playerCoord.get();
+	std::unique_ptr<sf::Text> playerInv(new sf::Text());
+	playerInv->setPosition(300,200);
+	m_playerInv = playerCoord.get();
 	addDrawable(std::move(gameWorldWindow));
 	addDrawable(std::move(turnCounter));
 	addDrawable(std::move(playerCoord));
+	addDrawable(std::move(playerInv));
 }
 void GameState_InsurgencyGame::OnUpdate(void)
 {
@@ -82,6 +88,19 @@ void GameState_InsurgencyGame::OnRender(sf::RenderTarget& target)
 	pCoord<<m_gameWorld.getPlayerCreature()->getLocation().second;
 	pCoord<<')';
 	m_playerCoord->setString(pCoord.str());
+	if(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getNumItems() == 0)
+		m_playerInv->setString("No Items");
+	else
+	{
+		std::string invItemsStr = "";
+		std::vector<GameEntity*> invItems(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getItemList());
+		for(std::vector<GameEntity*>::const_iterator invIt(invItems.begin()); invIt != invItems.end(); invIt++)
+		{
+			invItemsStr += " ";
+			invItemsStr += (*invIt)->getSName();
+		}
+		m_playerInv->setString(invItemsStr);
+	}
 	GameStateBase::drawDisplayList(target);
 }
 void GameState_InsurgencyGame::OnCleanup(void)
@@ -115,6 +134,20 @@ void GameState_InsurgencyGame::OnKeyPressed(sf::Keyboard::Key key, bool alt, boo
 		break;
 	case sf::Keyboard::Period:
 		m_turnTimer.waitCreature(*m_gameWorld.getPlayerCreature());
+		break;
+	case sf::Keyboard::Comma:
+		if(m_gameWorld.getItemPile(m_gameWorld.getPlayerCreature()->getLocation()))
+		{
+		m_turnTimer.creaturePickUpItem(*m_gameWorld.getPlayerCreature(),
+			*m_gameWorld.getItemPile(m_gameWorld.getPlayerCreature()->getLocation())->front());
+		}
+		break;
+	case sf::Keyboard::M:
+		if(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getNumItems() != 0)
+		{
+			m_turnTimer.creatureDropItem(*m_gameWorld.getPlayerCreature(),
+				dynamic_cast<GameItem&>(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getEntityAtIndex(0)));
+		}
 		break;
 	case sf::Keyboard::Escape:
 		m_messages.push_back(new SFMLStateMessage_Close());

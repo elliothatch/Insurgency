@@ -12,6 +12,11 @@ GameItemTypeDef::GameItemTypeDef(void)
 	itemTypes[1].setSName("AK-47");
 	itemTypes[1].setDName("AK-47");
 	itemTypes[1].setClassID(GameItemClassID::AssaultRifle01);
+
+	itemTypes[2].setLName("P90");
+	itemTypes[2].setSName("P90");
+	itemTypes[2].setDName("P90");
+	itemTypes[2].setClassID(GameItemClassID::AssaultRifle01);
 }
 
 

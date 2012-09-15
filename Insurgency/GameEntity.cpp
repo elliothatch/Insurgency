@@ -15,16 +15,26 @@ GameEntity::GameEntity(std::map<EntityComponentID::E, std::unique_ptr<EntityComp
 		:m_components(std::move(lComponents)),
 		m_location(std::pair<int,int>(0,0)),
 		m_lName("lNameE"), m_sName("sNameE"), m_dName("dNameE"),
-		m_isEnclosed(false)
+		m_enclosingEntity(nullptr)
 {
+	for(std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>>::iterator entityIt(m_components.begin());
+			entityIt != m_components.end(); entityIt++)
+	{
+		entityIt->second->setEntity(*this);
+	}
 }
 GameEntity::GameEntity(const std::string& lLName, const std::string& lSName, const std::string& lDName,
 	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents)
 		:m_components(std::move(lComponents)),
 		m_location(std::pair<int,int>(0,0)),
 		m_lName(lLName), m_sName(lSName), m_dName(lDName),
-		m_isEnclosed(false)
+		m_enclosingEntity(nullptr)
 {
+	for(std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>>::iterator entityIt(m_components.begin());
+			entityIt != m_components.end(); entityIt++)
+	{
+		entityIt->second->setEntity(*this);
+	}
 }
 
 GameEntity::~GameEntity()
@@ -36,9 +46,9 @@ std::pair<int,int> GameEntity::getLocation(void) const
 {
 	return m_location;
 }
-bool GameEntity::getIsEnclosed(void) const
+GameEntity* GameEntity::getEnclosingEntity(void) const
 {
-	return m_isEnclosed;
+	return m_enclosingEntity;
 }
 const std::string&  GameEntity::getLName(void) const
 {
@@ -68,9 +78,9 @@ void GameEntity::setLocation(std::pair<int,int> loc)
 {
 	m_location = loc;
 }
-void GameEntity::setIsEnclosed(bool b)
+void GameEntity::setEnclosingEntity(GameEntity* lEntity)
 {
-	m_isEnclosed = b;
+	m_enclosingEntity = lEntity;
 }
 void GameEntity::setLName(const std::string& str) 
 {

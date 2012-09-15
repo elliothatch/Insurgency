@@ -20,6 +20,8 @@ public:
 	int getNumItems() const;
 	std::vector<GameEntity*> getItemList() const;
 
+	bool isEntityContained(GameEntity& lEntity) const;
+
 private:
 	std::vector<GameEntity*> m_storage;
 };

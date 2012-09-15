@@ -35,6 +35,7 @@ private:
 	SFMLGameWorldWindow* m_gameWorldWindow;
 	sf::Text* m_turnCounter;
 	sf::Text* m_playerCoord;
+	sf::Text* m_playerInv;
 	bool m_playerCanAct;
 };
 

@@ -30,6 +30,9 @@ public:
 	bool moveCreatureLeft(Creature& lCreature);
 	bool moveCreatureDown(Creature& lCreature);
 
+	bool creaturePickUpItem(Creature& lCreature, GameItem& lGameItem);
+	bool creatureDropItem(Creature& lCreature, GameItem& lGameItem);
+
 	void waitCreature(Creature& lCreature);
 
 private:

@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <array>
 #include <memory>
+#include "InventoryComponent.h"
 
 class Creature :
 	public GameEntity
@@ -14,7 +15,7 @@ public:
 	typedef std::unique_ptr<Creature> ptr;
 
 	Creature(const CreatureType& lType);
-	~Creature(void);
+	virtual ~Creature(void);
 
 	unsigned int getActTurnRem(void);
 	void changeActTurnRem(unsigned int amount);
@@ -33,6 +34,9 @@ public:
 
 	//update the creature's turn
 	void turnUpdate(void);
+
+	InventoryComponent* getInventoryComponent();
+
 private:
 	std::array<int, CreatureStat::Count> m_baseStats;
 	std::array<int, CreatureStat::Count> m_adjustedStats;

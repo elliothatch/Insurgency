@@ -19,17 +19,18 @@ GameWorld::~GameWorld(void)
 //add/remove
 void GameWorld::addItemToWorld(GameItem& lGameItem, std::pair<int,int> loc)
 {
-		std::map<std::pair<int,int>,std::vector<GameItem*>>::iterator pileIt(m_gameItemCoord.find(loc));
-		//if there is no pile there
-		if(pileIt == m_gameItemCoord.end())
-		{
-			//make a pile
-			std::vector<GameItem*> iTemp;
-			m_gameItemCoord[loc] = iTemp;
-		}
-		//add the item to the pile
-		m_gameItemCoord[loc].push_back(&lGameItem);
-		lGameItem.setLocation(loc);
+	std::map<std::pair<int,int>,std::vector<GameItem*>>::iterator pileIt(m_gameItemCoord.find(loc));
+	//if there is no pile there
+	if(pileIt == m_gameItemCoord.end())
+	{
+		//make a pile
+		std::vector<GameItem*> iTemp;
+		m_gameItemCoord[loc] = iTemp;
+	}
+	//add the item to the pile
+	m_gameItemCoord[loc].push_back(&lGameItem);
+	lGameItem.setLocation(loc);
+	lGameItem.setEnclosingEntity(nullptr);
 }
 void GameWorld::removeItemFromWorld(GameItem& lGameItem)
 {
@@ -57,6 +58,7 @@ void GameWorld::addCreatureToWorld(Creature& lCreature, std::pair<int,int> loc)
 	//TODO: check if there is already a creature there, then act accordingly
 	m_creatureCoord[loc] = &lCreature;
 	lCreature.setLocation(loc);
+	lCreature.setEnclosingEntity(nullptr);
 }
 void GameWorld::removeCreatureFromWorld(Creature& lCreature)
 {
@@ -74,9 +76,14 @@ GameItem& GameWorld::createItem(GameItemTypeID lTypeID)
 }
 void GameWorld::destroyItem(GameItem& lGameItem)
 {
-	if(!lGameItem.getIsEnclosed())
+	if(!lGameItem.getEnclosingEntity())
 	{
 	removeItemFromWorld(lGameItem);
+	}
+	else
+	{
+		InventoryComponent* inv = dynamic_cast<InventoryComponent*>(lGameItem.getEnclosingEntity()->getComponent(EntityComponentID::Inventory));
+		inv->removeEntity(lGameItem);
 	}
 	std::set<GameItem::ptr>::iterator itemIt(std::find_if(m_gameItems.begin(), m_gameItems.end(), 
 		[&](const GameItem::ptr& item) {return item.get() == &lGameItem;}));
@@ -89,9 +96,14 @@ Creature& GameWorld::createCreature(CreatureTypeID lTypeID)
 }
 void GameWorld::destroyCreature(Creature& lCreature)
 {
-	if(!lCreature.getIsEnclosed())
+	if(!lCreature.getEnclosingEntity())
 	{
 		removeCreatureFromWorld(lCreature);
+	}
+	else
+	{
+		InventoryComponent* inv = dynamic_cast<InventoryComponent*>(lCreature.getEnclosingEntity()->getComponent(EntityComponentID::Inventory));
+		inv->removeEntity(lCreature);
 	}
 	std::set<Creature::ptr>::iterator creatureIt(std::find_if(m_creatures.begin(), m_creatures.end(), 
 		[&](const Creature::ptr& creature) {return creature.get() == &lCreature;}));
@@ -151,6 +163,60 @@ bool GameWorld::moveCreature(Creature& lCreature, std::pair<int,int> loc)
 		}
 	else
 		return false;
+}
+bool GameWorld::putEntityInInventory(InventoryComponent& lContainer, GameEntity& lTarget)
+{
+	if(lContainer.getEntity()->getLocation() == lTarget.getLocation()) // if in same location
+	{
+		//if not enclosed
+		GameEntity* enclosingEntity = lTarget.getEnclosingEntity();
+		if(!enclosingEntity) //null, is in world
+		{
+			//remove it from the world
+			if(GameItem* item = dynamic_cast<GameItem*>(&lTarget))
+			{
+				removeItemFromWorld(*item);
+			}
+			else if(Creature* creature = dynamic_cast<Creature*>(&lTarget))
+			{
+				removeCreatureFromWorld(*creature);
+			}
+		}
+		else //already in a container, remove it from that
+		{
+			InventoryComponent* inv = dynamic_cast<InventoryComponent*>(enclosingEntity->getComponent(EntityComponentID::Inventory));
+			inv->removeEntity(lTarget);
+		}
+		//add it to this one
+		lContainer.addEntity(lTarget);
+		lTarget.setEnclosingEntity(lContainer.getEntity());
+		return true;
+	}
+	return false;
+}
+bool GameWorld::removeEntityFromInventory(InventoryComponent& lContainer, GameEntity& lTarget)
+{
+	if(!lContainer.isEntityContained(lTarget))
+		return false;
+	GameEntity* invEntity = lContainer.getEntity();
+	if(!invEntity->getEnclosingEntity()) //if container is not itself enclosed
+	{
+		if(GameItem* item = dynamic_cast<GameItem*>(&lTarget))
+		{
+			addItemToWorld(*item, invEntity->getLocation());
+		}
+		else if(Creature* creature = dynamic_cast<Creature*>(&lTarget))
+		{
+			addCreatureToWorld(*creature, invEntity->getLocation());
+		}
+	}
+	else //nested containers, place in upper container
+	{
+		InventoryComponent* inv = dynamic_cast<InventoryComponent*>(invEntity->getEnclosingEntity()->getComponent(EntityComponentID::Inventory));
+		inv->addEntity(lTarget);
+	}
+	lContainer.removeEntity(lTarget);
+	return true;
 }
 //lookup world-space
 WorldTile& GameWorld::lookupTile(std::pair<int,int> loc) const

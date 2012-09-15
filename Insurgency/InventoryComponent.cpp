@@ -51,3 +51,11 @@ std::vector<GameEntity*> InventoryComponent::getItemList() const
 {
 	return m_storage;
 }
+
+bool InventoryComponent::isEntityContained(GameEntity& lEntity) const
+{
+	if(std::find(m_storage.begin(), m_storage.end(), &lEntity) != m_storage.end())
+		return true;
+	else
+		return false;
+}
