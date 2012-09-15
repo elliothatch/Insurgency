@@ -42,7 +42,7 @@ void InventoryComponent::removeEntityAtIndex(int index)
 	m_storage.erase(m_storage.begin() + index);
 }
 
-int InventoryComponent::getNumItems() const
+int InventoryComponent::getNumEntities() const
 {
 	return m_storage.size();
 }

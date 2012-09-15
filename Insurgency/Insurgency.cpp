@@ -46,7 +46,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		InventoryComponent* inventory(dynamic_cast<InventoryComponent*>(creature->getComponent(EntityComponentID::Inventory)));
 		std::cout<<"Has Inventory Component\n";
 		inventory->addEntity(item1);
-		std::cout<<inventory->getNumItems()<<std::endl;
+		std::cout<<inventory->getNumEntities()<<std::endl;
 	}
 	if(creature->getComponent(EntityComponentID::Gun))
 		std::cout<<"Has Gun Component\n";

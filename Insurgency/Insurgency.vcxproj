@@ -72,7 +72,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;$(VSInstallDir)\VC\lib\sfml-audio-d.lib;$(VSInstallDir)\VC\lib\sfml-graphics-d.lib;$(VSInstallDir)\VC\lib\sfml-main-d.lib;$(VSInstallDir)\VC\lib\sfml-network-d.lib;$(VSInstallDir)\VC\lib\sfml-system-d.lib;$(VSInstallDir)\VC\lib\sfml-window-d.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;$(VSInstallDir)\VC\lib\sfml-audio.lib;$(VSInstallDir)\VC\lib\sfml-graphics.lib;$(VSInstallDir)\VC\lib\sfml-main.lib;$(VSInstallDir)\VC\lib\sfml-network.lib;$(VSInstallDir)\VC\lib\sfml-system.lib;$(VSInstallDir)\VC\lib\sfml-window.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

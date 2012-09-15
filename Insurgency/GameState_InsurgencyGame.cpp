@@ -88,7 +88,7 @@ void GameState_InsurgencyGame::OnRender(sf::RenderTarget& target)
 	pCoord<<m_gameWorld.getPlayerCreature()->getLocation().second;
 	pCoord<<')';
 	m_playerCoord->setString(pCoord.str());
-	if(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getNumItems() == 0)
+	if(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getNumEntities() == 0)
 		m_playerInv->setString("No Items");
 	else
 	{
@@ -143,7 +143,7 @@ void GameState_InsurgencyGame::OnKeyPressed(sf::Keyboard::Key key, bool alt, boo
 		}
 		break;
 	case sf::Keyboard::M:
-		if(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getNumItems() != 0)
+		if(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getNumEntities() != 0)
 		{
 			m_turnTimer.creatureDropItem(*m_gameWorld.getPlayerCreature(),
 				dynamic_cast<GameItem&>(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getEntityAtIndex(0)));

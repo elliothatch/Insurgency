@@ -17,7 +17,7 @@ public:
 	GameEntity& getEntityAtIndex(int index) const;
 	void removeEntityAtIndex(int index);
 
-	int getNumItems() const;
+	int getNumEntities() const;
 	std::vector<GameEntity*> getItemList() const;
 
 	bool isEntityContained(GameEntity& lEntity) const;
