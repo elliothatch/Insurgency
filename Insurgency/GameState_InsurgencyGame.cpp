@@ -39,8 +39,11 @@ void GameState_InsurgencyGame::OnAwake(void)
 	Creature& creature2(m_gameWorld.createCreature(1));
 	m_gameWorld.addCreatureToWorld(creature2, std::pair<int,int>(-5,5));
 
-	std::unique_ptr<SFMLGameWorldWindow> gameWorldWindow(new SFMLGameWorldWindow(m_gameWorld,std::pair<int,int>(0,0),std::pair<int,int>(20,20)));
+	std::unique_ptr<SFMLGameWorldWindow> gameWorldWindow(new SFMLGameWorldWindow(m_gameWorld,std::pair<int,int>(0,0),std::pair<int,int>(30,20)));
 	m_gameWorldWindow = gameWorldWindow.get();
+	std::unique_ptr<SFMLWorldItemsWindow> worldItemsWindow(new SFMLWorldItemsWindow(sf::Vector2i(15,5), m_gameWorld, std::pair<int,int>(2,0)));
+	m_worldItemsWindow = worldItemsWindow.get();
+	worldItemsWindow->setPosition(400,100);
 
 	std::unique_ptr<sf::Text> turnCounter(new sf::Text());
 	turnCounter->setPosition(300,300);
@@ -52,6 +55,7 @@ void GameState_InsurgencyGame::OnAwake(void)
 	playerInv->setPosition(300,200);
 	m_playerInv = playerCoord.get();
 	addDrawable(std::move(gameWorldWindow));
+	addDrawable(std::move(worldItemsWindow));
 	addDrawable(std::move(turnCounter));
 	addDrawable(std::move(playerCoord));
 	addDrawable(std::move(playerInv));
@@ -67,6 +71,7 @@ void GameState_InsurgencyGame::OnUpdate(void)
 		{
 			m_playerCanAct = true;
 			m_gameWorldWindow->updateTiles(std::pair<int,int>(0,0));
+			m_worldItemsWindow->update(m_gameWorld.getPlayerCreature()->getLocation());
 		}
 		else
 		{

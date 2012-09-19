@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML-Template/GameStateBase.h"
 #include "SFMLGameWorldWindow.h"
+#include "SFMLWorldItemsWindow.h"
 #include "WorldTileTypeDef.h"
 #include "CreatureTypeDef.h"
 #include "GameItemTypeDef.h"
@@ -36,6 +37,7 @@ private:
 	sf::Text* m_turnCounter;
 	sf::Text* m_playerCoord;
 	sf::Text* m_playerInv;
+	SFMLWorldItemsWindow* m_worldItemsWindow;
 	bool m_playerCanAct;
 };
 

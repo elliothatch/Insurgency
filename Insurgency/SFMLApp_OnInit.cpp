@@ -14,19 +14,17 @@ bool SFMLApp::OnInit(void)
 	textureManager.addTextureFromImage(cursesAImage,"CursesA");
 	const sf::Texture& cursesA = textureManager.getTexture("CursesA");
 	SpriteManager& spriteManager = SpriteManager::getInstance();
-	/*
-	int k = 0;
+	char k = 0;
 	for(int i = 0; i < 16; i++)
 	{
 		for(int j = 0; j< 16; j++)
 		{
-			std::stringstream out;
-			out << k;
-			spriteManager.addSprite(sf::Sprite(textureManager.getTexture("CursesA"),sf::IntRect(j*8, i*12, 8, 12)),"CursesA_"+ out.str());
+			std::string str("CursesA_ASCII");
+			str += k;
+			spriteManager.addSprite(sf::Sprite(textureManager.getTexture("CursesA"),sf::IntRect(j*8, i*12, 8, 12)),str);
 			k++;
 		}
 	}
-	*/
 	sf::Sprite dirtground(cursesA, sf::IntRect(14*8,2*12,8,12));
 	dirtground.setColor(sf::Color(130,54,21,255));
 	spriteManager.addSprite(dirtground,"CursesA_dirt ground");

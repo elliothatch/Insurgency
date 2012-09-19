@@ -5,7 +5,7 @@
 #include "SFMLApp.h"
 #include <iostream>
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, _TCHAR* argv[])
 {
 	//testing stuff
 	{

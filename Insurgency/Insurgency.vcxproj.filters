@@ -13,17 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\CursesIO">
-      <UniqueIdentifier>{39a4990a-2082-485d-b84b-e8d936c2bf9d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\CursesIO">
       <UniqueIdentifier>{c0993e89-54ea-421f-968f-0e2cdd2bbde9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\CursesIO\Windows">
-      <UniqueIdentifier>{cc4e8d37-1228-4bac-b0be-133d620e6f26}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\CursesIO\Input Sources">
-      <UniqueIdentifier>{22d8a432-37e9-4145-91de-71da2eb9d5bf}</UniqueIdentifier>
     </Filter>
     <Filter Include="SFML-Template">
       <UniqueIdentifier>{12ca767a-dd0a-44db-87ac-e14ed94c45e9}</UniqueIdentifier>
@@ -70,6 +61,9 @@
     <Filter Include="SFML-Insurgency">
       <UniqueIdentifier>{2506aa9f-7bcb-4c4f-80d1-93d0e3a98af0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\CursesIO">
+      <UniqueIdentifier>{ef764ec5-8d9a-46de-8826-7e542129dd20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -99,9 +93,6 @@
     <ClInclude Include="IGameOutput.h">
       <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="GameIOCurses.h">
-      <Filter>Header Files\CursesIO</Filter>
-    </ClInclude>
     <ClInclude Include="IGameInput.h">
       <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
     </ClInclude>
@@ -110,12 +101,6 @@
     </ClInclude>
     <ClInclude Include="IInputSourceCurses.h">
       <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="CursesGameWorldWindow.h">
-      <Filter>Header Files\CursesIO\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="CursesWindow.h">
-      <Filter>Header Files\CursesIO\Windows</Filter>
     </ClInclude>
     <ClInclude Include="InputMessages.h">
       <Filter>Header Files</Filter>
@@ -126,14 +111,8 @@
     <ClInclude Include="ICreatureTypeDef.h">
       <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="CreatureInputSourceCurses.h">
-      <Filter>Header Files\CursesIO\Input Sources</Filter>
-    </ClInclude>
     <ClInclude Include="InputSourceListCurses.h">
       <Filter>InsurgencyGame\Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="colorListCurses.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Creature.h">
       <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
@@ -223,6 +202,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SFMLGameWorldWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cursesgameworldwindow.h">
+      <Filter>Header Files\CursesIO</Filter>
+    </ClInclude>
+    <ClInclude Include="colorListCurses.h">
+      <Filter>Header Files\CursesIO</Filter>
+    </ClInclude>
+    <ClInclude Include="creatureinputsourcecurses.h">
+      <Filter>Header Files\CursesIO</Filter>
+    </ClInclude>
+    <ClInclude Include="curseswindow.h">
+      <Filter>Header Files\CursesIO</Filter>
+    </ClInclude>
+    <ClInclude Include="gameiocurses.h">
+      <Filter>Header Files\CursesIO</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMLWorldItemsWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMLCursesWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -351,6 +351,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SFMLGameWorldWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLWorldItemsWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLCursesWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

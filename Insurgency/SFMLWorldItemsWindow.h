@@ -2,23 +2,25 @@
 #include "SFML-Template/SFMLGUIElement.h"
 #include "GameWorld.h"
 #include "SFML-Template/SpriteManager.h"
+#include <string>
+#include <sstream>
 #include "SFMLCursesWindow.h"
-class SFMLGameWorldWindow
+class SFMLWorldItemsWindow
 	:public SFMLGUIElement
 {
 public:
-	SFMLGameWorldWindow(const GameWorld& lGameWorld, const std::pair<int,int>& lWorldCenter, const std::pair<int,int>& lWorldSize);
-	virtual ~SFMLGameWorldWindow(void);
-
+	SFMLWorldItemsWindow(const sf::Vector2i& lCharSize, const GameWorld& lGameWorld, std::pair<int,int> lWorldPoint);
+	virtual ~SFMLWorldItemsWindow(void);
+	
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual sf::FloatRect getLocalBounds(void) const;
 	virtual sf::FloatRect getGlobalBounds(void) const;
-	
-	void updateTiles(const std::pair<int,int>& lCenterPos);
+
+	void update(std::pair<int,int> lWorldPoint);
 
 private:
 	SFMLCursesWindow m_cursesWindow;
 	const GameWorld& m_gameWorld;
-	sf::IntRect m_worldRect;
+	std::pair<int,int> m_worldPoint;
 };
 
