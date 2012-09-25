@@ -17,7 +17,7 @@ public:
 	GameState_InsurgencyGame(void);
 	virtual ~GameState_InsurgencyGame(void);
 	
-	virtual void OnAwake(void);
+	virtual void OnAwake(const SFMLStateInfo* lStateInfo);
 	virtual void OnUpdate(void);
 	virtual void OnRender(sf::RenderTarget& target);
 	virtual void OnCleanup(void);
@@ -36,7 +36,6 @@ private:
 	SFMLGameWorldWindow* m_gameWorldWindow;
 	sf::Text* m_turnCounter;
 	sf::Text* m_playerCoord;
-	sf::Text* m_playerInv;
 	SFMLWorldItemsWindow* m_worldItemsWindow;
 	bool m_playerCanAct;
 };

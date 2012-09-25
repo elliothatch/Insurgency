@@ -59,7 +59,7 @@ void SFMLApp::unregisterState(std::string stateID)
 	}
 }
 
-void SFMLApp::changeState(std::string stateID)
+void SFMLApp::changeState(std::string stateID, SFMLStateInfo* stateInfo)
 {
 	if(m_states.size() > 0)
 	{
@@ -67,15 +67,15 @@ void SFMLApp::changeState(std::string stateID)
 		m_states.pop_back();
 	}
 	m_states.push_back(getState(stateID));
-	m_states.back()->OnAwake();
+	m_states.back()->OnAwake(stateInfo);
 }
 
-void SFMLApp::pushState(std::string stateID)
+void SFMLApp::pushState(std::string stateID, SFMLStateInfo* stateInfo)
 {
 	if(m_states.size() > 0)
 		m_states.back()->OnSuspend();
 	m_states.push_back(getState(stateID));
-	m_states.back()->OnAwake();
+	m_states.back()->OnAwake(stateInfo);
 }
 
 void SFMLApp::popState(void)
@@ -135,13 +135,13 @@ void SFMLApp::decipherMessage(SFMLStateMessage* message)
 	case SFMLStateMessage::Type::ChangeState:
 		{
 		SFMLStateMessage_ChangeState* msg = dynamic_cast<SFMLStateMessage_ChangeState*>(message);
-		changeState(msg->m_stateID);
+		changeState(msg->m_stateID, msg->m_stateInfo.get());
 		break;
 		}
 	case SFMLStateMessage::Type::PushState:
 		{
 		SFMLStateMessage_PushState* msg = dynamic_cast<SFMLStateMessage_PushState*>(message);
-		pushState(msg->m_stateID);
+		pushState(msg->m_stateID, msg->m_stateInfo.get());
 		break;
 		}
 	case SFMLStateMessage::Type::PopState:

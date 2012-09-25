@@ -2,14 +2,15 @@
 #include "SFMLEvent.h"
 #include "SFMLStateMessage.h"
 #include "ImageManager.h"
+#include "SpriteManager.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
-#include "SpriteManager.h"
 #include "FontManager.h"
 #include "SFMLGUIElement.h"
 #include "SFMLButton.h"
 #include "AnimatedSprite.h"
 #include "Functor.h"
+#include "SFMLStateInfo.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <vector>
@@ -24,7 +25,7 @@ public:
 	GameStateBase(void);
 	virtual ~GameStateBase(void);
 
-	virtual void OnAwake(void) {}
+	virtual void OnAwake(const SFMLStateInfo* lStateInfo) {}
 	virtual void OnUpdate(void) {}
 	virtual void OnRender(sf::RenderTarget& target) {drawDisplayList(target);}
 	virtual void OnCleanup(void) {Cleanup();}
@@ -43,23 +44,9 @@ public:
 	//default events that most likely won't be overwritten
 	virtual void OnClose(void);
 	virtual void OnResize(int width, int height);
-
-	struct MouseEvent
-	{
-		enum E
-		{
-			LeftPressed = 0,
-			LeftReleased,
-			RightPressed,
-			RightReleased,
-			MiddlePressed,
-			MiddleReleased,
-			RollOver,
-			RollOut,
-			Hover,
-			Count
-		};
-	};
+	virtual void OnMouseButtonPressed(sf::Mouse::Button button, int x, int y);
+	virtual void OnMouseButtonReleased(sf::Mouse::Button button, int x, int y);
+	virtual void OnMouseMoved(int x, int y);
 
 	void addDrawable(std::unique_ptr<sf::Drawable> target);
 	void removeDrawable(int index);
@@ -73,7 +60,7 @@ public:
 	//place them in the virtual overrides for SFMLEvent e.g. OnMouseButtonPressed(...)
 	void MouseEvent_Pressed(sf::Mouse::Button button, int x, int y);
 	void MouseEvent_Released(sf::Mouse::Button button, int x, int y);
-	void MouseEvent_Moved(sf::Mouse::Button button, int x, int y);
+	void MouseEvent_Moved(int x, int y);
 
 	void Cleanup();
 

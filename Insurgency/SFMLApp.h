@@ -12,6 +12,7 @@
 #include "SFML-Template/FontManager.h"
 
 #include "GameState_InsurgencyGame.h"
+#include "GameState_InsurgencyInventory.h"
 
 
 class SFMLApp
@@ -30,8 +31,8 @@ public:
 
 	void registerState(GameStateBase::ptr gameState, std::string stateID);
 	void unregisterState(std::string stateID); //can invalidate active states
-	void changeState(std::string stateID); //replaces the current state
-	void pushState(std::string stateID);
+	void changeState(std::string stateID, SFMLStateInfo* stateInfo); //replaces the current state
+	void pushState(std::string stateID, SFMLStateInfo* stateInfo);
 	void popState(void);
 	void removeState(std::string stateID);
 

@@ -5,7 +5,7 @@
 
 bool SFMLApp::OnInit(void)
 {
-	m_mainWindow.create(sf::VideoMode(800, 600, 32), "SFMLApp Window");
+	m_mainWindow.create(sf::VideoMode(800, 600, 32), "Insurgency");
 
 	TextureManager& textureManager = TextureManager::getInstance();
 	sf::Image cursesAImage;
@@ -45,7 +45,9 @@ bool SFMLApp::OnInit(void)
 
 	std::unique_ptr<GameState_InsurgencyGame> insurgencyGameState(new GameState_InsurgencyGame());
 	registerState(std::move(insurgencyGameState), "InsurgencyGame");
-	changeState("InsurgencyGame");
+	std::unique_ptr<GameState_InsurgencyInventory> insurgencyInventoryState(new GameState_InsurgencyInventory());
+	registerState(std::move(insurgencyInventoryState), "InsurgencyInventory");
+	changeState("InsurgencyGame", nullptr);
 
 	return true;
 }

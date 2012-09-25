@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Window.hpp>
+#include "SFMLStateInfo.h"
 
 class SFMLStateMessage
 {
@@ -50,19 +51,21 @@ public:
 class SFMLStateMessage_ChangeState : public SFMLStateMessage
 {
 public:
-	SFMLStateMessage_ChangeState(std::string stateIdentifier)
-		:SFMLStateMessage(SFMLStateMessage::Type::ChangeState), m_stateID(stateIdentifier) {}
+	SFMLStateMessage_ChangeState(std::string stateIdentifier, SFMLStateInfo::ptr lStateInfo)
+		:SFMLStateMessage(SFMLStateMessage::Type::ChangeState), m_stateID(stateIdentifier), m_stateInfo(std::move(lStateInfo)) {}
 	virtual ~SFMLStateMessage_ChangeState(void) {}
 	std::string m_stateID;
+	SFMLStateInfo::ptr m_stateInfo;
 };
 
 class SFMLStateMessage_PushState : public SFMLStateMessage
 {
 public:
-	SFMLStateMessage_PushState(std::string stateIdentifier)
-		:SFMLStateMessage(SFMLStateMessage::Type::PushState), m_stateID(stateIdentifier) {}
+	SFMLStateMessage_PushState(std::string stateIdentifier, SFMLStateInfo::ptr lStateInfo)
+		:SFMLStateMessage(SFMLStateMessage::Type::PushState), m_stateID(stateIdentifier), m_stateInfo(std::move(lStateInfo)) {}
 	virtual ~SFMLStateMessage_PushState(void) {}
 	std::string m_stateID;
+	SFMLStateInfo::ptr m_stateInfo;
 };
 
 class SFMLStateMessage_PopState : public SFMLStateMessage

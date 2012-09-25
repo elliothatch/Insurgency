@@ -17,7 +17,7 @@ GameState_InsurgencyGame::~GameState_InsurgencyGame(void)
 {
 }
 
-void GameState_InsurgencyGame::OnAwake(void)
+void GameState_InsurgencyGame::OnAwake(const SFMLStateInfo* lStateInfo)
 {
 	m_gameWorld.test(std::pair<int,int>(-100,-100), std::pair<int,int>(100,100));
 	WorldTile::ptr tile01(new WorldTile(m_gameWorld.m_tileTypeDef.getTileType(130)));
@@ -51,14 +51,10 @@ void GameState_InsurgencyGame::OnAwake(void)
 	std::unique_ptr<sf::Text> playerCoord(new sf::Text());
 	playerCoord->setPosition(300,100);
 	m_playerCoord = playerCoord.get();
-	std::unique_ptr<sf::Text> playerInv(new sf::Text());
-	playerInv->setPosition(300,200);
-	m_playerInv = playerCoord.get();
 	addDrawable(std::move(gameWorldWindow));
 	addDrawable(std::move(worldItemsWindow));
 	addDrawable(std::move(turnCounter));
 	addDrawable(std::move(playerCoord));
-	addDrawable(std::move(playerInv));
 }
 void GameState_InsurgencyGame::OnUpdate(void)
 {
@@ -70,7 +66,7 @@ void GameState_InsurgencyGame::OnUpdate(void)
 		if(&creature == m_gameWorld.getPlayerCreature()) //it is now the player's turn
 		{
 			m_playerCanAct = true;
-			m_gameWorldWindow->updateTiles(std::pair<int,int>(0,0));
+			m_gameWorldWindow->updateTiles(m_gameWorld.getPlayerCreature()->getLocation());
 			m_worldItemsWindow->update(m_gameWorld.getPlayerCreature()->getLocation());
 		}
 		else
@@ -93,19 +89,7 @@ void GameState_InsurgencyGame::OnRender(sf::RenderTarget& target)
 	pCoord<<m_gameWorld.getPlayerCreature()->getLocation().second;
 	pCoord<<')';
 	m_playerCoord->setString(pCoord.str());
-	if(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getNumEntities() == 0)
-		m_playerInv->setString("No Items");
-	else
-	{
-		std::string invItemsStr = "";
-		std::vector<GameEntity*> invItems(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getItemList());
-		for(std::vector<GameEntity*>::const_iterator invIt(invItems.begin()); invIt != invItems.end(); invIt++)
-		{
-			invItemsStr += " ";
-			invItemsStr += (*invIt)->getSName();
-		}
-		m_playerInv->setString(invItemsStr);
-	}
+	
 	GameStateBase::drawDisplayList(target);
 }
 void GameState_InsurgencyGame::OnCleanup(void)
@@ -153,6 +137,11 @@ void GameState_InsurgencyGame::OnKeyPressed(sf::Keyboard::Key key, bool alt, boo
 			m_turnTimer.creatureDropItem(*m_gameWorld.getPlayerCreature(),
 				dynamic_cast<GameItem&>(m_gameWorld.getPlayerCreature()->getInventoryComponent()->getEntityAtIndex(0)));
 		}
+		break;
+	case sf::Keyboard::I:
+		m_messages.push_back(new SFMLStateMessage_PushState("InsurgencyInventory",
+			std::unique_ptr<SFMLStateInfo_InventoryComponent>(new SFMLStateInfo_InventoryComponent
+			(m_gameWorld.getPlayerCreature()->getInventoryComponent()))));
 		break;
 	case sf::Keyboard::Escape:
 		m_messages.push_back(new SFMLStateMessage_Close());

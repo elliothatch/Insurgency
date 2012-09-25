@@ -3,11 +3,13 @@
 
 
 SFMLCursesWindow::SFMLCursesWindow(const sf::Vector2i& lCursesSize)
-	:m_rectangle(sf::Vector2f(static_cast<float>(lCursesSize.x)*8.0f, static_cast<float>(lCursesSize.y)*12.0f)),
+	:m_rectangle(sf::Vector2f(static_cast<float>(lCursesSize.y)*8.0f, static_cast<float>(lCursesSize.x)*12.0f)),
 	 m_tiles(),
 	 m_cursesSize(0,0)
 {
 	setCursesSize(lCursesSize);
+	//m_rectangle.setFillColor(sf::Color::Blue);
+	m_rectangle.setFillColor(sf::Color(0,0,0,0));
 }
 
 
@@ -19,6 +21,7 @@ SFMLCursesWindow::~SFMLCursesWindow(void)
 void SFMLCursesWindow::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
+	target.draw(m_rectangle, states);
 	for(std::vector<std::vector<sf::Sprite>>::const_iterator xIt(m_tiles.begin()); xIt != m_tiles.end(); xIt++)
 	{
 		for(std::vector<sf::Sprite>::const_iterator yIt(xIt->begin()); yIt != xIt->end(); yIt++)
@@ -71,6 +74,7 @@ void SFMLCursesWindow::setCursesSize(const sf::Vector2i& lCursesSize)
 		}
 	}
 	m_cursesSize = lCursesSize;
+	m_rectangle.setSize(sf::Vector2f(lCursesSize.y*8.0f, lCursesSize.x*12.0f));
 }
 
 sf::Vector2i SFMLCursesWindow::getCursesSize() const

@@ -41,7 +41,7 @@ void SFMLWorldItemsWindow::update(std::pair<int,int> lWorldPoint)
 		{
 			const int yIndex = pileIt - gameItemPile->begin();
 			const std::string& itemSName((*pileIt)->getSName());
-			for(int i = 0; i<itemSName.length(); i++)
+			for(unsigned int i = 0; i<itemSName.length(); i++)
 			{
 				m_cursesWindow.setTileSprite(SpriteManager::getInstance().getSprite(std::string("CursesA_ASCII") + itemSName.at(i)),
 					sf::Vector2i(yIndex, i));
