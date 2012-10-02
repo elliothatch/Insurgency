@@ -91,7 +91,7 @@ std::vector<Creature*> GameTurnTimer::getCreaturesCanMove(void) const
 	//sort the list by speed in decending order (front = 0, back = 10, etc), that way we can pop the back after a creature moves
 	std::sort(movableCreatures.begin(), movableCreatures.end(), 
 		[](Creature* a, Creature* b) {return (a->getSpeed() > b->getSpeed());});
-	return std::move(movableCreatures);
+	return movableCreatures;
 }
 
 unsigned int GameTurnTimer::getTurnCount() const

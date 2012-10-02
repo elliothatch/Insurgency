@@ -60,6 +60,8 @@ void SFMLCursesMenu::moveKeyboardCursorToPosition(int position)
 {
 	if(m_menuItemCount == 0)
 		return;
+	if(!m_isActive)
+		return;
 
 	//reset old colors
 	for(int i = 0; i < m_cursesWindow.getCursesSize().y; i++)
@@ -81,6 +83,8 @@ void SFMLCursesMenu::moveKeyboardCursorToPosition(int position)
 }
 void SFMLCursesMenu::moveKeyboardCursorUp()
 {
+	if(!m_isActive)
+		return;
 	if(m_keyboardCursorPos == 0)
 		moveKeyboardCursorToPosition(m_menuItemCount - 1);
 	else
@@ -88,6 +92,8 @@ void SFMLCursesMenu::moveKeyboardCursorUp()
 }
 void SFMLCursesMenu::moveKeyboardCursorDown()
 {
+	if(!m_isActive)
+		return;
 	if(m_keyboardCursorPos == m_menuItemCount - 1)
 		moveKeyboardCursorToPosition(0);
 	else
@@ -97,6 +103,8 @@ void SFMLCursesMenu::moveKeyboardCursorDown()
 void SFMLCursesMenu::setMouseCursor()
 {
 	if(m_menuItemCount == 0)
+		return;
+	if(!m_isActive)
 		return;
 
 	sf::Vector2f pos = getPosition();
@@ -133,11 +141,15 @@ void SFMLCursesMenu::OnRollover()
 
 void SFMLCursesMenu::selectKeyboardCursor()
 {
+	if(!m_isActive)
+		return;
 	if(m_menuItemCount)
 		doActionAtIndex(m_keyboardCursorPos);
 }
 void SFMLCursesMenu::selectMouseCursor()
 {
+	if(!m_isActive)
+		return;
 	if(m_menuItemCount)
 	{
 		setMouseCursor();
@@ -163,6 +175,8 @@ void SFMLCursesMenu::setIsActive(bool b)
 	m_isActive = b;
 	if(!b)
 		resetTextColor();
+	else
+		moveKeyboardCursorToPosition(0);
 }
 bool SFMLCursesMenu::getIsActive() const
 {

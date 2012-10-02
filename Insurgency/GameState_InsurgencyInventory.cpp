@@ -56,6 +56,9 @@ void GameState_InsurgencyInventory::OnKeyPressed(sf::Keyboard::Key key, bool alt
 	case sf::Keyboard::Return:
 		m_entityList->selectKeyboardCursor();
 		break;
+	case sf::Keyboard::A:
+		m_entityList->setIsActive(!m_entityList->getIsActive());
+		break;
 	case sf::Keyboard::Escape:
 		m_messages.push_back(new SFMLStateMessage_PopState());
 		break;

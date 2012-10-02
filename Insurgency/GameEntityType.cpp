@@ -32,7 +32,7 @@ std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> GameEntityType:
 	{
 		retComps[compIt->first] = std::unique_ptr<EntityComponent>(compIt->second->clone());
 	}
-	return std::move(retComps);
+	return retComps;
 }
 //setters
 void GameEntityType::setLName(const std::string& str)
