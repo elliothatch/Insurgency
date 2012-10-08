@@ -231,12 +231,6 @@
     <ClInclude Include="SFML-Template\SFMLStateInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SFMLCursesMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SFMLCursesMenu_EntityList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameState_InsurgencyEntityActions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -378,12 +372,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameState_InsurgencyInventory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SFMLCursesMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SFMLCursesMenu_EntityList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameState_InsurgencyEntityActions.cpp">

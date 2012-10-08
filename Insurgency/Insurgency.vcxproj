@@ -125,8 +125,6 @@
     <ClInclude Include="SFML-Template\SpriteManager.h" />
     <ClInclude Include="SFML-Template\TextureManager.h" />
     <ClInclude Include="SFMLApp.h" />
-    <ClInclude Include="SFMLCursesMenu.h" />
-    <ClInclude Include="SFMLCursesMenu_EntityList.h" />
     <ClInclude Include="SFMLCursesWindow.h" />
     <ClInclude Include="SFMLGameWorldWindow.h" />
     <ClInclude Include="SFML-Template\SFMLStateInfo.h" />
@@ -178,8 +176,6 @@
     <ClCompile Include="SFMLApp_OnInit.cpp" />
     <ClCompile Include="SFMLApp_OnRender.cpp" />
     <ClCompile Include="SFMLApp_OnUpdate.cpp" />
-    <ClCompile Include="SFMLCursesMenu.cpp" />
-    <ClCompile Include="SFMLCursesMenu_EntityList.cpp" />
     <ClCompile Include="SFMLCursesWindow.cpp" />
     <ClCompile Include="SFMLGameWorldWindow.cpp" />
     <ClCompile Include="SFMLWorldItemsWindow.cpp" />

@@ -1,7 +1,7 @@
 #pragma once
 #include "SFML-Template/GameStateBase.h"
 #include "InventoryComponent.h"
-#include "SFMLCursesMenu_EntityList.h"
+//#include "SFMLCursesMenu_EntityList.h"
 class GameState_InsurgencyInventory
 	:public GameStateBase
 {
@@ -20,6 +20,6 @@ public:
 	virtual void OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift);
 private:
 	InventoryComponent* m_inventory;
-	SFMLCursesMenu_EntityList* m_entityList;
+	//SFMLCursesMenu_EntityList* m_entityList;
 };
 

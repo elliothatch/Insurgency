@@ -17,12 +17,14 @@ void GameState_InsurgencyInventory::OnAwake(const SFMLStateInfo* lStateInfo)
 	if(const SFMLStateInfo_InventoryComponent* stateInfoInv = dynamic_cast<const SFMLStateInfo_InventoryComponent*>(lStateInfo))
 	{
 		m_inventory = stateInfoInv->m_invComponent;
+		/*
 		std::unique_ptr<SFMLCursesMenu_EntityList> entityList(
 			new SFMLCursesMenu_EntityList(stateInfoInv->m_invComponent->getItemList(),
 			sf::Vector2i(stateInfoInv->m_invComponent->getNumEntities(),15), *this));
 		entityList->setIsActive(true);
 		m_entityList = entityList.get();
 		addGUIElement(std::move(entityList));
+		*/
 	}
 }
 void GameState_InsurgencyInventory::OnUpdate(void)
@@ -47,6 +49,7 @@ void GameState_InsurgencyInventory::OnKeyPressed(sf::Keyboard::Key key, bool alt
 {
 	switch(key)
 	{
+		/*
 	case sf::Keyboard::Up:
 		m_entityList->moveKeyboardCursorUp();
 		break;
@@ -59,6 +62,7 @@ void GameState_InsurgencyInventory::OnKeyPressed(sf::Keyboard::Key key, bool alt
 	case sf::Keyboard::A:
 		m_entityList->setIsActive(!m_entityList->getIsActive());
 		break;
+		*/
 	case sf::Keyboard::Escape:
 		m_messages.push_back(new SFMLStateMessage_PopState());
 		break;
