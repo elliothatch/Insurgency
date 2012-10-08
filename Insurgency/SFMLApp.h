@@ -13,6 +13,7 @@
 
 #include "GameState_InsurgencyGame.h"
 #include "GameState_InsurgencyInventory.h"
+#include "GameState_InsurgencyEntityActions.h"
 
 
 class SFMLApp

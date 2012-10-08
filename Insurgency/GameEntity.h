@@ -1,6 +1,8 @@
 #pragma once
 #include <map>
+#include <set>
 #include "EntityComponent.h"
+#include "GameEntityActions.h"
 class GameEntity
 {
 public:
@@ -8,7 +10,8 @@ public:
 	//GameEntity();
 	GameEntity(std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents);
 	GameEntity(const std::string& lLName, const std::string& lSName, const std::string& lDName,
-		std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents);
+		std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents,
+		GameEntityActions lActions);
 	virtual ~GameEntity(void);
 
 	//getters
@@ -26,6 +29,15 @@ public:
 	void setSName(const std::string& str);
 	void setDName(const std::string& str);
 	void addComponent(std::unique_ptr<EntityComponent> lComponent);
+	void setGameEntityActions(GameEntityActions actions);
+	GameEntityActions getGameEntityActions() const;
+
+	std::set<EntityActionID::E> getPerformableActions(GameEntity* target) const;
+
+protected:
+	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> m_components;
+	//things that can be done with this entity - how it can be acted upon
+	GameEntityActions m_actions;
 
 private:
 	GameEntity* m_enclosingEntity; //is in creature inventory, in a box, etc. Cannot determine own position
@@ -33,7 +45,4 @@ private:
 	std::string m_lName;
 	std::string m_sName;
 	std::string m_dName;
-protected:
-	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> m_components;
-
 };

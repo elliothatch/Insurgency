@@ -51,3 +51,12 @@ void GameEntityType::addComponent(std::unique_ptr<EntityComponent> lComponent)
 {
 	m_components[lComponent->getType()] = std::move(lComponent);
 }
+
+void GameEntityType::setGameEntityActions(GameEntityActions actions)
+{
+	m_actions = actions;
+}
+GameEntityActions GameEntityType::getGameEntityActions() const
+{
+	return m_actions;
+}

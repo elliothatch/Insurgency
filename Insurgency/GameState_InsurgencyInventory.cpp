@@ -16,13 +16,13 @@ void GameState_InsurgencyInventory::OnAwake(const SFMLStateInfo* lStateInfo)
 	//if the info is valid (inventory component)
 	if(const SFMLStateInfo_InventoryComponent* stateInfoInv = dynamic_cast<const SFMLStateInfo_InventoryComponent*>(lStateInfo))
 	{
+		m_inventory = stateInfoInv->m_invComponent;
 		std::unique_ptr<SFMLCursesMenu_EntityList> entityList(
 			new SFMLCursesMenu_EntityList(stateInfoInv->m_invComponent->getItemList(),
-			sf::Vector2i(stateInfoInv->m_invComponent->getNumEntities(),15)));
+			sf::Vector2i(stateInfoInv->m_invComponent->getNumEntities(),15), *this));
 		entityList->setIsActive(true);
 		m_entityList = entityList.get();
 		addGUIElement(std::move(entityList));
-	
 	}
 }
 void GameState_InsurgencyInventory::OnUpdate(void)

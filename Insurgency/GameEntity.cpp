@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameEntity.h"
 
+#include "InventoryComponent.h"
 /*
 GameEntity::GameEntity()
 		:m_location(std::pair<int,int>(0,0)),
@@ -15,7 +16,8 @@ GameEntity::GameEntity(std::map<EntityComponentID::E, std::unique_ptr<EntityComp
 		:m_components(std::move(lComponents)),
 		m_location(std::pair<int,int>(0,0)),
 		m_lName("lNameE"), m_sName("sNameE"), m_dName("dNameE"),
-		m_enclosingEntity(nullptr)
+		m_enclosingEntity(nullptr),
+		m_actions()
 {
 	for(std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>>::iterator entityIt(m_components.begin());
 			entityIt != m_components.end(); entityIt++)
@@ -24,11 +26,12 @@ GameEntity::GameEntity(std::map<EntityComponentID::E, std::unique_ptr<EntityComp
 	}
 }
 GameEntity::GameEntity(const std::string& lLName, const std::string& lSName, const std::string& lDName,
-	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents)
+	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents, GameEntityActions lActions)
 		:m_components(std::move(lComponents)),
 		m_location(std::pair<int,int>(0,0)),
 		m_lName(lLName), m_sName(lSName), m_dName(lDName),
-		m_enclosingEntity(nullptr)
+		m_enclosingEntity(nullptr),
+		m_actions(lActions)
 {
 	for(std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>>::iterator entityIt(m_components.begin());
 			entityIt != m_components.end(); entityIt++)
@@ -98,4 +101,36 @@ void GameEntity::setDName(const std::string& str)
 void GameEntity::addComponent(std::unique_ptr<EntityComponent> lComponent)
 {
 	m_components[lComponent->getType()] = std::move(lComponent);
+}
+
+void GameEntity::setGameEntityActions(GameEntityActions actions)
+{
+	m_actions = actions;
+}
+GameEntityActions GameEntity::getGameEntityActions() const
+{
+	return m_actions;
+}
+
+std::set<EntityActionID::E> GameEntity::getPerformableActions(GameEntity* target) const
+{
+	std::set<EntityActionID::E> returnSet;
+	if(target->getEnclosingEntity() == nullptr) //target is in the world
+	{
+		//check for stuff
+		returnSet = target->getGameEntityActions().getWorldActions();
+	}
+	if(target->getEnclosingEntity() == this) //it is in my possession
+	{
+		//in my inventory
+		if(InventoryComponent* invComponent = dynamic_cast<InventoryComponent*>(getComponent(EntityComponentID::Inventory)))
+		{
+			returnSet = target->getGameEntityActions().getInventoryActions();
+			//check what I can do
+		}
+		//if(equipped...)
+		//equipped
+		//TODO
+	}
+	return returnSet;
 }

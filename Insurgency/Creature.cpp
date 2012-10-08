@@ -3,7 +3,7 @@
 
 
 Creature::Creature(const CreatureType& lType)
-	:GameEntity(lType.getLName(), lType.getSName(), lType.getDName(), std::move(lType.cloneComponents())),
+	:GameEntity(lType.getLName(), lType.getSName(), lType.getDName(), std::move(lType.cloneComponents()), lType.getGameEntityActions()),
 	m_type(lType.getTypeID()),
 	m_class(lType.getClassID()),
 	m_baseStats(lType.getBaseStats()),

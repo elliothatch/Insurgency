@@ -3,7 +3,8 @@
 
 
 GameItem::GameItem(const GameItemType& lItemType)
-	:GameEntity(lItemType.getLName(), lItemType.getSName(), lItemType.getDName(), std::move(lItemType.cloneComponents())),
+	:GameEntity(lItemType.getLName(), lItemType.getSName(), lItemType.getDName(), std::move(lItemType.cloneComponents()),
+		lItemType.getGameEntityActions()),
 	m_type(lItemType.getTypeID()),
 	m_class(lItemType.getClassID())
 {

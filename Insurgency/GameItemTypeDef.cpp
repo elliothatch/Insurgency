@@ -4,9 +4,13 @@
 
 GameItemTypeDef::GameItemTypeDef(void)
 {
+	GameEntityActions defaultActions;
+	defaultActions.addWorldAction(EntityActionID::PickUp);
+	defaultActions.addInventoryAction(EntityActionID::Drop);
 	for(int i = 0; i<kMaxItemTypes; i++)
 	{
 		itemTypes[i].setTypeID(i);
+		itemTypes[i].setGameEntityActions(defaultActions);
 	}
 	itemTypes[1].setLName("kalashnikov");
 	itemTypes[1].setSName("AK-47");

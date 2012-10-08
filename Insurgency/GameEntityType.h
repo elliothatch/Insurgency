@@ -1,8 +1,11 @@
 #pragma once
 #include <string>
 #include <map>
+#include <set>
 #include <memory>
 #include "EntityComponent.h"
+#include "GameEntityActions.h"
+
 class GameEntityType
 {
 public:
@@ -22,9 +25,14 @@ public:
 
 	void addComponent(std::unique_ptr<EntityComponent> lComponent);
 
+	void setGameEntityActions(GameEntityActions actions);
+	GameEntityActions getGameEntityActions() const;
+
 private:
 	std::string m_lName; //dName + modifiers            - mutable
 	std::string m_sName; //short name OR personal name  - mutable
 	std::string m_dName; //Name used in Descriptions    - non-mutable
 	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> m_components;
+	GameEntityActions m_actions;
+	
 };

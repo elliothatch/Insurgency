@@ -60,6 +60,12 @@ SFMLStateMessage* GameStateBase::GetStateMessage(void)
 	return retVal;
 }
 
+void GameStateBase::addStateMessage(SFMLStateMessage* stateMessage)
+{
+	if(stateMessage)
+		m_messages.push_back(stateMessage);
+}
+
 void GameStateBase::CleanupDisplayList(void)
 {
 	m_displayList.clear();

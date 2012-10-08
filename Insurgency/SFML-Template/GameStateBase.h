@@ -40,6 +40,8 @@ public:
 	void OnEvent(sf::Event& Event);
 
 	SFMLStateMessage* GetStateMessage(void);
+
+	void addStateMessage(SFMLStateMessage* stateMessage);
 	
 	//default events that most likely won't be overwritten
 	virtual void OnClose(void);

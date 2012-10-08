@@ -237,6 +237,12 @@
     <ClInclude Include="SFMLCursesMenu_EntityList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameState_InsurgencyEntityActions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEntityActions.h">
+      <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -379,6 +385,12 @@
     </ClCompile>
     <ClCompile Include="SFMLCursesMenu_EntityList.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_InsurgencyEntityActions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEntityActions.cpp">
+      <Filter>InsurgencyGame\Source Files\GameEntity</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

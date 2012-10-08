@@ -88,6 +88,7 @@
     <ClInclude Include="CreatureTypeDef.h" />
     <ClInclude Include="cursesgameworldwindow.h" />
     <ClInclude Include="curseswindow.h" />
+    <ClInclude Include="GameEntityActions.h" />
     <ClInclude Include="EntityComponent.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameEntityType.h" />
@@ -95,6 +96,7 @@
     <ClInclude Include="GameItem.h" />
     <ClInclude Include="GameItemType.h" />
     <ClInclude Include="GameItemTypeDef.h" />
+    <ClInclude Include="GameState_InsurgencyEntityActions.h" />
     <ClInclude Include="GameState_InsurgencyGame.h" />
     <ClInclude Include="GameState_InsurgencyInventory.h" />
     <ClInclude Include="GameTurnTimer.h" />
@@ -146,11 +148,13 @@
     <ClCompile Include="CursesWindow.cpp" />
     <ClCompile Include="EntityComponent.cpp" />
     <ClCompile Include="GameEntity.cpp" />
+    <ClCompile Include="GameEntityActions.cpp" />
     <ClCompile Include="GameEntityType.cpp" />
     <ClCompile Include="GameItem.cpp" />
     <ClCompile Include="GameIOCurses.cpp" />
     <ClCompile Include="GameItemType.cpp" />
     <ClCompile Include="GameItemTypeDef.cpp" />
+    <ClCompile Include="GameState_InsurgencyEntityActions.cpp" />
     <ClCompile Include="GameState_InsurgencyGame.cpp" />
     <ClCompile Include="GameState_InsurgencyInventory.cpp" />
     <ClCompile Include="GameTurnTimer.cpp" />
