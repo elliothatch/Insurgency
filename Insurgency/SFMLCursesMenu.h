@@ -15,10 +15,10 @@ public:
 	void update();
 
 private:
-	SFMLCursesMenuList* previousMenuList;
-	SFMLCursesMenuList* currentMenuList;
-	SFMLCursesMenuList* nextMenuList;
-	std::vector<SFMLCursesMenuList*> branch;
-	int selection;
+	SFMLCursesMenuList* m_previousMenuList;
+	SFMLCursesMenuList* m_currentMenuList;
+	SFMLCursesMenuList* m_nextMenuList;
+	std::vector<SFMLCursesMenuList*> m_branch;
+	int m_selection;
 };
 

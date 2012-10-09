@@ -13,31 +13,31 @@ SFMLCursesMenu::~SFMLCursesMenu(void)
 
 void SFMLCursesMenu::setTrunk(SFMLCursesMenuList* menuList)
 {
-	currentMenuList = menuList;
-	previousMenuList = nullptr;
-	branch.clear();
-	branch.push_back(menuList);
+	m_currentMenuList = menuList;
+	m_previousMenuList = nullptr;
+	m_branch.clear();
+	m_branch.push_back(menuList);
 	update();
 }
 
 void SFMLCursesMenu::select(int n)
 {
-	selection = n;
-	currentMenuList->selection = n;
-	if(currentMenuList->options.size())
+	m_selection = n;
+	m_currentMenuList->m_selection = n;
+	if(m_currentMenuList->m_options.size())
 	{
-		if(currentMenuList->options[n]->target)
+		if(m_currentMenuList->m_options[n]->m_target)
 		{
-			nextMenuList = currentMenuList->options[n]->target;
+			m_nextMenuList = m_currentMenuList->m_options[n]->m_target;
 		} 
 		else 
 		{
-			nextMenuList = nullptr;
+			m_nextMenuList = nullptr;
 		}
 	}
 	else
 	{
-		nextMenuList = nullptr;
+		m_nextMenuList = nullptr;
 	}
 	/*
 	if(parent) 
@@ -49,37 +49,37 @@ void SFMLCursesMenu::select(int n)
 
 void SFMLCursesMenu::stepRight()
 {
-	if(!(nextMenuList && !nextMenuList->accessible) && currentMenuList->options[selection]->active)
+	if(!(m_nextMenuList && !m_nextMenuList->m_accessible) && m_currentMenuList->m_options[m_selection]->m_active)
 	{
 		// walk forward
-		if(nextMenuList)
+		if(m_nextMenuList)
 		{
-			branch.push_back(nextMenuList);
-			previousMenuList = currentMenuList;
-			currentMenuList = nextMenuList;	
+			m_branch.push_back(m_nextMenuList);
+			m_previousMenuList = m_currentMenuList;
+			m_currentMenuList = m_nextMenuList;	
 		// nothing to walk forward to - call the executeSelection
 		} 
 		else 
 		{
 			executeSelection();
-			int selectionStep = currentMenuList->options[currentMenuList->selection]->selectionStep;
+			int selectionStep = m_currentMenuList->m_options[m_currentMenuList->m_selection]->m_selectionStep;
 			if(selectionStep == SFMLCursesMenuOption::TRUNK) 
-				setTrunk(branch[0]);
+				setTrunk(m_branch[0]);
 			else 
 			{
 				if(selectionStep == SFMLCursesMenuOption::EXIT_MENU)
 				{
-					setTrunk(branch[0]);
+					setTrunk(m_branch[0]);
 				} 
 				else 
 				{
 					// inspect the branch list for empty menu lists that will crash the walk back
 					// upon finding one we drop out to the root menu
-					for(int i = branch.size() - 1; i > -1; i--)
+					for(int i = m_branch.size() - 1; i > -1; i--)
 					{
-						if(branch[i]->options.size() == 0)
+						if(m_branch[i]->m_options.size() == 0)
 						{
-							setTrunk(branch[0]);
+							setTrunk(m_branch[0]);
 							return;
 						}
 					}
@@ -97,20 +97,20 @@ void SFMLCursesMenu::stepRight()
 
 void SFMLCursesMenu::stepLeft()
 {
-	if(previousMenuList)
+	if(m_previousMenuList)
 	{
-		branch.pop_back();
-		nextMenuList = currentMenuList;
-		currentMenuList = previousMenuList;
-		if(branch.size() > 1)
-			previousMenuList = branch[branch.size() - 2];
+		m_branch.pop_back();
+		m_nextMenuList = m_currentMenuList;
+		m_currentMenuList = m_previousMenuList;
+		if(m_branch.size() > 1)
+			m_previousMenuList = m_branch[m_branch.size() - 2];
 		else
-			previousMenuList = nullptr;
+			m_previousMenuList = nullptr;
 		update();
 	}
 }
 
 void SFMLCursesMenu::update()
 {
-	select(currentMenuList->selection);
+	select(m_currentMenuList->m_selection);
 }
