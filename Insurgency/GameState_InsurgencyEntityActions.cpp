@@ -17,8 +17,8 @@ void GameState_InsurgencyEntityActions::OnAwake(const SFMLStateInfo* lStateInfo)
 	{
 		addDrawable(std::move(std::unique_ptr<sf::RectangleShape>(new sf::RectangleShape(sf::Vector2f(10.0f,10.0f)))));
 		/*
-		std::unique_ptr<SFMLCursesMenu_EntityList> entityList(
-			new SFMLCursesMenu_EntityList(stateInfoInv->m_invComponent->getItemList(),
+		std::unique_ptr<UIMenu_EntityList> entityList(
+			new UIMenu_EntityList(stateInfoInv->m_invComponent->getItemList(),
 			sf::Vector2i(stateInfoInv->m_invComponent->getNumEntities(),15)));
 		entityList->setIsActive(true);
 		m_entityList = entityList.get();

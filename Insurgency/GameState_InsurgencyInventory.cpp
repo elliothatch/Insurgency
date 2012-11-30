@@ -18,8 +18,8 @@ void GameState_InsurgencyInventory::OnAwake(const SFMLStateInfo* lStateInfo)
 	{
 		m_inventory = stateInfoInv->m_invComponent;
 		/*
-		std::unique_ptr<SFMLCursesMenu_EntityList> entityList(
-			new SFMLCursesMenu_EntityList(stateInfoInv->m_invComponent->getItemList(),
+		std::unique_ptr<UIMenu_EntityList> entityList(
+			new UIMenu_EntityList(stateInfoInv->m_invComponent->getItemList(),
 			sf::Vector2i(stateInfoInv->m_invComponent->getNumEntities(),15), *this));
 		entityList->setIsActive(true);
 		m_entityList = entityList.get();

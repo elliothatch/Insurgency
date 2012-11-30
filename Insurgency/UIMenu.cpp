@@ -1,17 +1,24 @@
 #include "StdAfx.h"
-#include "SFMLCursesMenu.h"
+#include "UIMenu.h"
 
 
-SFMLCursesMenu::SFMLCursesMenu(void)
+UIMenu::UIMenu(void)
+	:m_previousMenuList(nullptr),
+	 m_currentMenuList(nullptr),
+	 m_nextMenuList(nullptr),
+	 m_branch(),
+	 m_selection(0),
+	 m_helpText("Help Text"),
+	 m_hideChangeSelection(false)
 {
 }
 
 
-SFMLCursesMenu::~SFMLCursesMenu(void)
+UIMenu::~UIMenu(void)
 {
 }
 
-void SFMLCursesMenu::setTrunk(SFMLCursesMenuList* menuList)
+void UIMenu::setTrunk(UIMenuList* menuList)
 {
 	m_currentMenuList = menuList;
 	m_previousMenuList = nullptr;
@@ -20,7 +27,7 @@ void SFMLCursesMenu::setTrunk(SFMLCursesMenuList* menuList)
 	update();
 }
 
-void SFMLCursesMenu::select(int n)
+void UIMenu::select(int n)
 {
 	m_selection = n;
 	m_currentMenuList->m_selection = n;
@@ -39,15 +46,13 @@ void SFMLCursesMenu::select(int n)
 	{
 		m_nextMenuList = nullptr;
 	}
-	/*
-	if(parent) 
-		renderMenu();
-	if(!hideChangeSelection) 
+	//if(parent) 
+	//	renderMenu();
+	if(!m_hideChangeSelection) 
 		changeSelection();
-		*/
 }
 
-void SFMLCursesMenu::stepRight()
+void UIMenu::stepRight()
 {
 	if(!(m_nextMenuList && !m_nextMenuList->m_accessible) && m_currentMenuList->m_options[m_selection]->m_active)
 	{
@@ -63,11 +68,11 @@ void SFMLCursesMenu::stepRight()
 		{
 			executeSelection();
 			int selectionStep = m_currentMenuList->m_options[m_currentMenuList->m_selection]->m_selectionStep;
-			if(selectionStep == SFMLCursesMenuOption::TRUNK) 
+			if(selectionStep == UIMenuOption::TRUNK) 
 				setTrunk(m_branch[0]);
 			else 
 			{
-				if(selectionStep == SFMLCursesMenuOption::EXIT_MENU)
+				if(selectionStep == UIMenuOption::EXIT_MENU)
 				{
 					setTrunk(m_branch[0]);
 				} 
@@ -95,7 +100,7 @@ void SFMLCursesMenu::stepRight()
 	}
 }
 
-void SFMLCursesMenu::stepLeft()
+void UIMenu::stepLeft()
 {
 	if(m_previousMenuList)
 	{
@@ -110,7 +115,15 @@ void SFMLCursesMenu::stepLeft()
 	}
 }
 
-void SFMLCursesMenu::update()
+void UIMenu::changeSelection()
+{
+	if(m_currentMenuList->m_options.size() == 0) 
+		return;
+	UIMenuOption* option = m_currentMenuList->m_options[m_selection];
+	m_helpText = option->m_helpText;
+}
+
+void UIMenu::update()
 {
 	select(m_currentMenuList->m_selection);
 }

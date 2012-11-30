@@ -1,15 +1,15 @@
 #pragma once
 #include <string>
-class SFMLCursesMenuList;
-class SFMLCursesMenuOption
+class UIMenuList;
+class UIMenuOption
 {
 public:
-	SFMLCursesMenuOption(std::string name, SFMLCursesMenuList* target = nullptr, bool active = true);
-	~SFMLCursesMenuOption(void);
+	UIMenuOption(std::string name, UIMenuList* target = nullptr, bool active = true);
+	~UIMenuOption(void);
 
 	std::string m_name;
 	std::string m_helpText;
-	SFMLCursesMenuList* m_target;
+	UIMenuList* m_target;
 	bool m_active;
 	bool m_visited;
 	bool m_hidden;

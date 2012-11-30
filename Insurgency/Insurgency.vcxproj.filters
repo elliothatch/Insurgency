@@ -201,9 +201,6 @@
     <ClInclude Include="GameState_InsurgencyGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SFMLGameWorldWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="cursesgameworldwindow.h">
       <Filter>Header Files\CursesIO</Filter>
     </ClInclude>
@@ -237,13 +234,22 @@
     <ClInclude Include="GameEntityActions.h">
       <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
     </ClInclude>
-    <ClInclude Include="SFMLCursesMenu.h">
+    <ClInclude Include="UIMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SFMLCursesMenuList.h">
+    <ClInclude Include="UIMenuList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SFMLCursesMenuOption.h">
+    <ClInclude Include="UIMenuOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMLGameWorldWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMenuList_Inventory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMenu_Creature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -389,13 +395,19 @@
     <ClCompile Include="GameEntityActions.cpp">
       <Filter>InsurgencyGame\Source Files\GameEntity</Filter>
     </ClCompile>
-    <ClCompile Include="SFMLCursesMenu.cpp">
+    <ClCompile Include="UIMenu_Creature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SFMLCursesMenuList.cpp">
+    <ClCompile Include="UIMenuList_Inventory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SFMLCursesMenuOption.cpp">
+    <ClCompile Include="UIMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMenuList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMenuOption.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
