@@ -15,7 +15,7 @@ public:
 	virtual void changeSelection();
 	void update();
 
-private:
+protected:
 	UIMenuList* m_previousMenuList;
 	UIMenuList* m_currentMenuList;
 	UIMenuList* m_nextMenuList;

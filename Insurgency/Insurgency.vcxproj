@@ -125,6 +125,7 @@
     <ClInclude Include="SFML-Template\SpriteManager.h" />
     <ClInclude Include="SFML-Template\TextureManager.h" />
     <ClInclude Include="SFMLApp.h" />
+    <ClInclude Include="UIMenuOption_EntityActionDef.h" />
     <ClInclude Include="UIMenu_Creature.h" />
     <ClInclude Include="UIMenuList_Inventory.h" />
     <ClInclude Include="UIMenu.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="SFMLApp_OnInit.cpp" />
     <ClCompile Include="SFMLApp_OnRender.cpp" />
     <ClCompile Include="SFMLApp_OnUpdate.cpp" />
+    <ClCompile Include="UIMenuOption_EntityActionDef.cpp" />
     <ClCompile Include="UIMenu_Creature.cpp" />
     <ClCompile Include="UIMenuList_Inventory.cpp" />
     <ClCompile Include="UIMenu.cpp" />
