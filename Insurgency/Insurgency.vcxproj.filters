@@ -207,14 +207,8 @@
     <ClInclude Include="GameEntityActions.h">
       <Filter>InsurgencyGame\Header Files\GameEntity</Filter>
     </ClInclude>
-    <ClInclude Include="StateInfo_EntityActions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SFML-Template\SFMLStateInfo.h">
       <Filter>SFML-Template</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState_InsurgencyInventory.h">
-      <Filter>Header Files\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="GameState_InsurgencyEntityActions.h">
       <Filter>Header Files\GameStates</Filter>
@@ -257,6 +251,15 @@
     </ClInclude>
     <ClInclude Include="SFMLGameWorldWindow.h">
       <Filter>SFML-Insurgency\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_CreatureMenu.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="StateInfo_EntityActions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StateInfo_Creature.h">
+      <Filter>Header Files\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -371,9 +374,6 @@
     <ClCompile Include="GameState_InsurgencyEntityActions.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="GameState_InsurgencyInventory.cpp">
-      <Filter>Source Files\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="GameState_InsurgencyGame.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
@@ -412,6 +412,9 @@
     </ClCompile>
     <ClCompile Include="SFMLGameWorldWindow.cpp">
       <Filter>SFML-Insurgency\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_CreatureMenu.cpp">
+      <Filter>Source Files\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,13 +1,14 @@
 #pragma once
 #include "SFML-Template/GameStateBase.h"
 #include "InventoryComponent.h"
+#include "StateInfo_Creature.h"
 //#include "UIMenu_EntityList.h"
-class GameState_InsurgencyInventory
+class GameState_CreatureMenu
 	:public GameStateBase
 {
 public:
-	GameState_InsurgencyInventory(const sf::Window& window);
-	virtual ~GameState_InsurgencyInventory(void);
+	GameState_CreatureMenu(const sf::Window& window);
+	virtual ~GameState_CreatureMenu(void);
 
 	virtual void OnAwake(const SFMLStateInfo* lStateInfo);
 	virtual void OnUpdate(void);
@@ -19,7 +20,7 @@ public:
 	//SFMLEvent Overrides
 	virtual void OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift);
 private:
-	InventoryComponent* m_inventory;
+	Creature* m_creature;
 	//UIMenu_EntityList* m_entityList;
 };
 

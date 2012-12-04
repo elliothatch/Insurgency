@@ -71,8 +71,8 @@ bool SFMLApp::OnInit(void)
 
 	std::unique_ptr<GameState_InsurgencyGame> insurgencyGameState(new GameState_InsurgencyGame(m_mainWindow));
 	registerState(std::move(insurgencyGameState), "InsurgencyGame");
-	std::unique_ptr<GameState_InsurgencyInventory> insurgencyInventoryState(new GameState_InsurgencyInventory(m_mainWindow));
-	registerState(std::move(insurgencyInventoryState), "InsurgencyInventory");
+	std::unique_ptr<GameState_CreatureMenu> insurgencyInventoryState(new GameState_CreatureMenu(m_mainWindow));
+	registerState(std::move(insurgencyInventoryState), "CreatureMenu");
 	std::unique_ptr<GameState_InsurgencyEntityActions> insurgencyEntityActions(new GameState_InsurgencyEntityActions(m_mainWindow));
 	registerState(std::move(insurgencyEntityActions), "InsurgencyEntityActions");
 	changeState("InsurgencyGame", nullptr);

@@ -140,9 +140,8 @@ void GameState_InsurgencyGame::OnKeyPressed(sf::Keyboard::Key key, bool alt, boo
 		}
 		break;
 	case sf::Keyboard::I:
-		m_messages.push_back(new SFMLStateMessage_PushState("InsurgencyInventory",
-			std::unique_ptr<SFMLStateInfo_InventoryComponent>(new SFMLStateInfo_InventoryComponent
-			(m_gameWorld.getPlayerCreature()->getInventoryComponent()))));
+		m_messages.push_back(new SFMLStateMessage_PushState("CreatureMenu",	std::unique_ptr<StateInfo_Creature>(
+			new StateInfo_Creature(m_gameWorld.getPlayerCreature()))));
 		break;
 	case sf::Keyboard::Escape:
 		m_messages.push_back(new SFMLStateMessage_Close());

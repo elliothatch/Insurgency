@@ -93,7 +93,7 @@
     <ClInclude Include="GameItemTypeDef.h" />
     <ClInclude Include="GameState_InsurgencyEntityActions.h" />
     <ClInclude Include="GameState_InsurgencyGame.h" />
-    <ClInclude Include="GameState_InsurgencyInventory.h" />
+    <ClInclude Include="GameState_CreatureMenu.h" />
     <ClInclude Include="GameTurnTimer.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="ICreatureTypeDef.h" />
@@ -121,6 +121,7 @@
     <ClInclude Include="sfmlcurseschar.h" />
     <ClInclude Include="SFMLCursesCharManager.h" />
     <ClInclude Include="SFMLCursesTextBox.h" />
+    <ClInclude Include="StateInfo_Creature.h" />
     <ClInclude Include="StateInfo_EntityActions.h" />
     <ClInclude Include="UIMenuOption_EntityActionDef.h" />
     <ClInclude Include="UIMenu_Creature.h" />
@@ -153,7 +154,7 @@
     <ClCompile Include="GameItemTypeDef.cpp" />
     <ClCompile Include="GameState_InsurgencyEntityActions.cpp" />
     <ClCompile Include="GameState_InsurgencyGame.cpp" />
-    <ClCompile Include="GameState_InsurgencyInventory.cpp" />
+    <ClCompile Include="GameState_CreatureMenu.cpp" />
     <ClCompile Include="GameTurnTimer.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Insurgency.cpp" />

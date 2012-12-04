@@ -1,24 +1,24 @@
 #include "StdAfx.h"
-#include "GameState_InsurgencyInventory.h"
+#include "GameState_CreatureMenu.h"
 
 
-GameState_InsurgencyInventory::GameState_InsurgencyInventory(const sf::Window& window)
+GameState_CreatureMenu::GameState_CreatureMenu(const sf::Window& window)
 	:GameStateBase(window),
-	m_inventory(nullptr)
+	m_creature(nullptr)
 {
 }
 
 
-GameState_InsurgencyInventory::~GameState_InsurgencyInventory(void)
+GameState_CreatureMenu::~GameState_CreatureMenu(void)
 {
 }
 
-void GameState_InsurgencyInventory::OnAwake(const SFMLStateInfo* lStateInfo)
+void GameState_CreatureMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 {
 	//if the info is valid (inventory component)
-	if(const SFMLStateInfo_InventoryComponent* stateInfoInv = dynamic_cast<const SFMLStateInfo_InventoryComponent*>(lStateInfo))
+	if(const StateInfo_Creature* creatureInfo = dynamic_cast<const StateInfo_Creature*>(lStateInfo))
 	{
-		m_inventory = stateInfoInv->m_invComponent;
+		m_creature = creatureInfo->m_creature;
 		/*
 		std::unique_ptr<UIMenu_EntityList> entityList(
 			new UIMenu_EntityList(stateInfoInv->m_invComponent->getItemList(),
@@ -29,25 +29,25 @@ void GameState_InsurgencyInventory::OnAwake(const SFMLStateInfo* lStateInfo)
 		*/
 	}
 }
-void GameState_InsurgencyInventory::OnUpdate(void)
+void GameState_CreatureMenu::OnUpdate(void)
 {
 }
-void GameState_InsurgencyInventory::OnRender(sf::RenderTarget& target)
+void GameState_CreatureMenu::OnRender(sf::RenderTarget& target)
 {
 	GameStateBase::drawDisplayList(target);
 }
-void GameState_InsurgencyInventory::OnCleanup(void)
+void GameState_CreatureMenu::OnCleanup(void)
 {
 	GameStateBase::Cleanup();
 }
-void GameState_InsurgencyInventory::OnSuspend(void)
+void GameState_CreatureMenu::OnSuspend(void)
 {
 }
-void GameState_InsurgencyInventory::OnResume(void)
+void GameState_CreatureMenu::OnResume(void)
 {
 }
 
-void GameState_InsurgencyInventory::OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift)
+void GameState_CreatureMenu::OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift)
 {
 	switch(key)
 	{

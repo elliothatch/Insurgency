@@ -8,6 +8,8 @@
 #include "GameWorld.h"
 #include "GameTurnTimer.h"
 
+#include "StateInfo_Creature.h"
+
 #include <sstream>
 
 class GameState_InsurgencyGame

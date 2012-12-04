@@ -13,7 +13,7 @@
 #include "SFMLCursesCharManager.h"
 
 #include "GameState_InsurgencyGame.h"
-#include "GameState_InsurgencyInventory.h"
+#include "GameState_CreatureMenu.h"
 #include "GameState_InsurgencyEntityActions.h"
 
 
