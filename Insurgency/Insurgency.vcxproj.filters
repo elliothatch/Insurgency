@@ -255,6 +255,9 @@
     <ClInclude Include="UIMenuOption_EntityActionDef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StateInfo_EntityActions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

@@ -14,7 +14,7 @@ GameState_InsurgencyEntityActions::~GameState_InsurgencyEntityActions(void)
 void GameState_InsurgencyEntityActions::OnAwake(const SFMLStateInfo* lStateInfo)
 {
 	//if the info is valid (inventory component)
-	if(const SFMLStateInfo_EntityActionsState* stateInfo = dynamic_cast<const SFMLStateInfo_EntityActionsState*>(lStateInfo))
+	if(const SFMLStateInfo_EntityActions* stateInfo = dynamic_cast<const SFMLStateInfo_EntityActions*>(lStateInfo))
 	{
 		addDrawable(std::move(std::unique_ptr<sf::RectangleShape>(new sf::RectangleShape(sf::Vector2f(10.0f,10.0f)))));
 		/*

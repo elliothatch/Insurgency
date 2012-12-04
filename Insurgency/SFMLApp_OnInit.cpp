@@ -43,7 +43,7 @@ bool SFMLApp::OnInit(void)
 	p90.setColor(sf::Color(100,100,255,255));
 	spriteManager.addSprite(p90, "CursesA_P90");
 
-	std::unique_ptr<GameState_InsurgencyGame> insurgencyGameState(new GameState_InsurgencyGame());
+	std::unique_ptr<GameState_InsurgencyGame> insurgencyGameState(new GameState_InsurgencyGame(m_mainWindow));
 	registerState(std::move(insurgencyGameState), "InsurgencyGame");
 	std::unique_ptr<GameState_InsurgencyInventory> insurgencyInventoryState(new GameState_InsurgencyInventory(m_mainWindow));
 	registerState(std::move(insurgencyInventoryState), "InsurgencyInventory");

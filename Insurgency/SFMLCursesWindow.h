@@ -5,7 +5,7 @@ class SFMLCursesWindow
 	:public SFMLGUIElement
 {
 public:
-	SFMLCursesWindow(const sf::Vector2i& lCursesSize);
+	SFMLCursesWindow(const sf::Window& window, const sf::Vector2i& lCursesSize);
 	~SFMLCursesWindow(void);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

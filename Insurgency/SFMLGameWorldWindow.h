@@ -7,7 +7,8 @@ class SFMLGameWorldWindow
 	:public SFMLGUIElement
 {
 public:
-	SFMLGameWorldWindow(const GameWorld& lGameWorld, const std::pair<int,int>& lWorldCenter, const std::pair<int,int>& lWorldSize);
+	SFMLGameWorldWindow(const sf::Window& window, const GameWorld& lGameWorld, 
+		const std::pair<int,int>& lWorldCenter, const std::pair<int,int>& lWorldSize);
 	virtual ~SFMLGameWorldWindow(void);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

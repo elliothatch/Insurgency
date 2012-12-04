@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML-Template/GameStateBase.h"
+#include "StateInfo_EntityActions.h"
 class GameState_InsurgencyEntityActions
 	:public GameStateBase
 {

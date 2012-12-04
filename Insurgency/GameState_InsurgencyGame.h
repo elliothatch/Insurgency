@@ -14,7 +14,7 @@ class GameState_InsurgencyGame
 	:public GameStateBase
 {
 public:
-	GameState_InsurgencyGame(void);
+	GameState_InsurgencyGame(const sf::Window& window);
 	virtual ~GameState_InsurgencyGame(void);
 	
 	virtual void OnAwake(const SFMLStateInfo* lStateInfo);

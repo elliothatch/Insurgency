@@ -2,8 +2,9 @@
 #include "SFMLCursesWindow.h"
 
 
-SFMLCursesWindow::SFMLCursesWindow(const sf::Vector2i& lCursesSize)
-	:m_rectangle(sf::Vector2f(static_cast<float>(lCursesSize.y)*8.0f, static_cast<float>(lCursesSize.x)*12.0f)),
+SFMLCursesWindow::SFMLCursesWindow(const sf::Window& window, const sf::Vector2i& lCursesSize)
+	:SFMLGUIElement(window),
+	 m_rectangle(sf::Vector2f(static_cast<float>(lCursesSize.y)*8.0f, static_cast<float>(lCursesSize.x)*12.0f)),
 	 m_tiles(),
 	 m_cursesSize(0,0)
 {

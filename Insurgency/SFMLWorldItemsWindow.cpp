@@ -2,8 +2,10 @@
 #include "SFMLWorldItemsWindow.h"
 
 
-SFMLWorldItemsWindow::SFMLWorldItemsWindow(const sf::Vector2i& lCharSize, const GameWorld& lGameWorld, std::pair<int,int> lWorldPoint)
-	:m_cursesWindow(lCharSize),
+SFMLWorldItemsWindow::SFMLWorldItemsWindow(const sf::Window& window, const sf::Vector2i& lCharSize, 
+	const GameWorld& lGameWorld, std::pair<int,int> lWorldPoint)
+	:SFMLGUIElement(window),
+     m_cursesWindow(window, lCharSize),
 	 m_gameWorld(lGameWorld),
 	 m_worldPoint(lWorldPoint)
 {

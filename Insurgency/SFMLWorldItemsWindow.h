@@ -9,7 +9,7 @@ class SFMLWorldItemsWindow
 	:public SFMLGUIElement
 {
 public:
-	SFMLWorldItemsWindow(const sf::Vector2i& lCharSize, const GameWorld& lGameWorld, std::pair<int,int> lWorldPoint);
+	SFMLWorldItemsWindow(const sf::Window& window, const sf::Vector2i& lCharSize, const GameWorld& lGameWorld, std::pair<int,int> lWorldPoint);
 	virtual ~SFMLWorldItemsWindow(void);
 	
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

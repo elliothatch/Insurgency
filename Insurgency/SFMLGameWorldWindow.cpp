@@ -1,9 +1,10 @@
 #include "StdAfx.h"
 #include "SFMLGameWorldWindow.h"
 
-SFMLGameWorldWindow::SFMLGameWorldWindow(const GameWorld& lGameWorld, const std::pair<int,int>& lWorldCenter, const std::pair<int,int>& lWorldSize)
-	:SFMLGUIElement(),
-	m_cursesWindow(sf::Vector2i(lWorldSize.second, lWorldSize.first)),
+SFMLGameWorldWindow::SFMLGameWorldWindow(const sf::Window& window, const GameWorld& lGameWorld, 
+	const std::pair<int,int>& lWorldCenter, const std::pair<int,int>& lWorldSize)
+	:SFMLGUIElement(window),
+	m_cursesWindow(window, sf::Vector2i(lWorldSize.second, lWorldSize.first)),
 	m_gameWorld(lGameWorld),
 	m_worldRect(sf::Vector2i(lWorldCenter.first - lWorldSize.first/2, lWorldCenter.second - lWorldSize.second/2),
 		sf::Vector2i(lWorldSize.first, lWorldSize.second))

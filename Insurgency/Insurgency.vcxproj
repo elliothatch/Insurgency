@@ -125,6 +125,7 @@
     <ClInclude Include="SFML-Template\SpriteManager.h" />
     <ClInclude Include="SFML-Template\TextureManager.h" />
     <ClInclude Include="SFMLApp.h" />
+    <ClInclude Include="StateInfo_EntityActions.h" />
     <ClInclude Include="UIMenuOption_EntityActionDef.h" />
     <ClInclude Include="UIMenu_Creature.h" />
     <ClInclude Include="UIMenuList_Inventory.h" />

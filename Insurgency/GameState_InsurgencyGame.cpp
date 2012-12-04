@@ -2,8 +2,9 @@
 #include "GameState_InsurgencyGame.h"
 
 
-GameState_InsurgencyGame::GameState_InsurgencyGame(void)
-	: m_tileTypeDef(),
+GameState_InsurgencyGame::GameState_InsurgencyGame(const sf::Window& window)
+	:GameStateBase(window), 
+	m_tileTypeDef(),
 	m_creatureTypeDef(),
 	m_itemTypeDef(),
 	m_gameWorld(m_tileTypeDef, m_creatureTypeDef, m_itemTypeDef),
@@ -39,9 +40,9 @@ void GameState_InsurgencyGame::OnAwake(const SFMLStateInfo* lStateInfo)
 	Creature& creature2(m_gameWorld.createCreature(1));
 	m_gameWorld.addCreatureToWorld(creature2, std::pair<int,int>(-5,5));
 
-	std::unique_ptr<SFMLGameWorldWindow> gameWorldWindow(new SFMLGameWorldWindow(m_gameWorld,std::pair<int,int>(0,0),std::pair<int,int>(30,20)));
+	std::unique_ptr<SFMLGameWorldWindow> gameWorldWindow(new SFMLGameWorldWindow(m_window, m_gameWorld,std::pair<int,int>(0,0),std::pair<int,int>(30,20)));
 	m_gameWorldWindow = gameWorldWindow.get();
-	std::unique_ptr<SFMLWorldItemsWindow> worldItemsWindow(new SFMLWorldItemsWindow(sf::Vector2i(15,5), m_gameWorld, std::pair<int,int>(2,0)));
+	std::unique_ptr<SFMLWorldItemsWindow> worldItemsWindow(new SFMLWorldItemsWindow(m_window, sf::Vector2i(15,5), m_gameWorld, std::pair<int,int>(2,0)));
 	m_worldItemsWindow = worldItemsWindow.get();
 	worldItemsWindow->setPosition(400,100);
 
