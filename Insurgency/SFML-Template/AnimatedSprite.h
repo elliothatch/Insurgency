@@ -41,8 +41,10 @@ public:
 	void replaceFrame(sf::Sprite sprite, unsigned int frame);
 	void removeFrame(unsigned int frame);
 	void clearFrames(void);
-	sf::Sprite& getFrameSprite(unsigned int frame) const;
-	sf::Sprite& getCurrentSprite(void) const;
+	const sf::Sprite& getFrameSprite(unsigned int frame) const;
+	const sf::Sprite& getCurrentSprite(void) const;
+	sf::Sprite& getFrameSprite(unsigned int frame);
+	sf::Sprite& getCurrentSprite(void);
 
 	void setLoop(bool b);
 	bool getLoop(void) const;

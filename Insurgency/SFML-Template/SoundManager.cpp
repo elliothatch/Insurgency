@@ -2,7 +2,6 @@
 #include "SoundManager.h"
 
 SoundManager* s_SoundManager = NULL;
-sf::SoundBuffer* s_SoundBufferNotFound = NULL;
 
 SoundManager::SoundManager(void)
 {
@@ -11,7 +10,6 @@ SoundManager::SoundManager(void)
 
 SoundManager::~SoundManager(void)
 {
-	clearSoundBuffers();
 }
 
 SoundManager& SoundManager::getInstance(void)
@@ -19,29 +17,39 @@ SoundManager& SoundManager::getInstance(void)
 	if(s_SoundManager == NULL)
 	{
 		s_SoundManager = new SoundManager();
-		if(s_SoundBufferNotFound == NULL)
-		{
-			s_SoundBufferNotFound = new sf::SoundBuffer();
-			sf::Int16 sample[1] = {0};
-			s_SoundBufferNotFound->loadFromSamples(sample, 1, 1, 1);
-		}
+		sf::SoundBuffer soundBufferNotFound;
+		sf::Int16 sample[1] = {0};
+		soundBufferNotFound.loadFromSamples(sample, 1, 1, 1);
+		s_SoundManager->addSoundBuffer(soundBufferNotFound, "SOUNDBUFFERNOTFOUND");
 	}
 	return *s_SoundManager;
 }
 
 sf::SoundBuffer& SoundManager::getSoundBuffer(const std::string& soundBufferID)
 {
-	std::map<std::string, sf::SoundBuffer*>::iterator soundBufferIt(m_soundBuffers.find(soundBufferID));
+	std::map<std::string, sf::SoundBuffer>::iterator soundBufferIt(m_soundBuffers.find(soundBufferID));
 	if(soundBufferIt == m_soundBuffers.end())
 	{
 		printf("SOUND \"%s\" NOT FOUND\n", soundBufferID.c_str());
-		return *s_SoundBufferNotFound;
+		return m_soundBuffers.at("SOUNDBUFFERNOTFOUND");
 	}
 		else
-			return *(soundBufferIt->second);
+			return soundBufferIt->second;
 }
 
-bool SoundManager::addSoundBuffer(sf::SoundBuffer* soundBuffer, const std::string& soundBufferID)
+const sf::SoundBuffer& SoundManager::getSoundBuffer(const std::string& soundBufferID) const
+{
+	std::map<std::string, sf::SoundBuffer>::const_iterator soundBufferIt(m_soundBuffers.find(soundBufferID));
+	if(soundBufferIt == m_soundBuffers.end())
+	{
+		printf("SOUND \"%s\" NOT FOUND\n", soundBufferID.c_str());
+		return m_soundBuffers.at("SOUNDBUFFERNOTFOUND");
+	}
+		else
+			return soundBufferIt->second;
+}
+
+bool SoundManager::addSoundBuffer(const sf::SoundBuffer& soundBuffer, const std::string& soundBufferID)
 {
 	if(m_soundBuffers.size() > 0 && m_soundBuffers.find(soundBufferID) != m_soundBuffers.end())
 	{
@@ -54,13 +62,12 @@ bool SoundManager::addSoundBuffer(sf::SoundBuffer* soundBuffer, const std::strin
 
 bool SoundManager::addSoundBufferFromFile(const std::string& fileName, const std::string& soundBufferID)
 {
-	sf::SoundBuffer* soundBuffer = new sf::SoundBuffer();
-	if(soundBuffer->loadFromFile(fileName))
+	sf::SoundBuffer soundBuffer;
+	if(soundBuffer.loadFromFile(fileName))
 	{
 		if(!addSoundBuffer(soundBuffer, soundBufferID))
 		{
 			printf("Failed to add \"%s\" to manager\n", fileName);
-			delete soundBuffer;
 			return false;
 		}
 	}
@@ -74,11 +81,6 @@ void SoundManager::removeSoundBuffer(const std::string& soundBufferID)
 
 void SoundManager::clearSoundBuffers(void)
 {
-	for(std::map<std::string, sf::SoundBuffer*>::iterator soundBufferIt(m_soundBuffers.begin()); 
-		soundBufferIt != m_soundBuffers.end(); soundBufferIt++)
-	{
-		delete soundBufferIt->second;
-	}
 	m_soundBuffers.clear();
 }
 
@@ -88,10 +90,5 @@ void SoundManager::cleanup(void)
 	{
 		delete s_SoundManager;
 		s_SoundManager = NULL;
-	}
-	if(s_SoundBufferNotFound != NULL)
-	{
-		delete s_SoundBufferNotFound;
-		s_SoundBufferNotFound = NULL;
 	}
 }

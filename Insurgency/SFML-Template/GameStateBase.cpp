@@ -2,8 +2,10 @@
 #include "GameStateBase.h"
 #include <algorithm>
 
-GameStateBase::GameStateBase(void)
-	:m_transparent(false),
+GameStateBase::GameStateBase(const sf::Window& window)
+	:m_window(window),
+	 m_messages(),
+	m_transparent(false),
 	m_allowSubUpdate(false),
 	m_subUpdate(true),
 	m_subRender(true)
@@ -130,13 +132,13 @@ void GameStateBase::MouseEvent_Pressed(sf::Mouse::Button button, int x, int y)
 		switch(button)
 		{
 		case sf::Mouse::Left:
-			guiObj->OnMouseLeftPressed(x, y);
+			guiObj->OnMouseLeftPressed();
 			break;
 		case sf::Mouse::Right:
-			guiObj->OnMouseRightPressed(x, y);
+			guiObj->OnMouseRightPressed();
 			break;
 		case sf::Mouse::Middle:
-			guiObj->OnMouseMiddlePressed(x, y);
+			guiObj->OnMouseMiddlePressed();
 			break;
 		}
 	}
@@ -150,13 +152,13 @@ void GameStateBase::MouseEvent_Released(sf::Mouse::Button button, int x, int y)
 		switch(button)
 		{
 		case sf::Mouse::Left:
-			guiObj->OnMouseLeftReleased(x, y);
+			guiObj->OnMouseLeftReleased();
 			break;
 		case sf::Mouse::Right:
-			guiObj->OnMouseRightReleased(x,y);
+			guiObj->OnMouseRightReleased();
 			break;
 		case sf::Mouse::Middle:
-			guiObj->OnMouseMiddleReleased(x,y);
+			guiObj->OnMouseMiddleReleased();
 			break;
 		}
 	}
@@ -166,13 +168,13 @@ void GameStateBase::MouseEvent_Released(sf::Mouse::Button button, int x, int y)
 		switch(button)
 		{
 		case sf::Mouse::Left:
-			(*objIt)->OnGlobalMouseLeftReleased(x,y);
+			(*objIt)->OnGlobalMouseLeftReleased();
 			break;
 		case sf::Mouse::Right:
-			(*objIt)->OnGlobalMouseRightReleased(x,y);
+			(*objIt)->OnGlobalMouseRightReleased();
 			break;
 		case sf::Mouse::Middle:
-			(*objIt)->OnGlobalMouseMiddleReleased(x,y);
+			(*objIt)->OnGlobalMouseMiddleReleased();
 			break;
 		}
 	}
@@ -182,7 +184,7 @@ void GameStateBase::MouseEvent_Moved(int x, int y)
 	SFMLGUIElement* guiObj = getTopGUIElement(x, y);
 	if(guiObj)
 	{
-		guiObj->OnMouseRollover(x,y);
+		guiObj->OnMouseRollover();
 	}
 }
 

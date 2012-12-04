@@ -10,7 +10,8 @@ public:
 
 	static ImageManager& getInstance(void);
 	sf::Image& getImage(const std::string& imageID);
-	bool addImage(sf::Image* image, const std::string& imageID);
+	const sf::Image& getImage(const std::string& imageID) const;
+	bool addImage(const sf::Image& image, const std::string& imageID);
 	bool addImageFromFile(const std::string& fileName, const std::string& imageID);
 
 	void removeImage(const std::string& imageID);
@@ -19,5 +20,5 @@ public:
 	static void cleanup(void);
 
 private:
-	std::map<std::string, sf::Image*> m_images;
+	std::map<std::string, sf::Image> m_images;
 };

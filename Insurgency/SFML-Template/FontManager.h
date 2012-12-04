@@ -8,8 +8,9 @@ public:
 	~FontManager(void);
 
 	static FontManager& getInstance(void);
-	const sf::Font& getFont(const std::string& fontID);
-	bool addFont(sf::Font* font, const std::string& fontID);
+	sf::Font& getFont(const std::string& fontID);
+	const sf::Font& getFont(const std::string& fontID) const;
+	bool addFont(const sf::Font& font, const std::string& fontID);
 	bool addFontFromFile(const std::string& fileName, const std::string& fontID);
 
 	void removeFont(const std::string& fontID);
@@ -18,6 +19,6 @@ public:
 	static void cleanup(void);
 
 private:
-	std::map<std::string, sf::Font*> m_fonts;
+	std::map<std::string, sf::Font> m_fonts;
 };
 

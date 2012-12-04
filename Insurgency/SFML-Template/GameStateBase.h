@@ -22,7 +22,7 @@ class GameStateBase : public SFMLEvent
 public:
 	typedef std::unique_ptr<GameStateBase> ptr;
 
-	GameStateBase(void);
+	GameStateBase(const sf::Window& window);
 	virtual ~GameStateBase(void);
 
 	virtual void OnAwake(const SFMLStateInfo* lStateInfo) {}
@@ -32,10 +32,7 @@ public:
 	virtual void OnSuspend(void) {}
 	virtual void OnResume(void) {}
 
-	//OnUpdate is used to update all game logic e.g. the position of a game entity
-	//OnRender is used to update all the sprites and items in the m_displayList 
-	//e.g. the position of a sprite on the screen based on its world position
-	//the main render loop simply loops through the display list and draws everything from bottom to top
+	//OnUpdate() called on all active states, then OnRender()
 
 	void OnEvent(sf::Event& Event);
 
@@ -73,6 +70,7 @@ private:
 
 protected:
 	std::vector<SFMLStateMessage*> m_messages;
+	const sf::Window& m_window;
 private:
 	std::vector<std::unique_ptr<sf::Drawable>> m_displayList;
 	std::vector<SFMLGUIElement*> m_GUIElements;

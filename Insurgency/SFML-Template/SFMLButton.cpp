@@ -2,22 +2,22 @@
 #include "SFMLButton.h"
 
 
-SFMLButton::SFMLButton(void)
-	:SFMLGUIElement(),
+SFMLButton::SFMLButton(const sf::Window& window)
+	:SFMLGUIElement(window),
 	 m_unpressedSprite(sf::Sprite()),
 	 m_pressedSprite(sf::Sprite())
 {
 }
 
-SFMLButton::SFMLButton(sf::Sprite unpressedSprite)
-	:SFMLGUIElement(),
+SFMLButton::SFMLButton(const sf::Window& window, sf::Sprite unpressedSprite)
+	:SFMLGUIElement(window),
 	m_unpressedSprite(unpressedSprite),
 	m_pressedSprite(sf::Sprite())
 {
 }
 
-SFMLButton::SFMLButton(sf::Sprite unpressedSprite, sf::Sprite pressedSprite)
-	:SFMLGUIElement(),
+SFMLButton::SFMLButton(const sf::Window& window, sf::Sprite unpressedSprite, sf::Sprite pressedSprite)
+	:SFMLGUIElement(window),
 	m_unpressedSprite(unpressedSprite),
 	m_pressedSprite(pressedSprite)
 {

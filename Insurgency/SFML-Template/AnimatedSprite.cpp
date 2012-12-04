@@ -34,7 +34,7 @@ void AnimatedSprite::draw(sf::RenderTarget& target, sf::RenderStates states) con
 		return;
 	states.transform *= getTransform();
 	int currentFrame = getCurrentFrame();
-	sf::Sprite& currentSprite = getFrameSprite(currentFrame);
+	sf::Sprite& currentSprite = const_cast<sf::Sprite&>(getFrameSprite(currentFrame)); //this should always work
 	//set the color
 	//you're going to be using multiply 99% of the time
 	switch(m_spriteBlendMode)
@@ -253,14 +253,24 @@ void AnimatedSprite::clearFrames(void)
 	m_numFrames = 0;
 }
 
-sf::Sprite& AnimatedSprite::getFrameSprite(unsigned int frame) const
+const sf::Sprite& AnimatedSprite::getFrameSprite(unsigned int frame) const
 {
-	return const_cast<sf::Sprite&>(m_sprites.at(frame));
+	return m_sprites.at(frame);
 }
 
-sf::Sprite& AnimatedSprite::getCurrentSprite(void) const
+const sf::Sprite& AnimatedSprite::getCurrentSprite(void) const
 {
-	return const_cast<sf::Sprite&>(m_sprites.at(getCurrentFrame()));
+	return m_sprites.at(getCurrentFrame());
+}
+
+sf::Sprite& AnimatedSprite::getFrameSprite(unsigned int frame)
+{
+	return m_sprites.at(frame);
+}
+
+sf::Sprite& AnimatedSprite::getCurrentSprite(void)
+{
+	return m_sprites.at(getCurrentFrame());
 }
 
 void AnimatedSprite::setFramesPerSecond(int frameRate)

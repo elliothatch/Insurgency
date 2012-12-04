@@ -2,7 +2,6 @@
 #include "SpriteManager.h"
 
 SpriteManager* s_SpriteManager = nullptr;
-sf::Sprite* s_SpriteNotFound = nullptr;
 
 SpriteManager::SpriteManager(void)
 {
@@ -18,10 +17,7 @@ SpriteManager& SpriteManager::getInstance()
 	if(s_SpriteManager == NULL)
 	{
 		s_SpriteManager = new SpriteManager();
-		if(s_SpriteNotFound == NULL)
-		{
-			s_SpriteNotFound = new sf::Sprite(TextureManager::getInstance().getTexture("TEXTURENOTFOUND"));
-		}
+		s_SpriteManager->addSprite(sf::Sprite(TextureManager::getInstance().getTexture("TEXTURENOTFOUND")), "SPRITENOTFOUND");
 	}
 	return *s_SpriteManager;
 }
@@ -31,7 +27,7 @@ const sf::Sprite& SpriteManager::getSprite(const std::string& spriteID) const
 	if(spriteIt == m_sprites.end())
 	{
 		printf("SPRITE \"%s\" NOT FOUND\n", spriteID.c_str());
-		return *s_SpriteNotFound;
+		return m_sprites.at("SPRITENOTFOUND");
 	}
 		else
 			return spriteIt->second;
@@ -55,10 +51,5 @@ void SpriteManager::cleanup(void)
 	{
 		delete s_SpriteManager;
 		s_SpriteManager = NULL;
-	}
-	if(s_SpriteNotFound != NULL)
-	{
-		delete s_SpriteNotFound;
-		s_SpriteNotFound = NULL;
 	}
 }

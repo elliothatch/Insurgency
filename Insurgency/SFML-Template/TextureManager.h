@@ -9,8 +9,9 @@ public:
 	~TextureManager(void);
 
 	static TextureManager& getInstance(void);
-	sf::Texture& getTexture(const std::string& textureID) const;
-	bool addTexture(sf::Texture* texture, const std::string& textureID);
+	sf::Texture& getTexture(const std::string& textureID);
+	const sf::Texture& getTexture(const std::string& textureID) const;
+	bool addTexture(const sf::Texture& texture, const std::string& textureID);
 	bool addTextureFromFile(const std::string& fileName, const std::string& textureID);
 	bool addTextureFromImage(const sf::Image& image, const std::string& textureID);
 
@@ -20,6 +21,6 @@ public:
 	static void cleanup(void);
 
 private:
-	std::map<std::string, sf::Texture*> m_textures;
+	std::map<std::string, sf::Texture> m_textures;
 };
 

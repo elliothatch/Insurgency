@@ -6,9 +6,9 @@ class SFMLButton :
 	public SFMLGUIElement
 {
 public:
-	SFMLButton(void);
-	SFMLButton(sf::Sprite unpressedSprite);
-	SFMLButton(sf::Sprite unpressedSprite, sf::Sprite pressedSprite);
+	SFMLButton(const sf::Window& window);
+	SFMLButton(const sf::Window& window, sf::Sprite unpressedSprite);
+	SFMLButton(const sf::Window& window, sf::Sprite unpressedSprite, sf::Sprite pressedSprite);
 	virtual ~SFMLButton(void);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

@@ -2,7 +2,6 @@
 #include "TextureManager.h"
 
 TextureManager* s_TextureManager = NULL;
-sf::Texture* s_TextureNotFound = NULL;
 
 TextureManager::TextureManager(void)
 {
@@ -11,7 +10,6 @@ TextureManager::TextureManager(void)
 
 TextureManager::~TextureManager(void)
 {
-	clearTextures();
 }
 
 TextureManager& TextureManager::getInstance(void)
@@ -19,32 +17,40 @@ TextureManager& TextureManager::getInstance(void)
 	if(s_TextureManager == NULL)
 	{
 		s_TextureManager = new TextureManager();
-		if(s_TextureNotFound == NULL)
-		{
-			s_TextureNotFound = new sf::Texture();
-			s_TextureNotFound->create(64,64);
-			sf::Image image;
-			image.create(64,64,sf::Color::Magenta);
-			s_TextureNotFound->loadFromImage(image);
-			s_TextureManager->addTexture(s_TextureNotFound,"TEXTURENOTFOUND");
-		}
+		sf::Texture textureNotFound;
+		textureNotFound.create(64,64);
+		sf::Image image;
+		image.create(64,64,sf::Color::Magenta);
+		textureNotFound.loadFromImage(image);
+		s_TextureManager->addTexture(textureNotFound,"TEXTURENOTFOUND");
 	}
 	return *s_TextureManager;
 }
 
-sf::Texture& TextureManager::getTexture(const std::string& textureID) const
+sf::Texture& TextureManager::getTexture(const std::string& textureID)
 {
-	std::map<std::string, sf::Texture*>::const_iterator textureIt(m_textures.find(textureID));
+	std::map<std::string, sf::Texture>::iterator textureIt(m_textures.find(textureID));
 	if(textureIt == m_textures.end())
 	{
 		printf("IMAGE \"%s\" NOT FOUND\n", textureID.c_str());
-		return *s_TextureNotFound;
+		return m_textures.at("TEXTURENOTFOUND");
 	}
 		else
-			return *(textureIt->second);
+			return textureIt->second;
+}
+const sf::Texture& TextureManager::getTexture(const std::string& textureID) const
+{
+	std::map<std::string, sf::Texture>::const_iterator textureIt(m_textures.find(textureID));
+	if(textureIt == m_textures.end())
+	{
+		printf("IMAGE \"%s\" NOT FOUND\n", textureID.c_str());
+		return m_textures.at("TEXTURENOTFOUND");
+	}
+		else
+			return textureIt->second;
 }
 
-bool TextureManager::addTexture(sf::Texture* texture, const std::string& textureID)
+bool TextureManager::addTexture(const sf::Texture& texture, const std::string& textureID)
 {
 	if(m_textures.size() > 0 && m_textures.find(textureID) != m_textures.end()) //there is already a texture by that name
 	{
@@ -57,13 +63,12 @@ bool TextureManager::addTexture(sf::Texture* texture, const std::string& texture
 
 bool TextureManager::addTextureFromFile(const std::string& fileName, const std::string& textureID)
 {
-	sf::Texture* texture = new sf::Texture();
-	if(texture->loadFromFile(fileName))
+	sf::Texture texture;
+	if(texture.loadFromFile(fileName))
 	{
-		if(!addTexture(texture, textureID)) //something bad happened, delete the texture to prevent mem leak
+		if(!addTexture(texture, textureID))
 		{
 			printf("Failed to add \"%s\" to manager\n", fileName.c_str());
-			delete texture;
 			return false;
 		}
 	}
@@ -72,13 +77,12 @@ bool TextureManager::addTextureFromFile(const std::string& fileName, const std::
 
 bool TextureManager::addTextureFromImage(const sf::Image& image, const std::string& textureID)
 {
-	sf::Texture* texture = new sf::Texture();
-	if(texture->loadFromImage(image))
+	sf::Texture texture;
+	if(texture.loadFromImage(image))
 	{
 		if(!addTexture(texture, textureID)) //something bad happened
 		{
 			printf("Failed to add image to manager\n");
-			delete texture;
 			return false;
 		}
 	}
@@ -87,19 +91,14 @@ bool TextureManager::addTextureFromImage(const sf::Image& image, const std::stri
 
 void TextureManager::removeTexture(const std::string& textureID)
 {
-	std::map<std::string, sf::Texture*>::iterator textureIt(m_textures.find(textureID));
+	std::map<std::string, sf::Texture>::iterator textureIt(m_textures.find(textureID));
 	if(textureIt == m_textures.end())
 		return;
-	delete textureIt->second;
 	m_textures.erase(textureIt);
 }
 
 void TextureManager::clearTextures(void)
 {
-	for(std::map<std::string, sf::Texture*>::iterator textureIt(m_textures.begin()); textureIt != m_textures.end(); textureIt++)
-	{
-		delete textureIt->second;
-	}
 	m_textures.clear();
 }
 
@@ -110,5 +109,4 @@ void TextureManager::cleanup(void)
 		delete s_TextureManager;
 		s_TextureManager = NULL;
 	}
-	s_TextureNotFound = NULL;
 }
