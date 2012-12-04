@@ -49,12 +49,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)\pdc34dll;$(ProjectDir)\SFML-Template\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\SFML-Template\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;$(ProjectDir)\SFML-Template\lib\sfml-audio-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-graphics-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-main-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-network-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-system-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-window-d.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)\SFML-Template\lib\sfml-audio-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-graphics-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-main-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-network-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-system-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-window-d.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -65,34 +65,29 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)\pdc34dll;$(ProjectDir)\SFML-Template\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\SFML-Template\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;$(ProjectDir)\SFML-Template\lib\sfml-audio.lib;$(ProjectDir)\SFML-Template\lib\sfml-graphics.lib;$(ProjectDir)\SFML-Template\lib\sfml-main.lib;$(ProjectDir)\SFML-Template\lib\sfml-network.lib;$(ProjectDir)\SFML-Template\lib\sfml-system.lib;$(ProjectDir)\SFML-Template\lib\sfml-window.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)\SFML-Template\lib\sfml-audio.lib;$(ProjectDir)\SFML-Template\lib\sfml-graphics.lib;$(ProjectDir)\SFML-Template\lib\sfml-main.lib;$(ProjectDir)\SFML-Template\lib\sfml-network.lib;$(ProjectDir)\SFML-Template\lib\sfml-system.lib;$(ProjectDir)\SFML-Template\lib\sfml-window.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="colorListCurses.h" />
     <ClInclude Include="Creature.h" />
-    <ClInclude Include="creatureinputsourcecurses.h" />
     <ClInclude Include="CreatureStat.h" />
     <ClInclude Include="CreatureStatEffect.h" />
     <ClInclude Include="CreatureType.h" />
     <ClInclude Include="CreatureTypeDef.h" />
-    <ClInclude Include="cursesgameworldwindow.h" />
-    <ClInclude Include="curseswindow.h" />
     <ClInclude Include="GameEntityActions.h" />
     <ClInclude Include="EntityComponent.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameEntityType.h" />
-    <ClInclude Include="gameiocurses.h" />
     <ClInclude Include="GameItem.h" />
     <ClInclude Include="GameItemType.h" />
     <ClInclude Include="GameItemTypeDef.h" />
@@ -107,9 +102,7 @@
     <ClInclude Include="IGameOutput.h" />
     <ClInclude Include="IInputSource.h" />
     <ClInclude Include="IInputSourceCurses.h" />
-    <ClInclude Include="InputMessages.h" />
     <ClInclude Include="InputSourceListCurses.h" />
-    <ClInclude Include="InsurgencyGame.h" />
     <ClInclude Include="InventoryComponent.h" />
     <ClInclude Include="IWorldTileTypeDef.h" />
     <ClInclude Include="SFML-Template\AnimatedSprite.h" />
@@ -147,19 +140,15 @@
     <ClInclude Include="WorldTileTypeDef.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CharacterInputSourceCurses.cpp" />
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="CreatureStatEffect.cpp" />
     <ClCompile Include="CreatureType.cpp" />
     <ClCompile Include="CreatureTypeDef.cpp" />
-    <ClCompile Include="CursesGameWorldWindow.cpp" />
-    <ClCompile Include="CursesWindow.cpp" />
     <ClCompile Include="EntityComponent.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameEntityActions.cpp" />
     <ClCompile Include="GameEntityType.cpp" />
     <ClCompile Include="GameItem.cpp" />
-    <ClCompile Include="GameIOCurses.cpp" />
     <ClCompile Include="GameItemType.cpp" />
     <ClCompile Include="GameItemTypeDef.cpp" />
     <ClCompile Include="GameState_InsurgencyEntityActions.cpp" />
@@ -168,7 +157,6 @@
     <ClCompile Include="GameTurnTimer.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Insurgency.cpp" />
-    <ClCompile Include="InsurgencyGame.cpp" />
     <ClCompile Include="InventoryComponent.cpp" />
     <ClCompile Include="SFML-Template\AnimatedSprite.cpp" />
     <ClCompile Include="SFML-Template\FontManager.cpp" />
