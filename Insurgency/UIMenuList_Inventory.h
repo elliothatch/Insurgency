@@ -14,5 +14,8 @@ public:
 
 private:
 	InventoryComponent* m_inventory;
+
+
+	friend class UIMenu_Creature;
 };
 
