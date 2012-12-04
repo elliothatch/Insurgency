@@ -9,6 +9,7 @@ void SFMLApp::OnCleanup(void)
 	}
 	m_states.clear();
 	m_registeredGameStates.clear();
+	SFMLCursesCharManager::cleanup();
 	ImageManager::cleanup();
 	SpriteManager::cleanup();
 	TextureManager::cleanup();

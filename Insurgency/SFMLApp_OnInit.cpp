@@ -25,6 +25,31 @@ bool SFMLApp::OnInit(void)
 			k++;
 		}
 	}
+	
+	sf::Image rectangle;
+	rectangle.create(8,12,sf::Color::White);
+	textureManager.addTextureFromImage(rectangle, "Rectangle");
+	SFMLCursesCharManager::setWindow(m_mainWindow);
+	SFMLCursesCharManager& cursesCharManager = SFMLCursesCharManager::getInstance();
+	k = 0;
+	for(int i = 0; i < 16; i++)
+	{
+		for(int j = 0; j< 16; j++)
+		{
+			std::string str("");
+			str += k;
+			cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,str),str);
+			k++;
+		}
+	}
+	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,".",sf::Color(130,54,21,255),sf::Color::Black),"dirt ground");
+	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,"#",sf::Color(173,74,21,255),sf::Color::Black),"dirt wall");
+	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,"#",sf::Color(150,150,150,255),sf::Color::Black),"concrete wall");
+	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,"@"),"insurgent");
+	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,")",sf::Color(255,100,100,255),sf::Color::Black),"AK-47");
+	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,")",sf::Color(100,100,255,255),sf::Color::Black),"P90");
+	
+	/*
 	sf::Sprite dirtground(cursesA, sf::IntRect(14*8,2*12,8,12));
 	dirtground.setColor(sf::Color(130,54,21,255));
 	spriteManager.addSprite(dirtground,"CursesA_dirt ground");
@@ -42,6 +67,7 @@ bool SFMLApp::OnInit(void)
 	sf::Sprite p90(cursesA, sf::IntRect(8*8,2*12,8,12));
 	p90.setColor(sf::Color(100,100,255,255));
 	spriteManager.addSprite(p90, "CursesA_P90");
+	*/
 
 	std::unique_ptr<GameState_InsurgencyGame> insurgencyGameState(new GameState_InsurgencyGame(m_mainWindow));
 	registerState(std::move(insurgencyGameState), "InsurgencyGame");

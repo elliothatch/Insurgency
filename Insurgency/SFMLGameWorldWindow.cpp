@@ -42,18 +42,18 @@ void SFMLGameWorldWindow::updateTiles(const std::pair<int,int>& lCenterPos)
 			//draw creatures first
 			if(const Creature* creature = m_gameWorld.getCreature(worldPos))
 			{
-				m_cursesWindow.setTileSprite(SpriteManager::getInstance().getSprite("CursesA_"+creature->getDName()), sf::Vector2i(j,i));
+				m_cursesWindow.setTile(SFMLCursesCharManager::getInstance().getCursesChar(creature->getDName()), sf::Vector2i(j,i));
 			}
 			//draw items second
 			else if(const std::vector<GameItem*>* itemPile = m_gameWorld.getItemPile(worldPos))
 			{
-				m_cursesWindow.setTileSprite(SpriteManager::getInstance().getSprite("CursesA_"+itemPile->front()->getDName()),sf::Vector2i(j,i));
+				m_cursesWindow.setTile(SFMLCursesCharManager::getInstance().getCursesChar(itemPile->front()->getDName()),sf::Vector2i(j,i));
 			}
 			//draw tiles last
 			else
 			{
 			const WorldTile& curTile(m_gameWorld.lookupTile(worldPos));
-			m_cursesWindow.setTileSprite(SpriteManager::getInstance().getSprite("CursesA_"+curTile.getTitle()),sf::Vector2i(j,i));
+			m_cursesWindow.setTile(SFMLCursesCharManager::getInstance().getCursesChar(curTile.getTitle()),sf::Vector2i(j,i));
 			}
 		}
 	}

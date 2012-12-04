@@ -1,7 +1,7 @@
 #pragma once
 #include "SFML-Template/SFMLGUIElement.h"
 #include "GameWorld.h"
-#include "SFML-Template/SpriteManager.h"
+#include "SFMLCursesCharManager.h"
 #include <string>
 #include <sstream>
 #include "SFMLCursesWindow.h"

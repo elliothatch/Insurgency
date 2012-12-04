@@ -68,7 +68,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)\pdc34dll;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -125,6 +125,9 @@
     <ClInclude Include="SFML-Template\SpriteManager.h" />
     <ClInclude Include="SFML-Template\TextureManager.h" />
     <ClInclude Include="SFMLApp.h" />
+    <ClInclude Include="sfmlcurseschar.h" />
+    <ClInclude Include="SFMLCursesCharManager.h" />
+    <ClInclude Include="SFMLCursesTextBox.h" />
     <ClInclude Include="StateInfo_EntityActions.h" />
     <ClInclude Include="UIMenuOption_EntityActionDef.h" />
     <ClInclude Include="UIMenu_Creature.h" />
@@ -183,6 +186,9 @@
     <ClCompile Include="SFMLApp_OnInit.cpp" />
     <ClCompile Include="SFMLApp_OnRender.cpp" />
     <ClCompile Include="SFMLApp_OnUpdate.cpp" />
+    <ClCompile Include="SFMLCursesChar.cpp" />
+    <ClCompile Include="SFMLCursesCharManager.cpp" />
+    <ClCompile Include="SFMLCursesTextBox.cpp" />
     <ClCompile Include="UIMenuOption_EntityActionDef.cpp" />
     <ClCompile Include="UIMenu_Creature.cpp" />
     <ClCompile Include="UIMenuList_Inventory.cpp" />

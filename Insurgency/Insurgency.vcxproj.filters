@@ -258,6 +258,15 @@
     <ClInclude Include="StateInfo_EntityActions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sfmlcurseschar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMLCursesTextBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMLCursesCharManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -417,6 +426,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UIMenuOption_EntityActionDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLCursesChar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLCursesTextBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLCursesCharManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

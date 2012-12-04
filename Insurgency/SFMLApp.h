@@ -10,6 +10,7 @@
 #include "SFML-Template/TextureManager.h"
 #include "SFML-Template/SpriteManager.h"
 #include "SFML-Template/FontManager.h"
+#include "SFMLCursesCharManager.h"
 
 #include "GameState_InsurgencyGame.h"
 #include "GameState_InsurgencyInventory.h"
