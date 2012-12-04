@@ -55,6 +55,15 @@ void GameState_CreatureMenu::OnKeyPressed(sf::Keyboard::Key key, bool alt, bool 
 {
 	switch(key)
 	{
+	case sf::Keyboard::Up:
+		m_creatureMenu->moveCursorUp();
+		break;
+	case sf::Keyboard::Down:
+		m_creatureMenu->moveCursorDown();
+		break;
+	case sf::Keyboard::Return:
+		m_creatureMenu->selectCursor();
+		break;
 		/*
 	case sf::Keyboard::Up:
 		m_entityList->moveKeyboardCursorUp();

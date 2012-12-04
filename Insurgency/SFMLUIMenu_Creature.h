@@ -15,11 +15,18 @@ public:
 	virtual sf::FloatRect getLocalBounds(void) const;
 	virtual sf::FloatRect getGlobalBounds(void) const;
 
+	void moveCursorUp();
+	void moveCursorDown();
+	void selectCursor();
+
+	void updateMenus();
+
 private:
 	SFMLCursesWindow m_cursesWindow;
 	std::vector<SFMLCursesTextBox> m_menuOptionTextBoxes;
 	SFMLCursesTextBox m_helpTextBox;
 	UIMenu_Creature m_creatureMenu;
+	int m_selection;
 
 	
 };
