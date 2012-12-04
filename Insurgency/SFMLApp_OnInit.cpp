@@ -45,9 +45,9 @@ bool SFMLApp::OnInit(void)
 
 	std::unique_ptr<GameState_InsurgencyGame> insurgencyGameState(new GameState_InsurgencyGame());
 	registerState(std::move(insurgencyGameState), "InsurgencyGame");
-	std::unique_ptr<GameState_InsurgencyInventory> insurgencyInventoryState(new GameState_InsurgencyInventory());
+	std::unique_ptr<GameState_InsurgencyInventory> insurgencyInventoryState(new GameState_InsurgencyInventory(m_mainWindow));
 	registerState(std::move(insurgencyInventoryState), "InsurgencyInventory");
-	std::unique_ptr<GameState_InsurgencyEntityActions> insurgencyEntityActions(new GameState_InsurgencyEntityActions());
+	std::unique_ptr<GameState_InsurgencyEntityActions> insurgencyEntityActions(new GameState_InsurgencyEntityActions(m_mainWindow));
 	registerState(std::move(insurgencyEntityActions), "InsurgencyEntityActions");
 	changeState("InsurgencyGame", nullptr);
 

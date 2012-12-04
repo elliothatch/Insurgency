@@ -2,7 +2,9 @@
 #include "GameState_InsurgencyInventory.h"
 
 
-GameState_InsurgencyInventory::GameState_InsurgencyInventory(void)
+GameState_InsurgencyInventory::GameState_InsurgencyInventory(const sf::Window& window)
+	:GameStateBase(window),
+	m_inventory(nullptr)
 {
 }
 

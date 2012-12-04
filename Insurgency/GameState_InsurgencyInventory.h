@@ -6,7 +6,7 @@ class GameState_InsurgencyInventory
 	:public GameStateBase
 {
 public:
-	GameState_InsurgencyInventory(void);
+	GameState_InsurgencyInventory(const sf::Window& window);
 	virtual ~GameState_InsurgencyInventory(void);
 
 	virtual void OnAwake(const SFMLStateInfo* lStateInfo);

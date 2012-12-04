@@ -2,7 +2,8 @@
 #include "GameState_InsurgencyEntityActions.h"
 
 
-GameState_InsurgencyEntityActions::GameState_InsurgencyEntityActions(void)
+GameState_InsurgencyEntityActions::GameState_InsurgencyEntityActions(const sf::Window& window)
+	:GameStateBase(window)
 {
 }
 
