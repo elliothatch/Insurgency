@@ -8,7 +8,7 @@
 #include "GameWorld.h"
 #include "GameTurnTimer.h"
 
-#include "StateInfo_Creature.h"
+#include "StateInfo_CreatureMenu.h"
 
 #include <sstream>
 

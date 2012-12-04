@@ -5,7 +5,7 @@
 UIMenu_Creature::UIMenu_Creature(GameTurnTimer& gameTurnTimer, Creature& creature)
 	:UIMenu(),
 	m_trunk(),
-	m_inventoryMenuList(),
+	m_inventoryMenuList(*creature.getInventoryComponent()),
 	m_inventoryMenuOption("Inventory", &m_inventoryMenuList),
 	m_gameTurnTimer(&gameTurnTimer),
 	m_creature(&creature)

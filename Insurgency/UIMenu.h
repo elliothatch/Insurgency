@@ -15,13 +15,12 @@ public:
 	virtual void changeSelection();
 	void update();
 
-protected:
 	UIMenuList* m_previousMenuList;
 	UIMenuList* m_currentMenuList;
 	UIMenuList* m_nextMenuList;
 	std::vector<UIMenuList*> m_branch;
-	int m_selection;
 	std::string m_helpText;
+	int m_selection;
 	bool m_hideChangeSelection;
 };
 

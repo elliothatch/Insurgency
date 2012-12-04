@@ -258,8 +258,11 @@
     <ClInclude Include="StateInfo_EntityActions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateInfo_Creature.h">
+    <ClInclude Include="StateInfo_CreatureMenu.h">
       <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMLUIMenu_Creature.h">
+      <Filter>SFML-Insurgency\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -415,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="GameState_CreatureMenu.cpp">
       <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLUIMenu_Creature.cpp">
+      <Filter>SFML-Insurgency\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

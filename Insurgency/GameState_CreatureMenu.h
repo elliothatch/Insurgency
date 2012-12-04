@@ -1,8 +1,8 @@
 #pragma once
 #include "SFML-Template/GameStateBase.h"
 #include "InventoryComponent.h"
-#include "StateInfo_Creature.h"
-//#include "UIMenu_EntityList.h"
+#include "StateInfo_CreatureMenu.h"
+#include "SFMLUIMenu_Creature.h"
 class GameState_CreatureMenu
 	:public GameStateBase
 {
@@ -20,7 +20,6 @@ public:
 	//SFMLEvent Overrides
 	virtual void OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift);
 private:
-	Creature* m_creature;
-	//UIMenu_EntityList* m_entityList;
+	SFMLUIMenu_Creature* m_creatureMenu;
 };
 

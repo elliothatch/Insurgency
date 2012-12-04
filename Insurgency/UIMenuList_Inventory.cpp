@@ -23,10 +23,14 @@ UIMenuList_Inventory::~UIMenuList_Inventory(void)
 
 void UIMenuList_Inventory::addEntity(GameEntity* entity)
 {
-	UIMenuList usageOptions;
+	std::unique_ptr<UIMenuList> actionList(new UIMenuList());
+	std::unique_ptr<UIMenuOption> listOption(new UIMenuOption(entity->getSName(), actionList.get()));
 	std::set<EntityActionID::E> actions = m_inventory->getEntity()->getPerformableActions(entity);
 	for(std::set<EntityActionID::E>::iterator actionIt(actions.begin()); actionIt != actions.end(); actionIt++)
 	{
-		usageOptions.m_options.push_back(UIMenuOption_EntityActionDef::getMenuOption(*actionIt));
+		actionList->m_options.push_back(UIMenuOption_EntityActionDef::getMenuOption(*actionIt));
 	}
+	m_options.push_back(listOption.get());
+	m_entities.push_back(
+		std::make_pair<std::unique_ptr<UIMenuList>,std::unique_ptr<UIMenuOption>>(std::move(actionList),std::move(listOption)));
 }

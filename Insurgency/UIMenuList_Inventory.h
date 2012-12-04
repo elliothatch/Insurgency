@@ -13,6 +13,7 @@ public:
 	void addEntity(GameEntity* entity);
 
 private:
+	std::vector<std::pair<std::unique_ptr<UIMenuList>, std::unique_ptr<UIMenuOption>>> m_entities;
 	InventoryComponent* m_inventory;
 
 

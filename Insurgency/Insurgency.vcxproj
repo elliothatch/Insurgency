@@ -121,7 +121,8 @@
     <ClInclude Include="sfmlcurseschar.h" />
     <ClInclude Include="SFMLCursesCharManager.h" />
     <ClInclude Include="SFMLCursesTextBox.h" />
-    <ClInclude Include="StateInfo_Creature.h" />
+    <ClInclude Include="SFMLUIMenu_Creature.h" />
+    <ClInclude Include="StateInfo_CreatureMenu.h" />
     <ClInclude Include="StateInfo_EntityActions.h" />
     <ClInclude Include="UIMenuOption_EntityActionDef.h" />
     <ClInclude Include="UIMenu_Creature.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="SFMLCursesChar.cpp" />
     <ClCompile Include="SFMLCursesCharManager.cpp" />
     <ClCompile Include="SFMLCursesTextBox.cpp" />
+    <ClCompile Include="SFMLUIMenu_Creature.cpp" />
     <ClCompile Include="UIMenuOption_EntityActionDef.cpp" />
     <ClCompile Include="UIMenu_Creature.cpp" />
     <ClCompile Include="UIMenuList_Inventory.cpp" />

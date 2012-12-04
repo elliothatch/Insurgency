@@ -4,7 +4,7 @@
 
 GameState_CreatureMenu::GameState_CreatureMenu(const sf::Window& window)
 	:GameStateBase(window),
-	m_creature(nullptr)
+	m_creatureMenu(nullptr)
 {
 }
 
@@ -16,9 +16,12 @@ GameState_CreatureMenu::~GameState_CreatureMenu(void)
 void GameState_CreatureMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 {
 	//if the info is valid (inventory component)
-	if(const StateInfo_Creature* creatureInfo = dynamic_cast<const StateInfo_Creature*>(lStateInfo))
+	if(const StateInfo_CreatureMenu* creatureMenuInfo = dynamic_cast<const StateInfo_CreatureMenu*>(lStateInfo))
 	{
-		m_creature = creatureInfo->m_creature;
+		std::unique_ptr<SFMLUIMenu_Creature> creatureMenu(new SFMLUIMenu_Creature(m_window,
+			*creatureMenuInfo->m_gameTurnTimer,creatureMenuInfo->m_creature));
+		m_creatureMenu = creatureMenu.get();
+		addGUIElement(std::move(creatureMenu));
 		/*
 		std::unique_ptr<UIMenu_EntityList> entityList(
 			new UIMenu_EntityList(stateInfoInv->m_invComponent->getItemList(),
@@ -28,6 +31,7 @@ void GameState_CreatureMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 		addGUIElement(std::move(entityList));
 		*/
 	}
+
 }
 void GameState_CreatureMenu::OnUpdate(void)
 {
