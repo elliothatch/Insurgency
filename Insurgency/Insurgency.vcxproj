@@ -49,12 +49,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)\pdc34dll;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\pdc34dll;$(ProjectDir)\SFML-Template\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;$(VSInstallDir)\VC\lib\sfml-audio-d.lib;$(VSInstallDir)\VC\lib\sfml-graphics-d.lib;$(VSInstallDir)\VC\lib\sfml-main-d.lib;$(VSInstallDir)\VC\lib\sfml-network-d.lib;$(VSInstallDir)\VC\lib\sfml-system-d.lib;$(VSInstallDir)\VC\lib\sfml-window-d.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;$(ProjectDir)\SFML-Template\lib\sfml-audio-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-graphics-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-main-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-network-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-system-d.lib;$(ProjectDir)\SFML-Template\lib\sfml-window-d.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -65,14 +65,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)\pdc34dll;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\pdc34dll;$(ProjectDir)\SFML-Template\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;$(VSInstallDir)\VC\lib\sfml-audio.lib;$(VSInstallDir)\VC\lib\sfml-graphics.lib;$(VSInstallDir)\VC\lib\sfml-main.lib;$(VSInstallDir)\VC\lib\sfml-network.lib;$(VSInstallDir)\VC\lib\sfml-system.lib;$(VSInstallDir)\VC\lib\sfml-window.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)\pdc34dll\pdcurses.lib;$(ProjectDir)\SFML-Template\lib\sfml-audio.lib;$(ProjectDir)\SFML-Template\lib\sfml-graphics.lib;$(ProjectDir)\SFML-Template\lib\sfml-main.lib;$(ProjectDir)\SFML-Template\lib\sfml-network.lib;$(ProjectDir)\SFML-Template\lib\sfml-system.lib;$(ProjectDir)\SFML-Template\lib\sfml-window.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
