@@ -11,7 +11,7 @@ public:
 	void select(int n);
 	void stepRight();
 	void stepLeft();
-	virtual void executeSelection() = 0;
+	virtual int executeSelection() = 0;
 	virtual void changeSelection();
 	void update();
 

@@ -67,8 +67,7 @@ void UIMenu::stepRight()
 		// nothing to walk forward to - call the executeSelection
 		else 
 		{
-			executeSelection();
-			int selectionStep = m_currentMenuList->m_options[m_currentMenuList->m_selection]->m_selectionStep;
+			int selectionStep = executeSelection();
 			if(selectionStep == UIMenuOption::TRUNK) 
 				setTrunk(m_branch[0]);
 			else 
@@ -81,7 +80,7 @@ void UIMenu::stepRight()
 				{
 					// inspect the branch list for empty menu lists that will crash the walk back
 					// upon finding one we drop out to the root menu
-					for(int i = m_branch.size() - 1; i > -1; i--)
+					for(int i = m_branch.size() - selectionStep; i > -1; i--)
 					{
 						if(m_branch[i]->m_options.size() == 0)
 						{
@@ -127,7 +126,7 @@ void UIMenu::changeSelection()
 
 void UIMenu::update()
 {
-	if(m_currentMenuList->m_selection > m_currentMenuList->m_options.size()-1)
+	if(m_currentMenuList->m_selection > static_cast<int>(m_currentMenuList->m_options.size()-1))
 			select(0);
 	else
 		select(m_currentMenuList->m_selection);

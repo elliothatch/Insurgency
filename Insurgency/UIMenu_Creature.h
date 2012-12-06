@@ -10,7 +10,7 @@ public:
 	~UIMenu_Creature(void);
 
 	virtual void changeSelection();
-	virtual void executeSelection();
+	virtual int executeSelection();
 
 private:
 	UIMenuList m_trunk;
