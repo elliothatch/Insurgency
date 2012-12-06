@@ -62,8 +62,9 @@ void UIMenu::stepRight()
 			m_branch.push_back(m_nextMenuList);
 			m_previousMenuList = m_currentMenuList;
 			m_currentMenuList = m_nextMenuList;	
+		
+		}
 		// nothing to walk forward to - call the executeSelection
-		} 
 		else 
 		{
 			executeSelection();
@@ -97,6 +98,7 @@ void UIMenu::stepRight()
 				}
 			}
 		}
+		update();
 	}
 }
 
@@ -125,5 +127,8 @@ void UIMenu::changeSelection()
 
 void UIMenu::update()
 {
-	select(m_currentMenuList->m_selection);
+	if(m_currentMenuList->m_selection > m_currentMenuList->m_options.size()-1)
+			select(0);
+	else
+		select(m_currentMenuList->m_selection);
 }

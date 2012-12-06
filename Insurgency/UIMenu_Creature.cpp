@@ -40,5 +40,6 @@ void UIMenu_Creature::executeSelection()
 	{
 		m_gameTurnTimer->creatureDropItem(*m_creature, 
 			dynamic_cast<GameItem&>(m_inventoryMenuList.m_inventory->getEntityAtIndex(m_inventoryMenuList.m_selection)));
+		m_inventoryMenuList.removeEntityMenuOption(m_previousMenuList->m_options[m_previousMenuList->m_selection]);
 	}
 }

@@ -8,6 +8,7 @@ class UIMenuOption_EntityActionDef
 public:
 	static UIMenuOption* getMenuOption(EntityActionID::E id);
 	static std::string getActionName(EntityActionID::E id);
+	static int getSelectionStep(EntityActionID::E id);
 private:
 	static std::map<EntityActionID::E, UIMenuOption> m_menuOptions;
 

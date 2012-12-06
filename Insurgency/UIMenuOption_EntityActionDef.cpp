@@ -12,7 +12,9 @@ UIMenuOption* UIMenuOption_EntityActionDef::getMenuOption(EntityActionID::E id)
 		{
 			EntityActionID::E curID = static_cast<EntityActionID::E>(i);
 			std::string name = getActionName(curID);
-			m_menuOptions.insert(std::pair<EntityActionID::E,UIMenuOption>(curID,UIMenuOption(name)));
+			std::pair<EntityActionID::E,UIMenuOption> option(curID,UIMenuOption(name));
+			option.second.m_selectionStep = getSelectionStep(curID);
+			m_menuOptions.insert(option);
 		}
 	}
 	return &m_menuOptions.find(id)->second;
@@ -29,4 +31,15 @@ std::string UIMenuOption_EntityActionDef::getActionName(EntityActionID::E id)
 	}
 	std::string name = "EntityAction" + id;
 	return name;
+}
+
+int UIMenuOption_EntityActionDef::getSelectionStep(EntityActionID::E id)
+{
+	switch(id)
+	{
+	case EntityActionID::Drop:
+		return 2;
+	default:
+		return 1;
+	}
 }

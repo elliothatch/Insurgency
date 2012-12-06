@@ -11,6 +11,7 @@ public:
 	~UIMenuList_Inventory(void);
 
 	void addEntity(GameEntity* entity);
+	void removeEntityMenuOption(UIMenuOption* menuOption);
 
 private:
 	std::vector<std::pair<std::unique_ptr<UIMenuList>, std::unique_ptr<UIMenuOption>>> m_entities;

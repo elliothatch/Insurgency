@@ -15,20 +15,10 @@ SFMLUIMenu_Creature::SFMLUIMenu_Creature(const sf::Window& window, GameTurnTimer
 	m_helpTextBox.setText(m_creatureMenu.m_helpText);
 	//m_creatureMenu.select(0); //inventory
 	//m_creatureMenu.stepRight();
-	//m_creatureMenu.select(0); //ak
-	//m_creatureMenu.stepRight();
-	//m_creatureMenu.select(0); //drop
-	//m_creatureMenu.stepRight();
+	//m_creatureMenu.stepRight();//ak
+	//m_creatureMenu.stepRight();//drop
 	//m_helpTextBox.setText(m_creatureMenu.m_currentMenuList->m_options.at(0)->m_helpText);
-	std::vector<UIMenuOption*>& menuOptions = m_creatureMenu.m_currentMenuList->m_options;
-	for(std::vector<UIMenuOption*>::iterator optionIt(menuOptions.begin()); optionIt != menuOptions.end(); optionIt++)
-	{
-		SFMLCursesTextBox textBox(m_window, sf::Vector2i(1,30));
-		textBox.setText((*optionIt)->m_name);
-		textBox.setPosition(0,(optionIt - menuOptions.begin())*12.0f);
-		m_menuOptionTextBoxes.push_back(textBox);
-		
-	}
+	updateMenus();
 }
 
 
@@ -59,7 +49,7 @@ void SFMLUIMenu_Creature::moveCursorUp()
 {
 	m_menuOptionTextBoxes[m_selection].setTextColor(sf::Color::White);
 
-	if(m_selection == 0)
+	if(m_selection == 0 || m_creatureMenu.m_currentMenuList->m_options.size() == 1)
 		m_selection = m_creatureMenu.m_currentMenuList->m_options.size() - 1;
 	else
 		m_selection--;
@@ -69,7 +59,7 @@ void SFMLUIMenu_Creature::moveCursorUp()
 void SFMLUIMenu_Creature::moveCursorDown()
 {
 	m_menuOptionTextBoxes[m_selection].setTextColor(sf::Color::White);
-	if(m_selection ==  m_creatureMenu.m_currentMenuList->m_options.size() - 1)
+	if(m_selection ==  m_creatureMenu.m_currentMenuList->m_options.size() - 1 || m_creatureMenu.m_currentMenuList->m_options.size() == 1)
 		m_selection = 0;
 	else
 		m_selection++;
@@ -80,6 +70,7 @@ void SFMLUIMenu_Creature::moveCursorDown()
 void SFMLUIMenu_Creature::selectCursor()
 {
 	m_creatureMenu.stepRight();
+	m_selection = m_creatureMenu.m_currentMenuList->m_selection;
 	//TODO: add code for when OnExecute is called
 	updateMenus();
 }
@@ -96,4 +87,5 @@ void SFMLUIMenu_Creature::updateMenus()
 		m_menuOptionTextBoxes.push_back(textBox);
 		
 	}
+	m_menuOptionTextBoxes[m_selection].setTextColor(sf::Color::Red);
 }

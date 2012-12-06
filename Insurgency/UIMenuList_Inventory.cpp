@@ -31,6 +31,16 @@ void UIMenuList_Inventory::addEntity(GameEntity* entity)
 		actionList->m_options.push_back(UIMenuOption_EntityActionDef::getMenuOption(*actionIt));
 	}
 	m_options.push_back(listOption.get());
-	m_entities.push_back(
-		std::make_pair<std::unique_ptr<UIMenuList>,std::unique_ptr<UIMenuOption>>(std::move(actionList),std::move(listOption)));
+	m_entities.push_back(std::make_pair<std::unique_ptr<UIMenuList>,std::unique_ptr<UIMenuOption>>(
+		std::move(actionList),std::move(listOption)));
+}
+
+void UIMenuList_Inventory::removeEntityMenuOption(UIMenuOption* menuOption)
+{
+
+	std::vector<UIMenuOption*>::iterator optionIt = std::find(m_options.begin(), m_options.end(), menuOption);
+	m_entities.erase(m_entities.begin() + (optionIt - m_options.begin()));
+	m_options.erase(optionIt);
+	if(m_selection >= m_options.size())
+		m_selection = m_options.size()-1;
 }
