@@ -10,6 +10,7 @@ UIMenuList_Inventory::UIMenuList_Inventory(void)
 UIMenuList_Inventory::UIMenuList_Inventory(InventoryComponent& inventory)
 	:m_inventory(&inventory)
 {
+	m_accessible = false;
 	std::vector<GameEntity*> entities = m_inventory->getItemList();
 	for(std::vector<GameEntity*>::iterator entityIt(entities.begin()); entityIt != entities.end(); entityIt++)
 	{

@@ -18,12 +18,13 @@ public:
 	void moveCursorUp();
 	void moveCursorDown();
 	void selectCursor();
+	bool stepBack();
 
 	void updateMenus();
 
 private:
 	SFMLCursesWindow m_cursesWindow;
-	std::vector<SFMLCursesTextBox> m_menuOptionTextBoxes;
+	std::vector<std::vector<SFMLCursesTextBox>> m_menuOptionTextBoxes; //external vector - menuList(branch) - internal vector menuOption
 	SFMLCursesTextBox m_helpTextBox;
 	UIMenu_Creature m_creatureMenu;
 	int m_selection;

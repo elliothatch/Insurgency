@@ -79,7 +79,8 @@ void GameState_CreatureMenu::OnKeyPressed(sf::Keyboard::Key key, bool alt, bool 
 		break;
 		*/
 	case sf::Keyboard::Escape:
-		m_messages.push_back(new SFMLStateMessage_PopState());
+		if(!m_creatureMenu->stepBack())
+			m_messages.push_back(new SFMLStateMessage_PopState());
 		break;
 	}
 }
