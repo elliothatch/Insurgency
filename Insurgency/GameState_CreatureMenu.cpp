@@ -64,20 +64,6 @@ void GameState_CreatureMenu::OnKeyPressed(sf::Keyboard::Key key, bool alt, bool 
 	case sf::Keyboard::Return:
 		m_creatureMenu->selectCursor();
 		break;
-		/*
-	case sf::Keyboard::Up:
-		m_entityList->moveKeyboardCursorUp();
-		break;
-	case sf::Keyboard::Down:
-		m_entityList->moveKeyboardCursorDown();
-		break;
-	case sf::Keyboard::Return:
-		m_entityList->selectKeyboardCursor();
-		break;
-	case sf::Keyboard::A:
-		m_entityList->setIsActive(!m_entityList->getIsActive());
-		break;
-		*/
 	case sf::Keyboard::Escape:
 		if(!m_creatureMenu->stepBack())
 			m_messages.push_back(new SFMLStateMessage_PopState());
