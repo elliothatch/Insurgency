@@ -19,6 +19,7 @@ public:
 	bool stepBack();
 
 	void updateMenus();
+	void addMenuListTextBox(UIMenuList* list, int branchLevel);
 
 protected:
 	std::vector<std::vector<SFMLCursesTextBox>> m_menuOptionTextBoxes; //external vector - menuList(branch) - internal vector menuOption
@@ -28,5 +29,9 @@ protected:
 	int m_branchLevel;
 	sf::Color m_selectionTextColor;
 	sf::Color m_selectionBackgroundColor;
+	sf::Color m_textColor;
+	sf::Color m_backgroundColor;
+	sf::Color m_inaccessibleTextColorModifier;
+	sf::Color m_inaccessibleBackgroundColorModifier;
 };
 

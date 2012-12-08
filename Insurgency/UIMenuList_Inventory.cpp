@@ -31,6 +31,8 @@ void UIMenuList_Inventory::addEntity(GameEntity* entity)
 	{
 		actionList->m_options.push_back(UIMenuOption_EntityActionDef::getMenuOption(*actionIt));
 	}
+	if(actionList->m_options.size() == 0)
+		actionList->m_accessible = false;
 	m_options.push_back(listOption.get());
 	m_entities.push_back(std::make_pair<std::unique_ptr<UIMenuList>,std::unique_ptr<UIMenuOption>>(
 		std::move(actionList),std::move(listOption)));
