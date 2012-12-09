@@ -19,7 +19,11 @@ public:
 	bool stepBack();
 
 	void updateMenus();
-	void addMenuListTextBox(UIMenuList* list, int branchLevel);
+	void addMenuListTextBox(UIMenuList* list, int branchLevel, bool accessible = true);
+	void setMenuListTextBoxColors(UIMenuList* list, int branchLevel, bool accessible);
+
+	bool getMenuOptionAccessible(UIMenuOption* option);
+	bool getMenuListOptionAccessible(UIMenuOption* option);
 
 protected:
 	std::vector<std::vector<SFMLCursesTextBox>> m_menuOptionTextBoxes; //external vector - menuList(branch) - internal vector menuOption

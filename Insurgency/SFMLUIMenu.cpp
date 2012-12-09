@@ -12,8 +12,8 @@ SFMLUIMenu::SFMLUIMenu(const sf::Window& window)
 	 m_selectionBackgroundColor(sf::Color::White),
 	 m_textColor(sf::Color::White),
 	 m_backgroundColor(sf::Color::Black),
-	 m_inaccessibleTextColorModifier(200,200,200,255),
-	 m_inaccessibleBackgroundColorModifier(200,200,200,255)
+	 m_inaccessibleTextColorModifier(100,100,100,255),
+	 m_inaccessibleBackgroundColorModifier(100,100,100,255)
 {
 }
 
@@ -40,13 +40,19 @@ void SFMLUIMenu::moveSelection(int s)
 	//restore color of old option
 	sf::Color textColor = m_textColor;
 	sf::Color backgroundColor = m_backgroundColor;
-	if(!m_UIMenu->m_currentMenuList->m_options[m_selection]->m_active || (m_UIMenu->m_nextMenuList && !m_UIMenu->m_nextMenuList->m_accessible))
+	if(!getMenuOptionAccessible(m_UIMenu->m_currentMenuList->m_options[m_selection]))
 	{
 		textColor *= m_inaccessibleTextColorModifier;
 		backgroundColor *= m_inaccessibleBackgroundColorModifier;
 	}
 	m_menuOptionTextBoxes[m_branchLevel][m_selection].setTextColor(textColor);
 	m_menuOptionTextBoxes[m_branchLevel][m_selection].setBackgroundColor(backgroundColor);
+
+	//remove old options
+	if(m_menuOptionTextBoxes.size() > m_UIMenu->m_branch.size())
+	{
+		m_menuOptionTextBoxes.pop_back();
+	}
 
 	m_selection = s;
 	m_UIMenu->select(m_selection);
@@ -54,7 +60,7 @@ void SFMLUIMenu::moveSelection(int s)
 	//reuse color variables
 	textColor = m_selectionTextColor;
 	backgroundColor = m_selectionBackgroundColor;
-	if(!m_UIMenu->m_currentMenuList->m_options[m_selection]->m_active || (m_UIMenu->m_nextMenuList && !m_UIMenu->m_nextMenuList->m_accessible))
+	if(!getMenuOptionAccessible(m_UIMenu->m_currentMenuList->m_options[m_selection]))
 	{
 		textColor *= m_inaccessibleTextColorModifier;
 		backgroundColor *= m_inaccessibleBackgroundColorModifier;
@@ -62,6 +68,12 @@ void SFMLUIMenu::moveSelection(int s)
 
 	m_menuOptionTextBoxes[m_branchLevel][m_selection].setTextColor(textColor);
 	m_menuOptionTextBoxes[m_branchLevel][m_selection].setBackgroundColor(backgroundColor);
+
+	//add new options
+	if(getMenuListOptionAccessible(m_UIMenu->m_currentMenuList->m_options[m_selection]))
+	{
+		addMenuListTextBox(m_UIMenu->m_nextMenuList,m_branchLevel+1, false);
+	}
 
 	m_helpTextBox.setText(m_UIMenu->m_helpText);
 }
@@ -89,7 +101,12 @@ void SFMLUIMenu::selectCursor()
 	m_helpTextBox.setText(m_UIMenu->m_helpText);
 	if(m_branchLevel > lastBranchLevel)
 	{
-		addMenuListTextBox(m_UIMenu->m_branch[m_branchLevel], m_branchLevel);
+		setMenuListTextBoxColors(m_UIMenu->m_previousMenuList,m_branchLevel-1, false);
+		setMenuListTextBoxColors(m_UIMenu->m_currentMenuList,m_branchLevel, true);
+		if(getMenuListOptionAccessible(m_UIMenu->m_currentMenuList->m_options[m_selection]))
+		{
+			addMenuListTextBox(m_UIMenu->m_nextMenuList, m_branchLevel+1, false);
+		}
 	}
 	else
 	{
@@ -100,11 +117,19 @@ bool SFMLUIMenu::stepBack()
 {
 	if(m_UIMenu->m_previousMenuList)
 	{
+		if(getMenuListOptionAccessible(m_UIMenu->m_currentMenuList->m_options[m_selection]))
+		{
+			m_menuOptionTextBoxes.pop_back();
+		}
 		m_UIMenu->stepLeft();
 		m_selection = m_UIMenu->m_currentMenuList->m_selection;
 		m_branchLevel = m_UIMenu->m_branch.size()-1;
 		m_helpTextBox.setText(m_UIMenu->m_helpText);
-		m_menuOptionTextBoxes.pop_back();
+		if(getMenuListOptionAccessible(m_UIMenu->m_currentMenuList->m_options[m_selection]))
+		{
+			setMenuListTextBoxColors(m_UIMenu->m_nextMenuList,m_branchLevel+1, false);
+		}
+		setMenuListTextBoxColors(m_UIMenu->m_currentMenuList,m_branchLevel, true);
 		return true;
 	}
 	return false;
@@ -115,13 +140,18 @@ void SFMLUIMenu::updateMenus()
 	m_menuOptionTextBoxes.clear();
 	for(std::vector<UIMenuList*>::iterator listIt(m_UIMenu->m_branch.begin()); listIt != m_UIMenu->m_branch.end(); listIt++)
 	{
+		bool accessible = false;
+		if(listIt+1 == m_UIMenu->m_branch.end())
+			accessible = true;
 		int listIndex = listIt-m_UIMenu->m_branch.begin();	
-		addMenuListTextBox(*listIt, listIndex);
+		addMenuListTextBox(*listIt, listIndex, accessible);
 	}
+	if(getMenuListOptionAccessible(m_UIMenu->m_currentMenuList->m_options[m_selection]))
+		addMenuListTextBox(m_UIMenu->m_nextMenuList, m_branchLevel+1, false);
 	m_helpTextBox.setText(m_UIMenu->m_helpText);
 }
 
-void SFMLUIMenu::addMenuListTextBox(UIMenuList* list, int branchLevel)
+void SFMLUIMenu::addMenuListTextBox(UIMenuList* list, int branchLevel, bool accessible)
 {
 	m_menuOptionTextBoxes.push_back(std::vector<SFMLCursesTextBox>());
 	std::vector<UIMenuOption*>& menuOptions = list->m_options;
@@ -129,23 +159,78 @@ void SFMLUIMenu::addMenuListTextBox(UIMenuList* list, int branchLevel)
 	{
 		int optionIndex = optionIt - menuOptions.begin();
 		SFMLCursesTextBox textBox(m_window, sf::Vector2i(1,20));
+		sf::Color textColor = m_textColor;
+		sf::Color backgroundColor = m_backgroundColor;
 		if(list->m_selection == optionIndex)
 		{
-			textBox.setTextColor(m_selectionTextColor);
-			textBox.setBackgroundColor(m_selectionBackgroundColor);
+			textColor = m_selectionTextColor;
+			backgroundColor = m_selectionBackgroundColor;
 		}
-		else
+		if(!getMenuOptionAccessible(*optionIt))
 		{
-			textBox.setTextColor(m_textColor);
-			textBox.setBackgroundColor(m_backgroundColor);
+			textColor *= m_inaccessibleTextColorModifier;
+			backgroundColor *= m_inaccessibleBackgroundColorModifier;
 		}
-		if(!(*optionIt)->m_active || ((*optionIt)->m_target && !(*optionIt)->m_target->m_accessible))
+		if(!accessible)
 		{
-			textBox.setTextColor(textBox.getTextColor()*m_inaccessibleTextColorModifier);
-			textBox.setBackgroundColor(textBox.getBackgroundColor()*m_inaccessibleBackgroundColorModifier);
+			textColor *= m_inaccessibleTextColorModifier;
+			backgroundColor *= m_inaccessibleBackgroundColorModifier;
 		}
+		textBox.setTextColor(textColor);
+		textBox.setBackgroundColor(backgroundColor);
+
 		textBox.setText((*optionIt)->m_name);
 		textBox.setPosition(static_cast<float>(branchLevel)*8.0f*20.0f,static_cast<float>(optionIndex)*12.0f);
 		m_menuOptionTextBoxes.at(branchLevel).push_back(textBox);
 	}
+}
+
+void SFMLUIMenu::setMenuListTextBoxColors(UIMenuList* list, int branchLevel, bool accessible)
+{
+	std::vector<UIMenuOption*>& menuOptions = list->m_options;
+	for(std::vector<UIMenuOption*>::iterator optionIt(menuOptions.begin()); optionIt != menuOptions.end(); optionIt++)
+	{
+		int optionIndex = optionIt - menuOptions.begin();
+		sf::Color textColor = m_textColor;
+		sf::Color backgroundColor = m_backgroundColor;
+		if(list->m_selection == optionIndex)
+		{
+			textColor = m_selectionTextColor;
+			backgroundColor = m_selectionBackgroundColor;
+		}
+		if(!getMenuOptionAccessible(*optionIt))
+		{
+			textColor *= m_inaccessibleTextColorModifier;
+			backgroundColor *= m_inaccessibleBackgroundColorModifier;
+		}
+		if(!accessible)
+		{
+			textColor *= m_inaccessibleTextColorModifier;
+			backgroundColor *= m_inaccessibleBackgroundColorModifier;
+		}
+		m_menuOptionTextBoxes[branchLevel][optionIndex].setTextColor(textColor);
+		m_menuOptionTextBoxes[branchLevel][optionIndex].setBackgroundColor(backgroundColor);
+	}
+}
+
+bool SFMLUIMenu::getMenuOptionAccessible(UIMenuOption* option)
+{
+	if(option->m_active)
+	{
+		if(option->m_target)
+		{
+			if( option->m_target->m_accessible)
+			{
+				return true;
+			}
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+
+bool SFMLUIMenu::getMenuListOptionAccessible(UIMenuOption* option)
+{
+	return (option->m_active && (option->m_target && option->m_target->m_accessible));
 }
