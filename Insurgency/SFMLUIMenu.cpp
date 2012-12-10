@@ -180,7 +180,10 @@ void SFMLUIMenu::addMenuListTextBox(UIMenuList* list, int branchLevel, bool acce
 		textBox.setBackgroundColor(backgroundColor);
 
 		textBox.setText((*optionIt)->m_name);
-		textBox.setPosition(static_cast<float>(branchLevel)*8.0f*20.0f,static_cast<float>(optionIndex)*12.0f);
+		float yOffset = 0.0f;
+		if(branchLevel > 0)
+			yOffset = static_cast<float>(m_UIMenu->m_branch[branchLevel-1]->m_selection) * 12.0f;
+		textBox.setPosition(static_cast<float>(branchLevel)*8.0f*20.0f,static_cast<float>(optionIndex)*12.0f+yOffset);
 		m_menuOptionTextBoxes.at(branchLevel).push_back(textBox);
 	}
 }
