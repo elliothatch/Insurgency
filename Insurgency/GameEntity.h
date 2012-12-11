@@ -34,6 +34,8 @@ public:
 
 	std::set<EntityActionID::E> getPerformableActions(GameEntity* target) const;
 
+	bool canEquipEntity(const GameEntity* target) const;
+
 protected:
 	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> m_components;
 	//things that can be done with this entity - how it can be acted upon

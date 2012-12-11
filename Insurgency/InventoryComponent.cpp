@@ -3,7 +3,8 @@
 
 
 InventoryComponent::InventoryComponent(void)
-	:EntityComponent(EntityComponentID::Inventory)
+	:EntityComponent(EntityComponentID::Inventory),
+	m_storage()
 {
 }
 

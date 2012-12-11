@@ -134,3 +134,9 @@ std::set<EntityActionID::E> GameEntity::getPerformableActions(GameEntity* target
 	}
 	return returnSet;
 }
+
+bool GameEntity::canEquipEntity(const GameEntity* target) const
+{
+	//TODO: add code determining if the entity can be held
+	return true;
+}

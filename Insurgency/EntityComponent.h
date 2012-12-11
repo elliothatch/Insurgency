@@ -6,6 +6,7 @@ struct EntityComponentID
 	enum E
 	{
 		Inventory,
+		EquipSlot,
 		Gun,
 		Count
 	};

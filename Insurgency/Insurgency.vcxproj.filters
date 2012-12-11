@@ -267,6 +267,9 @@
     <ClInclude Include="SFMLUIMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EquipSlotComponent.h">
+      <Filter>InsurgencyGame\Header Files\GameEntity\EntityComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -427,6 +430,9 @@
     </ClCompile>
     <ClCompile Include="SFMLUIMenu.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EquipSlotComponent.cpp">
+      <Filter>InsurgencyGame\Source Files\GameEntity\EntityComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
