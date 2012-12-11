@@ -49,7 +49,8 @@ void Creature::addTempStatEffect(CreatureStatEffect lStatEffect)
 	//add stat
 	m_statEffects.push_back(lStatEffect);
 	//sort list
-	std::sort(m_statEffects.begin(), m_statEffects.end(), compareStatEffectTimeRemaining);
+	std::sort(m_statEffects.begin(), m_statEffects.end(), 
+		[](const CreatureStatEffect& a, const CreatureStatEffect& b){return (a.getTimeRemaining() < b.getTimeRemaining());});
 	//change stat
 	m_adjustedStats[lStatEffect.getAffectedStat()] += lStatEffect.getAmount();
 }

@@ -51,8 +51,3 @@ private:
 	CreatureTypeID m_type;
 	CreatureClassID::E m_class;
 };
-
-inline bool compareStatEffectTimeRemaining(CreatureStatEffect a, CreatureStatEffect b)
-	{
-		return (a.getTimeRemaining() < b.getTimeRemaining());
-	}
