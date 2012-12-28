@@ -14,6 +14,9 @@ public:
 		GameEntityActions lActions);
 	virtual ~GameEntity(void);
 
+	//virtual functions
+	virtual bool canEquipEntity(const GameEntity& target) const;
+	
 	//getters
 	std::pair<int,int> getLocation(void) const;
 	GameEntity* getEnclosingEntity(void) const;
@@ -33,8 +36,6 @@ public:
 	GameEntityActions getGameEntityActions() const;
 
 	std::set<EntityActionID::E> getPerformableActions(GameEntity* target) const;
-
-	bool canEquipEntity(const GameEntity* target) const;
 
 protected:
 	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> m_components;

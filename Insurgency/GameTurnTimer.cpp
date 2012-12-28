@@ -2,8 +2,8 @@
 #include "GameTurnTimer.h"
 
 
-GameTurnTimer::GameTurnTimer(GameWorld& lGameWorld)
-	:m_gameWorld(lGameWorld),
+GameTurnTimer::GameTurnTimer(GameWorld& gameWorld)
+	:m_gameWorld(gameWorld),
 	m_curTurn(0)
 {
 }
@@ -99,62 +99,67 @@ unsigned int GameTurnTimer::getTurnCount() const
 	return m_curTurn;
 }
 
-bool GameTurnTimer::moveCreature(Creature& lCreature, std::pair<int,int> loc)
+bool GameTurnTimer::moveCreature(Creature& creature, std::pair<int,int> loc)
 {
-	if(m_gameWorld.moveCreature(lCreature, loc))
+	if(m_gameWorld.moveCreature(creature, loc))
 	{
-		lCreature.changeActTurnRem(lCreature.getSpeed());
+		creature.changeActTurnRem(creature.getSpeed());
 		return true;
 	}
 	return false;
 }
 
-bool GameTurnTimer::moveCreatureRight(Creature& lCreature)
+bool GameTurnTimer::moveCreatureRight(Creature& creature)
 {
-	std::pair<int,int> loc(lCreature.getLocation());
+	std::pair<int,int> loc(creature.getLocation());
 	loc.first += 1;
-	return moveCreature(lCreature,loc);
+	return moveCreature(creature,loc);
 }
-bool GameTurnTimer::moveCreatureUp(Creature& lCreature)
+bool GameTurnTimer::moveCreatureUp(Creature& creature)
 {
-	std::pair<int,int> loc(lCreature.getLocation());
+	std::pair<int,int> loc(creature.getLocation());
 	loc.second -= 1;
-	return moveCreature(lCreature,loc);
+	return moveCreature(creature,loc);
 }
-bool GameTurnTimer::moveCreatureLeft(Creature& lCreature)
+bool GameTurnTimer::moveCreatureLeft(Creature& creature)
 {
-	std::pair<int,int> loc(lCreature.getLocation());
+	std::pair<int,int> loc(creature.getLocation());
 	loc.first -= 1;
-	return moveCreature(lCreature,loc);
+	return moveCreature(creature,loc);
 }
-bool GameTurnTimer::moveCreatureDown(Creature& lCreature)
+bool GameTurnTimer::moveCreatureDown(Creature& creature)
 {
-	std::pair<int,int> loc(lCreature.getLocation());
+	std::pair<int,int> loc(creature.getLocation());
 	loc.second += 1;
-	return moveCreature(lCreature,loc);
+	return moveCreature(creature,loc);
 }
 
-bool GameTurnTimer::creaturePickUpItem(Creature& lCreature, GameItem& lGameItem)
+bool GameTurnTimer::creaturePickUpItem(Creature& creature, GameItem& gameItem)
 {
-	if(m_gameWorld.putEntityInInventory(*lCreature.getInventoryComponent(), lGameItem))
+	if(m_gameWorld.putEntityInInventory(*creature.getInventoryComponent(), gameItem))
 	{
-		lCreature.changeActTurnRem(3);
+		creature.changeActTurnRem(3);
 		return true;
 	}
 	return false;
 }
 
-bool GameTurnTimer::creatureDropItem(Creature& lCreature, GameItem& lGameItem)
+bool GameTurnTimer::creatureDropItem(Creature& creature, GameItem& gameItem)
 {
-	if(m_gameWorld.removeEntityFromInventory(*lCreature.getInventoryComponent(), lGameItem))
+	if(m_gameWorld.removeEntityFromInventory(*creature.getInventoryComponent(), gameItem))
 	{
-		lCreature.changeActTurnRem(3);
+		creature.changeActTurnRem(3);
 		return true;
 	}
 	return false;
 }
 
-void GameTurnTimer::waitCreature(Creature& lCreature)
+void GameTurnTimer::waitCreature(Creature& creature)
 {
-	lCreature.changeActTurnRem(1);
+	creature.changeActTurnRem(1);
+}
+
+bool GameTurnTimer::creatureEquipItem(Creature& creature, GameItem& gameItem)
+{
+	
 }

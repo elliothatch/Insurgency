@@ -22,6 +22,8 @@ public:
 
 	bool isEntityContained(GameEntity& lEntity) const;
 
+	bool canAddEntity(GameEntity& lEntity) const;
+
 private:
 	std::vector<GameEntity*> m_storage;
 };

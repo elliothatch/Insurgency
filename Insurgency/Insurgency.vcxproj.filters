@@ -267,7 +267,7 @@
     <ClInclude Include="SFMLUIMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EquipSlotComponent.h">
+    <ClInclude Include="EquipSlotsComponent.h">
       <Filter>InsurgencyGame\Header Files\GameEntity\EntityComponent</Filter>
     </ClInclude>
   </ItemGroup>
@@ -431,7 +431,7 @@
     <ClCompile Include="SFMLUIMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EquipSlotComponent.cpp">
+    <ClCompile Include="EquipSlotsComponent.cpp">
       <Filter>InsurgencyGame\Source Files\GameEntity\EntityComponent</Filter>
     </ClCompile>
   </ItemGroup>

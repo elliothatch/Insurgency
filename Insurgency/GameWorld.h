@@ -4,6 +4,7 @@
 #include "IGameItemTypeDef.h"
 #include "GameItem.h"
 #include "Creature.h"
+#include "EquipSlotsComponent.h"
 #include "WorldRegion.h"
 #include "WorldTile.h"
 #include <map>
@@ -42,6 +43,9 @@ public:
 	bool moveCreature(Creature& lCreature, std::pair<int,int> loc);
 	bool putEntityInInventory(InventoryComponent& lContainer, GameEntity& lTarget);
 	bool removeEntityFromInventory(InventoryComponent& lContainer, GameEntity& lTarget);
+
+	bool entityEquipEntity(GameEntity& holder, GameEntity& target);
+	bool entityUnequipEntity(GameEntity& holder, GameEntity& target);
 
 	//public for testing
 	WorldTile& lookupTile(std::pair<int,int> loc) const;

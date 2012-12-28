@@ -84,7 +84,7 @@
     <ClInclude Include="CreatureStatEffect.h" />
     <ClInclude Include="CreatureType.h" />
     <ClInclude Include="CreatureTypeDef.h" />
-    <ClInclude Include="EquipSlotComponent.h" />
+    <ClInclude Include="EquipSlotsComponent.h" />
     <ClInclude Include="GameEntityActions.h" />
     <ClInclude Include="EntityComponent.h" />
     <ClInclude Include="GameEntity.h" />
@@ -149,7 +149,7 @@
     <ClCompile Include="CreatureType.cpp" />
     <ClCompile Include="CreatureTypeDef.cpp" />
     <ClCompile Include="EntityComponent.cpp" />
-    <ClCompile Include="EquipSlotComponent.cpp" />
+    <ClCompile Include="EquipSlotsComponent.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameEntityActions.cpp" />
     <ClCompile Include="GameEntityType.cpp" />

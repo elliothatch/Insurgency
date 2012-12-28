@@ -2,6 +2,7 @@
 #include "GameEntity.h"
 
 #include "InventoryComponent.h"
+#include "EquipSlotsComponent.h"
 /*
 GameEntity::GameEntity()
 		:m_location(std::pair<int,int>(0,0)),
@@ -42,6 +43,12 @@ GameEntity::GameEntity(const std::string& lLName, const std::string& lSName, con
 
 GameEntity::~GameEntity()
 {
+}
+
+bool GameEntity::canEquipEntity(const GameEntity& target) const
+{
+	//empty virtual implementation
+	return false;
 }
 
 //getters
@@ -128,15 +135,15 @@ std::set<EntityActionID::E> GameEntity::getPerformableActions(GameEntity* target
 			returnSet = target->getGameEntityActions().getInventoryActions();
 			//check what I can do
 		}
-		//if(equipped...)
 		//equipped
-		//TODO
+		else if(EquipSlotsComponent* equipComponent = dynamic_cast<EquipSlotsComponent*>(getComponent(EntityComponentID::EquipSlots)))
+		{
+			if(equipComponent->isEntityEquipped(target))
+			{
+				//check what I can do
+				returnSet = target->getGameEntityActions().getEquippedActions();
+			}
+		}
 	}
 	return returnSet;
-}
-
-bool GameEntity::canEquipEntity(const GameEntity* target) const
-{
-	//TODO: add code determining if the entity can be held
-	return true;
 }

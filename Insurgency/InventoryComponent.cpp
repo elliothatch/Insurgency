@@ -60,3 +60,9 @@ bool InventoryComponent::isEntityContained(GameEntity& lEntity) const
 	else
 		return false;
 }
+
+bool InventoryComponent::canAddEntity(GameEntity& lEntity) const
+{
+	//TODO: add implementation
+	return true;
+}

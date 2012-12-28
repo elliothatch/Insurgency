@@ -218,6 +218,46 @@ bool GameWorld::removeEntityFromInventory(InventoryComponent& lContainer, GameEn
 	lContainer.removeEntity(lTarget);
 	return true;
 }
+
+bool GameWorld::entityEquipEntity(GameEntity& holder, GameEntity& target)
+{
+	//if in inventory or at same position
+	InventoryComponent* invComponent = dynamic_cast<InventoryComponent*>(holder.getComponent(EntityComponentID::Inventory));
+	if((invComponent && invComponent->isEntityContained(target)) || (holder.getLocation() == target.getLocation()))
+	{
+		if(holder.canEquipEntity(target))
+		{
+			EquipSlotsComponent* equipComponent = dynamic_cast<EquipSlotsComponent*>(holder.getComponent(EntityComponentID::EquipSlots));
+			//place the old entity in the inventory or drop if
+			//TODO: check to see if inventory can hold item after the new one is removed
+			if(GameEntity* oldEntity = equipComponent->getEntity())
+			{
+				entityUnequipEntity(holder, *oldEntity);
+			}
+		}
+	}
+	return false;
+}
+
+bool GameWorld::entityUnequipEntity(GameEntity& holder, GameEntity& target)
+{
+	InventoryComponent* invComponent = dynamic_cast<InventoryComponent*>(holder.getComponent(EntityComponentID::Inventory));
+		if(invComponent && invComponent->canAddEntity(target))
+		{
+			invComponent->addEntity(target);
+		}
+		//if can't place in inventory
+		//place in world
+		else
+		{
+			if(GameItem* oldItem = dynamic_cast<GameItem*>(oldEntity))
+				addItemToWorld(*oldItem, holder.getLocation());
+			else if(Creature* oldCreature = dynamic_cast<Creature*>(oldCreature))
+				addCreatureToWorld(*oldCreature, holder.getLocation());
+		}
+	}
+}
+
 //lookup world-space
 WorldTile& GameWorld::lookupTile(std::pair<int,int> loc) const
 {

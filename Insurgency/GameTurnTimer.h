@@ -13,7 +13,7 @@
 class GameTurnTimer
 {
 public:
-	GameTurnTimer(GameWorld& lGameWorld);
+	GameTurnTimer(GameWorld& gameWorld);
 	~GameTurnTimer(void);
 
 	void advanceTurn(void);
@@ -24,16 +24,18 @@ public:
 	unsigned int getTurnCount() const;
 
 	//creature interactions
-	bool moveCreature(Creature& lCreature, std::pair<int,int> loc);
-	bool moveCreatureRight(Creature& lCreature);
-	bool moveCreatureUp(Creature& lCreature);
-	bool moveCreatureLeft(Creature& lCreature);
-	bool moveCreatureDown(Creature& lCreature);
+	bool moveCreature(Creature& creature, std::pair<int,int> loc);
+	bool moveCreatureRight(Creature& creature);
+	bool moveCreatureUp(Creature& creature);
+	bool moveCreatureLeft(Creature& creature);
+	bool moveCreatureDown(Creature& creature);
 
-	bool creaturePickUpItem(Creature& lCreature, GameItem& lGameItem);
-	bool creatureDropItem(Creature& lCreature, GameItem& lGameItem);
+	bool creaturePickUpItem(Creature& creature, GameItem& gameItem);
+	bool creatureDropItem(Creature& creature, GameItem& gameItem);
 
-	void waitCreature(Creature& lCreature);
+	void waitCreature(Creature& creature);
+
+	bool creatureEquipItem(Creature& creature, GameItem& gameItem);
 
 private:
 	//note: this should probably be replaced with an AI object or something
