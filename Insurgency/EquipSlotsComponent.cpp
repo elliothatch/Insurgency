@@ -39,3 +39,13 @@ bool EquipSlotsComponent::isEntityEquipped(GameEntity& target) const
 {
 	return (&target == m_equippedEntity);
 }
+
+void EquipSlotsComponent::addEquipSlot(SlotID::E slot)
+{
+	m_equipSlots.insert(slot);
+}
+
+std::set<EquipSlotsComponent::SlotID::E> EquipSlotsComponent::getEquipSlots() const
+{
+	return m_equipSlots;
+}
