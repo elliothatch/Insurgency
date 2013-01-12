@@ -42,6 +42,8 @@ int UIMenuOption_EntityActionDef::getSelectionStep(EntityActionID::E id)
 	switch(id)
 	{
 	case EntityActionID::Drop:
+	case EntityActionID::Equip:
+	case EntityActionID::Unequip:
 		return 2;
 	default:
 		return 1;
