@@ -28,6 +28,10 @@ std::string UIMenuOption_EntityActionDef::getActionName(EntityActionID::E id)
 		return "Pick Up";
 	case EntityActionID::Drop:
 		return "Drop";
+	case EntityActionID::Equip:
+		return "Equip";
+	case EntityActionID::Unequip:
+		return "Unequip";
 	}
 	std::string name = "EntityAction" + id;
 	return name;

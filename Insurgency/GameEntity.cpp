@@ -138,7 +138,7 @@ std::set<EntityActionID::E> GameEntity::getPerformableActions(GameEntity* target
 		//equipped
 		else if(EquipSlotsComponent* equipComponent = dynamic_cast<EquipSlotsComponent*>(getComponent(EntityComponentID::EquipSlots)))
 		{
-			if(equipComponent->isEntityEquipped(target))
+			if(equipComponent->isEntityEquipped(*target))
 			{
 				//check what I can do
 				returnSet = target->getGameEntityActions().getEquippedActions();

@@ -35,6 +35,7 @@ void GameState_CreatureMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 }
 void GameState_CreatureMenu::OnUpdate(void)
 {
+	GameStateBase::updateGUIElements();
 }
 void GameState_CreatureMenu::OnRender(sf::RenderTarget& target)
 {

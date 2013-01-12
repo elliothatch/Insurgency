@@ -36,6 +36,7 @@ public:
 	void waitCreature(Creature& creature);
 
 	bool creatureEquipItem(Creature& creature, GameItem& gameItem);
+	bool creatureUnequipItem(Creature& creature, GameItem& gameItem);
 
 private:
 	//note: this should probably be replaced with an AI object or something

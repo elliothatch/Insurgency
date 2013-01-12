@@ -15,6 +15,7 @@ public:
 private:
 	UIMenuList m_trunk;
 	UIMenuList_Inventory m_inventoryMenuList;
+	//UIMenuList_EquipSlots m_equippedMenuList;
 	UIMenuOption m_inventoryMenuOption;
 	GameTurnTimer* m_gameTurnTimer;
 	Creature* m_creature;

@@ -13,9 +13,12 @@ public:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual sf::FloatRect getLocalBounds(void) const;
 	virtual sf::FloatRect getGlobalBounds(void) const;
+	virtual void update();
 
 private:
 	sf::RectangleShape m_rectangle;
+	sf::Text m_equippedItem;
+	Creature* m_creature;
 	
 };
 

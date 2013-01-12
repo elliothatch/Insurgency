@@ -229,11 +229,22 @@ bool GameWorld::entityEquipEntity(GameEntity& holder, GameEntity& target)
 		{
 			EquipSlotsComponent* equipComponent = dynamic_cast<EquipSlotsComponent*>(holder.getComponent(EntityComponentID::EquipSlots));
 			//place the old entity in the inventory or drop if
-			//TODO: check to see if inventory can hold item after the new one is removed
-			if(GameEntity* oldEntity = equipComponent->getEntity())
+			if(GameEntity* oldEntity = equipComponent->getEquippedEntity())
 			{
 				entityUnequipEntity(holder, *oldEntity);
 			}
+			if(invComponent)
+			{
+				invComponent->removeEntity(target);
+			}
+			else
+			{
+				if(GameItem* oldItem = dynamic_cast<GameItem*>(&target))
+					removeItemFromWorld(*oldItem);
+				else if(Creature* oldCreature = dynamic_cast<Creature*>(&target))
+					removeCreatureFromWorld(*oldCreature);
+			}
+			equipComponent->equipEntity(target);
 		}
 	}
 	return false;
@@ -241,7 +252,11 @@ bool GameWorld::entityEquipEntity(GameEntity& holder, GameEntity& target)
 
 bool GameWorld::entityUnequipEntity(GameEntity& holder, GameEntity& target)
 {
-	InventoryComponent* invComponent = dynamic_cast<InventoryComponent*>(holder.getComponent(EntityComponentID::Inventory));
+	EquipSlotsComponent* equipComponent = dynamic_cast<EquipSlotsComponent*>(holder.getComponent(EntityComponentID::EquipSlots));
+	if(equipComponent && equipComponent->isEntityEquipped(target))
+	{
+		equipComponent->unequipEntity(target);
+		InventoryComponent* invComponent = dynamic_cast<InventoryComponent*>(holder.getComponent(EntityComponentID::Inventory));
 		if(invComponent && invComponent->canAddEntity(target))
 		{
 			invComponent->addEntity(target);
@@ -250,12 +265,14 @@ bool GameWorld::entityUnequipEntity(GameEntity& holder, GameEntity& target)
 		//place in world
 		else
 		{
-			if(GameItem* oldItem = dynamic_cast<GameItem*>(oldEntity))
+			if(GameItem* oldItem = dynamic_cast<GameItem*>(&target))
 				addItemToWorld(*oldItem, holder.getLocation());
-			else if(Creature* oldCreature = dynamic_cast<Creature*>(oldCreature))
+			else if(Creature* oldCreature = dynamic_cast<Creature*>(&target))
 				addCreatureToWorld(*oldCreature, holder.getLocation());
 		}
+		return true;
 	}
+	return false;
 }
 
 //lookup world-space

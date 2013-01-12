@@ -6,6 +6,7 @@ UIMenu_Creature::UIMenu_Creature(GameTurnTimer& gameTurnTimer, Creature& creatur
 	:UIMenu(),
 	m_trunk(),
 	m_inventoryMenuList(*creature.getInventoryComponent()),
+	//m_equippedMenuList(*creature.getEquipSlotsComponent()),
 	m_inventoryMenuOption("Inventory", &m_inventoryMenuList),
 	m_gameTurnTimer(&gameTurnTimer),
 	m_creature(&creature)
@@ -39,6 +40,22 @@ int UIMenu_Creature::executeSelection()
 	if(option == UIMenuOption_EntityActionDef::getMenuOption(EntityActionID::Drop))
 	{
 		m_gameTurnTimer->creatureDropItem(*m_creature, 
+			dynamic_cast<GameItem&>(m_inventoryMenuList.m_inventory->getEntityAtIndex(m_inventoryMenuList.m_selection)));
+		m_inventoryMenuList.removeEntityMenuOption(m_previousMenuList->m_options[m_previousMenuList->m_selection]);
+	}
+	else if(option == UIMenuOption_EntityActionDef::getMenuOption(EntityActionID::Equip))
+	{
+		if(GameEntity* oldEntity = m_creature->getEquipSlotsComponent()->getEquippedEntity())
+		{
+			m_inventoryMenuList.addEntity(oldEntity);
+		}
+		m_gameTurnTimer->creatureEquipItem(*m_creature,
+			dynamic_cast<GameItem&>(m_inventoryMenuList.m_inventory->getEntityAtIndex(m_inventoryMenuList.m_selection)));
+		m_inventoryMenuList.removeEntityMenuOption(m_previousMenuList->m_options[m_previousMenuList->m_selection]);
+	}
+	else if(option == UIMenuOption_EntityActionDef::getMenuOption(EntityActionID::Unequip))
+	{
+		m_gameTurnTimer->creatureUnequipItem(*m_creature,
 			dynamic_cast<GameItem&>(m_inventoryMenuList.m_inventory->getEntityAtIndex(m_inventoryMenuList.m_selection)));
 		m_inventoryMenuList.removeEntityMenuOption(m_previousMenuList->m_options[m_previousMenuList->m_selection]);
 	}

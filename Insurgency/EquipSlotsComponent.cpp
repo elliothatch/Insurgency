@@ -12,6 +12,11 @@ EquipSlotsComponent::~EquipSlotsComponent(void)
 {
 }
 
+EquipSlotsComponent* EquipSlotsComponent::clone() const
+{
+	return new EquipSlotsComponent(*this);
+}
+
 void EquipSlotsComponent::equipEntity(GameEntity& target)
 {
 	m_equippedEntity = &target;
@@ -21,7 +26,7 @@ void EquipSlotsComponent::unequipEntity(GameEntity& target)
 {
 	if(&target == m_equippedEntity)
 	{
-		m_equippedEntity = false;
+		m_equippedEntity = nullptr;
 	}
 }
 

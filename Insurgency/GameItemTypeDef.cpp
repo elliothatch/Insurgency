@@ -7,6 +7,8 @@ GameItemTypeDef::GameItemTypeDef(void)
 	GameEntityActions defaultActions;
 	defaultActions.addWorldAction(EntityActionID::PickUp);
 	defaultActions.addInventoryAction(EntityActionID::Drop);
+	defaultActions.addInventoryAction(EntityActionID::Equip);
+	defaultActions.addEquippedAction(EntityActionID::Unequip);
 	for(int i = 0; i<kMaxItemTypes; i++)
 	{
 		itemTypes[i].setTypeID(i);

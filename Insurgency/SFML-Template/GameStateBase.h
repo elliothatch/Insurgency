@@ -81,6 +81,7 @@ public:
 	bool m_subRender;
 protected:
 	void drawDisplayList(sf::RenderTarget& target) const;
+	void updateGUIElements();
 	const std::vector<std::unique_ptr<sf::Drawable>>& getDisplayList() const;
 	const std::vector<SFMLGUIElement*>& getGUIElements() const;
 };

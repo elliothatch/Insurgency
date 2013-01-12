@@ -8,7 +8,9 @@ CreatureTypeDef::CreatureTypeDef(void)
 	{
 		creatureTypes[i].setTypeID(i);
 		std::unique_ptr<InventoryComponent> inv1(new InventoryComponent());
+		std::unique_ptr<EquipSlotsComponent> equip1(new EquipSlotsComponent());
 		creatureTypes[i].addComponent(std::move(inv1));
+		creatureTypes[i].addComponent(std::move(equip1));
 	}
 	creatureTypes[1].setLName("insurgent");
 	creatureTypes[1].setSName("Elliot Hatch");

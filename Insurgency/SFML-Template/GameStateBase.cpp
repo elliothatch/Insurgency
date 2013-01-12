@@ -26,6 +26,14 @@ void GameStateBase::drawDisplayList(sf::RenderTarget& target) const
 	}
 }
 
+void GameStateBase::updateGUIElements()
+{
+	for(std::vector<SFMLGUIElement*>::iterator guiIt(m_GUIElements.begin()); guiIt != m_GUIElements.end(); guiIt++)
+	{
+		(*guiIt)->update();
+	}
+}
+
 void GameStateBase::OnEvent(sf::Event& Event)
 {
 	SFMLEvent::OnEvent(Event);

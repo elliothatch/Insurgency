@@ -7,6 +7,7 @@
 #include <array>
 #include <memory>
 #include "InventoryComponent.h"
+#include "EquipSlotsComponent.h"
 
 class Creature :
 	public GameEntity
@@ -16,6 +17,8 @@ public:
 
 	Creature(const CreatureType& lType);
 	virtual ~Creature(void);
+
+	virtual bool canEquipEntity(const GameEntity& target) const;
 
 	unsigned int getActTurnRem(void);
 	void changeActTurnRem(unsigned int amount);
@@ -36,6 +39,7 @@ public:
 	void turnUpdate(void);
 
 	InventoryComponent* getInventoryComponent();
+	EquipSlotsComponent* getEquipSlotsComponent();
 
 private:
 	std::array<int, CreatureStat::Count> m_baseStats;

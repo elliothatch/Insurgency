@@ -377,9 +377,6 @@
     <ClCompile Include="GameTurnTimer.cpp">
       <Filter>InsurgencyGame\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameEntityActions.cpp">
-      <Filter>InsurgencyGame\Source Files\GameEntity</Filter>
-    </ClCompile>
     <ClCompile Include="GameState_InsurgencyEntityActions.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
@@ -387,9 +384,6 @@
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="UIMenu.cpp">
-      <Filter>InsurgencyGame\Source Files\UIMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="UIMenuOption_EntityActionDef.cpp">
       <Filter>InsurgencyGame\Source Files\UIMenu</Filter>
     </ClCompile>
     <ClCompile Include="UIMenu_Creature.cpp">
@@ -433,6 +427,12 @@
     </ClCompile>
     <ClCompile Include="EquipSlotsComponent.cpp">
       <Filter>InsurgencyGame\Source Files\GameEntity\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMenuOption_EntityActionDef.cpp">
+      <Filter>InsurgencyGame\Source Files\UIMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEntityActions.cpp">
+      <Filter>InsurgencyGame\Source Files\GameWorld</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

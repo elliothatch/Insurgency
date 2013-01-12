@@ -17,6 +17,13 @@ Creature::~Creature(void)
 {
 }
 
+bool Creature::canEquipEntity(const GameEntity& target) const
+{
+	//TODO: add checks for if you can equip it
+	//e.g. strength requirements, proficiencies, injuries, etc.
+	return true;
+}
+
 unsigned int Creature::getActTurnRem(void) 
 {
 	return m_actTurnRem;
@@ -90,4 +97,9 @@ void Creature::turnUpdate(void)
 InventoryComponent* Creature::getInventoryComponent()
 {
 	return dynamic_cast<InventoryComponent*>(getComponent(EntityComponentID::Inventory));
+}
+
+EquipSlotsComponent* Creature::getEquipSlotsComponent()
+{
+	return dynamic_cast<EquipSlotsComponent*>(getComponent(EntityComponentID::EquipSlots));
 }

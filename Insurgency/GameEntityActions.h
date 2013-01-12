@@ -6,6 +6,8 @@ struct EntityActionID
 	{
 		PickUp,
 		Drop,
+		Equip,
+		Unequip,
 		Count
 	};
 };

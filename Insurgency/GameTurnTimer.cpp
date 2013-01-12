@@ -161,5 +161,20 @@ void GameTurnTimer::waitCreature(Creature& creature)
 
 bool GameTurnTimer::creatureEquipItem(Creature& creature, GameItem& gameItem)
 {
-	
+	if(m_gameWorld.entityEquipEntity(creature, gameItem))
+	{
+		creature.changeActTurnRem(3);
+		return true;
+	}
+	return false;
+}
+
+bool GameTurnTimer::creatureUnequipItem(Creature& creature, GameItem& gameItem)
+{
+	if(m_gameWorld.entityUnequipEntity(creature, gameItem))
+	{
+		creature.changeActTurnRem(3);
+		return true;
+	}
+	return false;
 }

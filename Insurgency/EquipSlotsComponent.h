@@ -6,6 +6,8 @@ public:
 	EquipSlotsComponent(void);
 	virtual ~EquipSlotsComponent(void);
 
+	virtual EquipSlotsComponent* clone() const;
+
 	void equipEntity(GameEntity& target);
 	void unequipEntity(GameEntity& target);
 	GameEntity* getEquippedEntity() const;
