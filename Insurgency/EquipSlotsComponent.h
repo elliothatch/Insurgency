@@ -1,5 +1,6 @@
 #pragma once
 #include "EntityComponent.h"
+#include <set>
 class EquipSlotsComponent : public EntityComponent
 {
 public:
