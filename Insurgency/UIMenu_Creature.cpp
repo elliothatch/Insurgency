@@ -56,16 +56,12 @@ int UIMenu_Creature::executeSelection()
 		if(m_gameTurnTimer->creatureEquipItem(*m_creature,
 			*dynamic_cast<GameItem*>(entity)))
 		{
-			printf("1\n");
 			m_inventoryMenuList.removeEntityMenuOption(m_previousMenuList->m_options[m_previousMenuList->m_selection]);
 			if(oldEntity)
 			{
-				printf("2\n");
 				m_equipMenuList.removeEntityMenuOption(m_equipMenuList.m_options[m_equipMenuList.m_selection]);
-				printf("3\n");
 				m_inventoryMenuList.addEntity(oldEntity);
 			}
-			printf("4\n");
 			m_equipMenuList.addEntity(entity);
 		}
 		else
