@@ -38,8 +38,10 @@ sf::FloatRect SFMLUIMenu_Creature::getGlobalBounds(void) const
 
 void SFMLUIMenu_Creature::update()
 {
+	/*
 	if(m_creature->getEquipSlotsComponent()->getEquippedEntity())
 		m_equippedItem.setString(m_creature->getEquipSlotsComponent()->getEquippedEntity()->getSName());
 	else
 		m_equippedItem.setString("Nothing Equipped");
+		*/
 }

@@ -228,9 +228,6 @@
     <ClInclude Include="UIMenuList.h">
       <Filter>InsurgencyGame\Header Files\UIMenu</Filter>
     </ClInclude>
-    <ClInclude Include="UIMenuList_Inventory.h">
-      <Filter>InsurgencyGame\Header Files\UIMenu</Filter>
-    </ClInclude>
     <ClInclude Include="UIMenuOption.h">
       <Filter>InsurgencyGame\Header Files\UIMenu</Filter>
     </ClInclude>
@@ -269,6 +266,9 @@
     </ClInclude>
     <ClInclude Include="EquipSlotsComponent.h">
       <Filter>InsurgencyGame\Header Files\GameEntity\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMenuList_Entities.h">
+      <Filter>InsurgencyGame\Header Files\UIMenu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -392,9 +392,6 @@
     <ClCompile Include="UIMenuList.cpp">
       <Filter>InsurgencyGame\Source Files\UIMenu</Filter>
     </ClCompile>
-    <ClCompile Include="UIMenuList_Inventory.cpp">
-      <Filter>InsurgencyGame\Source Files\UIMenu</Filter>
-    </ClCompile>
     <ClCompile Include="UIMenuOption.cpp">
       <Filter>InsurgencyGame\Source Files\UIMenu</Filter>
     </ClCompile>
@@ -433,6 +430,9 @@
     </ClCompile>
     <ClCompile Include="GameEntityActions.cpp">
       <Filter>InsurgencyGame\Source Files\GameWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMenuList_Entities.cpp">
+      <Filter>InsurgencyGame\Source Files\UIMenu</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

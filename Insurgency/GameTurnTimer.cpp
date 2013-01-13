@@ -146,6 +146,15 @@ bool GameTurnTimer::creaturePickUpItem(Creature& creature, GameItem& gameItem)
 
 bool GameTurnTimer::creatureDropItem(Creature& creature, GameItem& gameItem)
 {
+	if(creature.getEquipSlotsComponent()->isEntityEquipped(gameItem))
+	{
+		if(m_gameWorld.entityUnequipEntity(creature, gameItem) && 
+			m_gameWorld.removeEntityFromInventory(*creature.getInventoryComponent(), gameItem))
+		{
+			creature.changeActTurnRem(3);
+			return true;
+		}
+	}
 	if(m_gameWorld.removeEntityFromInventory(*creature.getInventoryComponent(), gameItem))
 	{
 		creature.changeActTurnRem(3);
@@ -161,7 +170,9 @@ void GameTurnTimer::waitCreature(Creature& creature)
 
 bool GameTurnTimer::creatureEquipItem(Creature& creature, GameItem& gameItem)
 {
-	if(m_gameWorld.entityEquipEntity(creature, gameItem))
+	std::set<EquipSlotsComponent::SlotID::E> equipSlots;
+	equipSlots.insert(EquipSlotsComponent::SlotID::heldRight);
+	if(m_gameWorld.entityEquipEntity(creature, gameItem, equipSlots))
 	{
 		creature.changeActTurnRem(3);
 		return true;

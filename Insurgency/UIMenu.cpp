@@ -126,6 +126,7 @@ void UIMenu::changeSelection()
 
 void UIMenu::update()
 {
+	printf("%d\n",m_currentMenuList->m_selection);
 	if(m_currentMenuList->m_selection > static_cast<int>(m_currentMenuList->m_options.size()-1))
 			select(0);
 	else

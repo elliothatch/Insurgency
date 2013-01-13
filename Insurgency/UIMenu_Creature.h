@@ -1,6 +1,6 @@
 #pragma once
 #include "UIMenu.h"
-#include "UIMenuList_Inventory.h"
+#include "UIMenuList_Entities.h"
 #include "GameTurnTimer.h"
 class UIMenu_Creature :
 	public UIMenu
@@ -14,9 +14,10 @@ public:
 
 private:
 	UIMenuList m_trunk;
-	UIMenuList_Inventory m_inventoryMenuList;
-	//UIMenuList_EquipSlots m_equippedMenuList;
+	UIMenuList_Entities m_inventoryMenuList;
 	UIMenuOption m_inventoryMenuOption;
+	UIMenuList_Entities m_equipMenuList;
+	UIMenuOption m_equipMenuOption;
 	GameTurnTimer* m_gameTurnTimer;
 	Creature* m_creature;
 };

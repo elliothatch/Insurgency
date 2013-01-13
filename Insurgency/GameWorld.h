@@ -44,7 +44,7 @@ public:
 	bool putEntityInInventory(InventoryComponent& lContainer, GameEntity& lTarget);
 	bool removeEntityFromInventory(InventoryComponent& lContainer, GameEntity& lTarget);
 
-	bool entityEquipEntity(GameEntity& holder, GameEntity& target);
+	bool entityEquipEntity(GameEntity& holder, GameEntity& target, const std::set<EquipSlotsComponent::SlotID::E>& slots);
 	bool entityUnequipEntity(GameEntity& holder, GameEntity& target);
 
 	//public for testing

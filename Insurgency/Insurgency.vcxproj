@@ -128,7 +128,7 @@
     <ClInclude Include="StateInfo_EntityActions.h" />
     <ClInclude Include="UIMenuOption_EntityActionDef.h" />
     <ClInclude Include="UIMenu_Creature.h" />
-    <ClInclude Include="UIMenuList_Inventory.h" />
+    <ClInclude Include="UIMenuList_Entities.h" />
     <ClInclude Include="UIMenu.h" />
     <ClInclude Include="UIMenuList.h" />
     <ClInclude Include="UIMenuOption.h" />
@@ -186,7 +186,7 @@
     <ClCompile Include="SFMLUIMenu_Creature.cpp" />
     <ClCompile Include="UIMenuOption_EntityActionDef.cpp" />
     <ClCompile Include="UIMenu_Creature.cpp" />
-    <ClCompile Include="UIMenuList_Inventory.cpp" />
+    <ClCompile Include="UIMenuList_Entities.cpp" />
     <ClCompile Include="UIMenu.cpp" />
     <ClCompile Include="UIMenuList.cpp" />
     <ClCompile Include="UIMenuOption.cpp" />

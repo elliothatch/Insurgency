@@ -1,6 +1,7 @@
 #pragma once
 #include "EntityComponent.h"
 #include <set>
+#include <map>
 class EquipSlotsComponent : public EntityComponent
 {
 public:
@@ -28,7 +29,6 @@ public:
 			shinLeft,
 			footRight,
 			footLeft,
-			
 			count
 		};
 	};
@@ -38,17 +38,20 @@ public:
 
 	virtual EquipSlotsComponent* clone() const;
 
-	void equipEntity(GameEntity& target);
+	void equipEntity(GameEntity& target, std::set<SlotID::E> slots);
 	void unequipEntity(GameEntity& target);
-	GameEntity* getEquippedEntity() const;
+	std::map<GameEntity*,std::set<SlotID::E>> getEquippedEntities() const;
 	bool isEntityEquipped(GameEntity& target) const;
 
 	void addEquipSlot(SlotID::E slot);
-	std::set<SlotID::E> getEquipSlots() const;
+	bool hasEquipSlot(SlotID::E slot);
+	bool hasEquipSlots(std::set<SlotID::E> slots);
+	std::map<SlotID::E,GameEntity*> getEquipSlots() const;
+	GameEntity* getEntityEquippedInSlot(SlotID::E slot) const;
 
 
 private:
-	GameEntity* m_equippedEntity;
-	std::set<SlotID::E> m_equipSlots;
+	std::map<GameEntity*,std::set<SlotID::E>> m_equippedEntities;
+	std::map<SlotID::E,GameEntity*> m_equipSlots;
 };
 

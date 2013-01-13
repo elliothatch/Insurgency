@@ -41,7 +41,7 @@ void GameEntityActions::addEquippedAction(EntityActionID::E action)
 }
 void GameEntityActions::addWorldAction(EntityActionID::E action)
 {
-	m_actionsEquip.insert(action);
+	m_actionsWorld.insert(action);
 }
 
 std::set<EntityActionID::E> GameEntityActions::getInventoryActions() const

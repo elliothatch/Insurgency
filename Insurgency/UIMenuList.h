@@ -6,7 +6,7 @@ class UIMenuList
 public:
 	UIMenuList(void);
 	UIMenuList(std::vector<UIMenuOption*> options);
-	~UIMenuList(void);
+	virtual ~UIMenuList(void);
 
 	int m_selection;
 	std::vector<UIMenuOption*> m_options;

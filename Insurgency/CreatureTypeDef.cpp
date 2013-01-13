@@ -9,6 +9,10 @@ CreatureTypeDef::CreatureTypeDef(void)
 		creatureTypes[i].setTypeID(i);
 		std::unique_ptr<InventoryComponent> inv1(new InventoryComponent());
 		std::unique_ptr<EquipSlotsComponent> equip1(new EquipSlotsComponent());
+		for(int j = 0; j<EquipSlotsComponent::SlotID::count; j++)
+		{
+			equip1->addEquipSlot(EquipSlotsComponent::SlotID::E(j));
+		}
 		creatureTypes[i].addComponent(std::move(inv1));
 		creatureTypes[i].addComponent(std::move(equip1));
 	}
