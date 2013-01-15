@@ -51,10 +51,15 @@ int UIMenu_Creature::executeSelection()
 	}
 	else if(option == UIMenuOption_EntityActionDef::getMenuOption(EntityActionID::Equip))
 	{
-		GameEntity* oldEntity = m_creature->getEquipSlotsComponent()->getEntityEquippedInSlot(EquipSlotsComponent::SlotID::heldRight);
 		GameEntity* entity = m_inventoryMenuList.m_entities.at(m_inventoryMenuList.m_selection);
-		if(m_gameTurnTimer->creatureEquipItem(*m_creature,
-			*dynamic_cast<GameItem*>(entity)))
+		GameEntity* oldEntity = nullptr;
+		const GameEntityEquipGroups::EquipGroup& equipGroup = *entity->getGameEntityEquipGroups().getEquipGroups().begin();
+		for(auto slotIt(equipGroup.m_equipSlots.begin()); slotIt != equipGroup.m_equipSlots.end(); slotIt++)
+		{
+			if(oldEntity = m_creature->getEquipSlotsComponent()->getEntityEquippedInSlot(*slotIt))
+				break;
+		}
+		if(m_gameTurnTimer->creatureEquipItem(*m_creature,*dynamic_cast<GameItem*>(entity),equipGroup))
 		{
 			m_inventoryMenuList.removeEntityMenuOption(m_previousMenuList->m_options[m_previousMenuList->m_selection]);
 			if(oldEntity)

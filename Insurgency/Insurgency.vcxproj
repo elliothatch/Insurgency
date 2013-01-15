@@ -88,6 +88,7 @@
     <ClInclude Include="GameEntityActions.h" />
     <ClInclude Include="EntityComponent.h" />
     <ClInclude Include="GameEntity.h" />
+    <ClInclude Include="GameEntityEquipGroups.h" />
     <ClInclude Include="GameEntityType.h" />
     <ClInclude Include="GameItem.h" />
     <ClInclude Include="GameItemType.h" />
@@ -152,6 +153,7 @@
     <ClCompile Include="EquipSlotsComponent.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameEntityActions.cpp" />
+    <ClCompile Include="GameEntityEquipGroups.cpp" />
     <ClCompile Include="GameEntityType.cpp" />
     <ClCompile Include="GameItem.cpp" />
     <ClCompile Include="GameItemType.cpp" />

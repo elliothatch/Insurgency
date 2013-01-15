@@ -2,7 +2,8 @@
 #include "GameEntityType.h"
 
 GameEntityType::GameEntityType(void)
-	:m_lName("lName"), m_sName("sName"), m_dName("dName")
+	:m_lName("lName"), m_sName("sName"), m_dName("dName"),
+	 m_actions(), m_equipGroups()
 {
 }
 
@@ -59,4 +60,12 @@ void GameEntityType::setGameEntityActions(GameEntityActions actions)
 GameEntityActions GameEntityType::getGameEntityActions() const
 {
 	return m_actions;
+}
+void GameEntityType::setGameEntityEquipGroups(GameEntityEquipGroups equipGroups)
+{
+	m_equipGroups = equipGroups;
+}
+GameEntityEquipGroups GameEntityType::getGameEntityEquipGroups() const
+{
+	return m_equipGroups;
 }

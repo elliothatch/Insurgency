@@ -168,11 +168,9 @@ void GameTurnTimer::waitCreature(Creature& creature)
 	creature.changeActTurnRem(1);
 }
 
-bool GameTurnTimer::creatureEquipItem(Creature& creature, GameItem& gameItem)
+bool GameTurnTimer::creatureEquipItem(Creature& creature, GameItem& gameItem, const GameEntityEquipGroups::EquipGroup& equipGroup)
 {
-	std::set<EquipSlotsComponent::SlotID::E> equipSlots;
-	equipSlots.insert(EquipSlotsComponent::SlotID::heldRight);
-	if(m_gameWorld.entityEquipEntity(creature, gameItem, equipSlots))
+	if(m_gameWorld.entityEquipEntity(creature, gameItem, equipGroup))
 	{
 		creature.changeActTurnRem(3);
 		return true;

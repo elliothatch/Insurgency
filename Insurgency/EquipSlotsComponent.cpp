@@ -18,10 +18,10 @@ EquipSlotsComponent* EquipSlotsComponent::clone() const
 	return new EquipSlotsComponent(*this);
 }
 
-void EquipSlotsComponent::equipEntity(GameEntity& target, std::set<EquipSlotsComponent::SlotID::E> slots)
+void EquipSlotsComponent::equipEntity(GameEntity& target, const GameEntityEquipGroups::EquipGroup& equipGroup)
 {
-	m_equippedEntities[&target] = slots;
-	for(auto slotIt(slots.begin()); slotIt != slots.end(); slotIt++)
+	m_equippedEntities[&target] = equipGroup;
+	for(auto slotIt(equipGroup.m_equipSlots.begin()); slotIt != equipGroup.m_equipSlots.end(); slotIt++)
 	{
 		auto equipIt = m_equipSlots.find(*slotIt);
 		if(equipIt != m_equipSlots.end())
@@ -36,7 +36,7 @@ void EquipSlotsComponent::unequipEntity(GameEntity& target)
 	auto entityIt = m_equippedEntities.find(&target);
 	if(entityIt != m_equippedEntities.end())
 	{
-		for(auto slotIt(entityIt->second.begin()); slotIt != entityIt->second.end(); slotIt++)
+		for(auto slotIt(entityIt->second.m_equipSlots.begin()); slotIt != entityIt->second.m_equipSlots.end(); slotIt++)
 		{
 			auto equipIt = m_equipSlots.find(*slotIt);
 			if(equipIt != m_equipSlots.end())
@@ -48,7 +48,7 @@ void EquipSlotsComponent::unequipEntity(GameEntity& target)
 	}
 }
 
-std::map<GameEntity*,std::set<EquipSlotsComponent::SlotID::E>> EquipSlotsComponent::getEquippedEntities() const
+std::map<GameEntity*,GameEntityEquipGroups::EquipGroup> EquipSlotsComponent::getEquippedEntities() const
 {
 	return m_equippedEntities;
 }
@@ -58,19 +58,19 @@ bool EquipSlotsComponent::isEntityEquipped(GameEntity& target) const
 	return (m_equippedEntities.find(&target) != m_equippedEntities.end());
 }
 
-void EquipSlotsComponent::addEquipSlot(SlotID::E slot)
+void EquipSlotsComponent::addEquipSlot(EntityEquipSlotID::E slot)
 {
-	m_equipSlots.insert(std::pair<SlotID::E,GameEntity*>(slot,nullptr));
+	m_equipSlots.insert(std::pair<EntityEquipSlotID::E,GameEntity*>(slot,nullptr));
 }
 
-bool EquipSlotsComponent::hasEquipSlot(SlotID::E slot)
+bool EquipSlotsComponent::hasEquipSlot(EntityEquipSlotID::E slot) const
 {
 	return (m_equipSlots.find(slot) != m_equipSlots.end());
 }
 
-bool EquipSlotsComponent::hasEquipSlots(std::set<SlotID::E> slots)
+bool EquipSlotsComponent::hasEquipSlots(const GameEntityEquipGroups::EquipGroup& equipGroup) const
 {
-	for(auto slotIt(slots.begin()); slotIt != slots.end(); slotIt++)
+	for(auto slotIt(equipGroup.m_equipSlots.begin()); slotIt != equipGroup.m_equipSlots.end(); slotIt++)
 	{
 		if(m_equipSlots.find(*slotIt) == m_equipSlots.end())
 		{
@@ -80,12 +80,12 @@ bool EquipSlotsComponent::hasEquipSlots(std::set<SlotID::E> slots)
 	return true;
 }
 
-std::map<EquipSlotsComponent::SlotID::E,GameEntity*> EquipSlotsComponent::getEquipSlots() const
+std::map<EntityEquipSlotID::E,GameEntity*> EquipSlotsComponent::getEquipSlots() const
 {
 	return m_equipSlots;
 }
 
-GameEntity* EquipSlotsComponent::getEntityEquippedInSlot(EquipSlotsComponent::SlotID::E slot) const
+GameEntity* EquipSlotsComponent::getEntityEquippedInSlot(EntityEquipSlotID::E slot) const
 {
 	auto slotIt = m_equipSlots.find(slot);
 	if(slotIt != m_equipSlots.end())

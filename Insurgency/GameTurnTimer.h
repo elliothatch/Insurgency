@@ -35,7 +35,7 @@ public:
 
 	void waitCreature(Creature& creature);
 
-	bool creatureEquipItem(Creature& creature, GameItem& gameItem);
+	bool creatureEquipItem(Creature& creature, GameItem& gameItem, const GameEntityEquipGroups::EquipGroup& equipGroup);
 	bool creatureUnequipItem(Creature& creature, GameItem& gameItem);
 
 private:

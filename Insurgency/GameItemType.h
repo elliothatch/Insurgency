@@ -8,6 +8,8 @@ struct GameItemClassID
 	{
 		None = 0,
 		AssaultRifle01,
+		Handgun01,
+		Pants01,
 		Count
 	};
 };

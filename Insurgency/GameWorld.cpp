@@ -219,7 +219,7 @@ bool GameWorld::removeEntityFromInventory(InventoryComponent& lContainer, GameEn
 	return true;
 }
 
-bool GameWorld::entityEquipEntity(GameEntity& holder, GameEntity& target, const std::set<EquipSlotsComponent::SlotID::E>& slots)
+bool GameWorld::entityEquipEntity(GameEntity& holder, GameEntity& target, const GameEntityEquipGroups::EquipGroup& equipGroup)
 {
 	//if in inventory or at same position
 	InventoryComponent* invComponent = dynamic_cast<InventoryComponent*>(holder.getComponent(EntityComponentID::Inventory));
@@ -229,9 +229,9 @@ bool GameWorld::entityEquipEntity(GameEntity& holder, GameEntity& target, const 
 		{
 			EquipSlotsComponent* equipComponent = dynamic_cast<EquipSlotsComponent*>(holder.getComponent(EntityComponentID::EquipSlots));
 			
-			if(equipComponent->hasEquipSlots(slots))
+			if(equipComponent->hasEquipSlots(equipGroup))
 			{
-				for(auto slotIt(slots.begin()); slotIt != slots.end(); slotIt++)
+				for(auto slotIt(equipGroup.m_equipSlots.begin()); slotIt != equipGroup.m_equipSlots.end(); slotIt++)
 				{
 					//unequip old entities
 					if(GameEntity* oldEntity = equipComponent->getEntityEquippedInSlot(*slotIt))
@@ -255,7 +255,7 @@ bool GameWorld::entityEquipEntity(GameEntity& holder, GameEntity& target, const 
 				else if(Creature* oldCreature = dynamic_cast<Creature*>(&target))
 					removeCreatureFromWorld(*oldCreature);
 			}
-			equipComponent->equipEntity(target,slots);
+			equipComponent->equipEntity(target,equipGroup);
 			return true;
 		}
 	}

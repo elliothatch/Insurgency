@@ -3,6 +3,7 @@
 #include <set>
 #include "EntityComponent.h"
 #include "GameEntityActions.h"
+#include "GameEntityEquipGroups.h"
 class GameEntity
 {
 public:
@@ -11,7 +12,7 @@ public:
 	GameEntity(std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents);
 	GameEntity(const std::string& lLName, const std::string& lSName, const std::string& lDName,
 		std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> lComponents,
-		GameEntityActions lActions);
+		GameEntityActions lActions, GameEntityEquipGroups equipGroups);
 	virtual ~GameEntity(void);
 
 	//virtual functions
@@ -34,6 +35,8 @@ public:
 	void addComponent(std::unique_ptr<EntityComponent> lComponent);
 	void setGameEntityActions(GameEntityActions actions);
 	GameEntityActions getGameEntityActions() const;
+	void setGameEntityEquipGroups(GameEntityEquipGroups equipGroups);
+	GameEntityEquipGroups getGameEntityEquipGroups() const;
 
 	std::set<EntityActionID::E> getPerformableActions(GameEntity* target) const;
 
@@ -41,6 +44,7 @@ protected:
 	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> m_components;
 	//things that can be done with this entity - how it can be acted upon
 	GameEntityActions m_actions;
+	GameEntityEquipGroups m_equipGroups; //slots that this entity can be equipped in
 
 private:
 	GameEntity* m_enclosingEntity; //is in creature inventory, in a box, etc. Cannot determine own position

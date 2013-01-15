@@ -270,6 +270,9 @@
     <ClInclude Include="UIMenuList_Entities.h">
       <Filter>InsurgencyGame\Header Files\UIMenu</Filter>
     </ClInclude>
+    <ClInclude Include="GameEntityEquipGroups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -433,6 +436,9 @@
     </ClCompile>
     <ClCompile Include="UIMenuList_Entities.cpp">
       <Filter>InsurgencyGame\Source Files\UIMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEntityEquipGroups.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

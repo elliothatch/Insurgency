@@ -48,6 +48,8 @@ bool SFMLApp::OnInit(void)
 	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,"@"),"insurgent");
 	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,")",sf::Color(255,100,100,255),sf::Color::Black),"AK-47");
 	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,")",sf::Color(100,100,255,255),sf::Color::Black),"P90");
+	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,")",sf::Color(255,255,255,255),sf::Color::Black),"1911");
+	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,"]",sf::Color(255,50,50,255),sf::Color::Black),"Cargo Pants");
 	
 	/*
 	sf::Sprite dirtground(cursesA, sf::IntRect(14*8,2*12,8,12));

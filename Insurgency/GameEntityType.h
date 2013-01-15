@@ -5,6 +5,7 @@
 #include <memory>
 #include "EntityComponent.h"
 #include "GameEntityActions.h"
+#include "GameEntityEquipGroups.h"
 
 class GameEntityType
 {
@@ -27,6 +28,8 @@ public:
 
 	void setGameEntityActions(GameEntityActions actions);
 	GameEntityActions getGameEntityActions() const;
+	void setGameEntityEquipGroups(GameEntityEquipGroups equipGroups);
+	GameEntityEquipGroups getGameEntityEquipGroups() const;
 
 private:
 	std::string m_lName; //dName + modifiers            - mutable
@@ -34,5 +37,6 @@ private:
 	std::string m_dName; //Name used in Descriptions    - non-mutable
 	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> m_components;
 	GameEntityActions m_actions;
+	GameEntityEquipGroups m_equipGroups;
 	
 };
