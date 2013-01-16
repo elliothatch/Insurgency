@@ -12,8 +12,9 @@ public:
 	UIMenuList_Entities(EquipSlotsComponent& equipSlots, GameEntity& actor);
 	~UIMenuList_Entities(void);
 
-	void addEntity(GameEntity* entity);
+	void addEntity(GameEntity& entity);
 	void removeEntityMenuOption(UIMenuOption* menuOption);
+	int getEntitySelection(const GameEntity& entity);
 
 private:
 	std::vector<std::pair<std::unique_ptr<UIMenuList>, std::unique_ptr<UIMenuOption>>> m_entityOptions;

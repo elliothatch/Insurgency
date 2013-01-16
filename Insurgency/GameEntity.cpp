@@ -114,7 +114,7 @@ void GameEntity::setGameEntityActions(GameEntityActions actions)
 {
 	m_actions = actions;
 }
-GameEntityActions GameEntity::getGameEntityActions() const
+const GameEntityActions& GameEntity::getGameEntityActions() const
 {
 	return m_actions;
 }
@@ -123,7 +123,7 @@ void GameEntity::setGameEntityEquipGroups(GameEntityEquipGroups equipGroups)
 {
 	m_equipGroups = equipGroups;
 }
-GameEntityEquipGroups GameEntity::getGameEntityEquipGroups() const
+const GameEntityEquipGroups& GameEntity::getGameEntityEquipGroups() const
 {
 	return m_equipGroups;
 }

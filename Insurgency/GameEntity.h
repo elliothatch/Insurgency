@@ -34,9 +34,9 @@ public:
 	void setDName(const std::string& str);
 	void addComponent(std::unique_ptr<EntityComponent> lComponent);
 	void setGameEntityActions(GameEntityActions actions);
-	GameEntityActions getGameEntityActions() const;
+	const GameEntityActions& getGameEntityActions() const;
 	void setGameEntityEquipGroups(GameEntityEquipGroups equipGroups);
-	GameEntityEquipGroups getGameEntityEquipGroups() const;
+	const GameEntityEquipGroups& getGameEntityEquipGroups() const;
 
 	std::set<EntityActionID::E> getPerformableActions(GameEntity* target) const;
 

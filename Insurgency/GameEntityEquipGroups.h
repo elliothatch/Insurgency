@@ -45,7 +45,7 @@ public:
 
 	void addEquipGroup(EquipGroup equipGroup);
 	void setEquipGroups(std::vector<EquipGroup> equipGroups);
-	std::vector<EquipGroup> getEquipGroups() const;
+	const std::vector<EquipGroup>& getEquipGroups() const;
 
 private:
 	std::vector<EquipGroup> m_equipGroups;

@@ -52,22 +52,24 @@ int UIMenu_Creature::executeSelection()
 	else if(option == UIMenuOption_EntityActionDef::getMenuOption(EntityActionID::Equip))
 	{
 		GameEntity* entity = m_inventoryMenuList.m_entities.at(m_inventoryMenuList.m_selection);
-		GameEntity* oldEntity = nullptr;
+		std::set<GameEntity*> oldEntities;
 		const GameEntityEquipGroups::EquipGroup& equipGroup = *entity->getGameEntityEquipGroups().getEquipGroups().begin();
 		for(auto slotIt(equipGroup.m_equipSlots.begin()); slotIt != equipGroup.m_equipSlots.end(); slotIt++)
 		{
-			if(oldEntity = m_creature->getEquipSlotsComponent()->getEntityEquippedInSlot(*slotIt))
-				break;
+			if(GameEntity* oldEntity = m_creature->getEquipSlotsComponent()->getEntityEquippedInSlot(*slotIt))
+				oldEntities.insert(oldEntity);
 		}
 		if(m_gameTurnTimer->creatureEquipItem(*m_creature,*dynamic_cast<GameItem*>(entity),equipGroup))
 		{
 			m_inventoryMenuList.removeEntityMenuOption(m_previousMenuList->m_options[m_previousMenuList->m_selection]);
-			if(oldEntity)
+			for(auto oldEntityIt(oldEntities.begin()); oldEntityIt != oldEntities.end(); oldEntityIt++)
 			{
-				m_equipMenuList.removeEntityMenuOption(m_equipMenuList.m_options[m_equipMenuList.m_selection]);
-				m_inventoryMenuList.addEntity(oldEntity);
+				int entityIndex = m_equipMenuList.getEntitySelection(**oldEntityIt);
+				//if(entityIndex != -1) should always succeed.
+				m_equipMenuList.removeEntityMenuOption(m_equipMenuList.m_options[entityIndex]);
+				m_inventoryMenuList.addEntity(**oldEntityIt);
 			}
-			m_equipMenuList.addEntity(entity);
+			m_equipMenuList.addEntity(*entity);
 		}
 		else
 		{
@@ -81,7 +83,7 @@ int UIMenu_Creature::executeSelection()
 			*dynamic_cast<GameItem*>(entity)))
 		{
 			if(m_creature->getInventoryComponent()->isEntityContained(*entity))
-				m_inventoryMenuList.addEntity(entity);
+				m_inventoryMenuList.addEntity(*entity);
 			m_equipMenuList.removeEntityMenuOption(m_previousMenuList->m_options[m_previousMenuList->m_selection]);
 		}
 		else

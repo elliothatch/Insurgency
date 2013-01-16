@@ -19,7 +19,7 @@ void GameEntityEquipGroups::setEquipGroups(std::vector<GameEntityEquipGroups::Eq
 {
 	m_equipGroups = equipGroups;
 }
-std::vector<GameEntityEquipGroups::EquipGroup> GameEntityEquipGroups::getEquipGroups() const
+const std::vector<GameEntityEquipGroups::EquipGroup>& GameEntityEquipGroups::getEquipGroups() const
 {
 	return m_equipGroups;
 }
