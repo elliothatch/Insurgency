@@ -12,7 +12,7 @@ bool SFMLApp::OnInit(void)
 	cursesAImage.loadFromFile("assets/graphics/curses_640x300.bmp");
 	cursesAImage.createMaskFromColor(sf::Color::Magenta);
 	textureManager.addTextureFromImage(cursesAImage,"CursesA");
-	const sf::Texture& cursesA = textureManager.getTexture("CursesA");
+	//const sf::Texture& cursesA = textureManager.getTexture("CursesA");
 	SpriteManager& spriteManager = SpriteManager::getInstance();
 	char k = 0;
 	for(int i = 0; i < 16; i++)

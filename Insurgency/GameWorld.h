@@ -61,9 +61,9 @@ private:
 	//tile type definitions
 	//public for test
 public:
-	const IWorldTileTypeDef& m_tileTypeDef;
-	const ICreatureTypeDef& m_creatureTypeDef;
-	const IGameItemTypeDef& m_itemTypeDef;
+	const IWorldTileTypeDef* m_tileTypeDef;    //const
+	const ICreatureTypeDef* m_creatureTypeDef; //const
+	const IGameItemTypeDef* m_itemTypeDef;     //const
 private:
 	std::map<std::pair<int,int>, WorldRegion::ptr> m_regionCoord;
 

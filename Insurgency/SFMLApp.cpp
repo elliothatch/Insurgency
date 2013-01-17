@@ -146,7 +146,7 @@ void SFMLApp::decipherMessage(SFMLStateMessage* message)
 		}
 	case SFMLStateMessage::Type::PopState:
 		{
-		SFMLStateMessage_PopState* msg = dynamic_cast<SFMLStateMessage_PopState*>(message);
+		//SFMLStateMessage_PopState* msg = dynamic_cast<SFMLStateMessage_PopState*>(message);
 		popState();
 		break;
 		}

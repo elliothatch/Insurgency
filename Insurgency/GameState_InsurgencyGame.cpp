@@ -21,9 +21,9 @@ GameState_InsurgencyGame::~GameState_InsurgencyGame(void)
 void GameState_InsurgencyGame::OnAwake(const SFMLStateInfo* lStateInfo)
 {
 	m_gameWorld.test(std::pair<int,int>(-100,-100), std::pair<int,int>(100,100));
-	WorldTile::ptr tile01(new WorldTile(m_gameWorld.m_tileTypeDef.getTileType(130)));
-	WorldTile::ptr tile02(new WorldTile(m_gameWorld.m_tileTypeDef.getTileType(130)));
-	WorldTile::ptr tile03(new WorldTile(m_gameWorld.m_tileTypeDef.getTileType(130)));
+	WorldTile::ptr tile01(new WorldTile(m_gameWorld.m_tileTypeDef->getTileType(130)));
+	WorldTile::ptr tile02(new WorldTile(m_gameWorld.m_tileTypeDef->getTileType(130)));
+	WorldTile::ptr tile03(new WorldTile(m_gameWorld.m_tileTypeDef->getTileType(130)));
 
 	m_gameWorld.setTile(std::pair<int,int>(0,0),std::move(tile01));
 	m_gameWorld.setTile(std::pair<int,int>(6,-3),std::move(tile02));
@@ -46,9 +46,9 @@ void GameState_InsurgencyGame::OnAwake(const SFMLStateInfo* lStateInfo)
 	Creature& creature2(m_gameWorld.createCreature(1));
 	m_gameWorld.addCreatureToWorld(creature2, std::pair<int,int>(-5,5));
 
-	std::unique_ptr<SFMLGameWorldWindow> gameWorldWindow(new SFMLGameWorldWindow(m_window, m_gameWorld,std::pair<int,int>(0,0),std::pair<int,int>(30,20)));
+	std::unique_ptr<SFMLGameWorldWindow> gameWorldWindow(new SFMLGameWorldWindow(*m_window, m_gameWorld,std::pair<int,int>(0,0),std::pair<int,int>(30,20)));
 	m_gameWorldWindow = gameWorldWindow.get();
-	std::unique_ptr<SFMLWorldItemsWindow> worldItemsWindow(new SFMLWorldItemsWindow(m_window, sf::Vector2i(5,15), m_gameWorld, std::pair<int,int>(2,0)));
+	std::unique_ptr<SFMLWorldItemsWindow> worldItemsWindow(new SFMLWorldItemsWindow(*m_window, sf::Vector2i(5,15), m_gameWorld, std::pair<int,int>(2,0)));
 	m_worldItemsWindow = worldItemsWindow.get();
 	worldItemsWindow->setPosition(400,100);
 

@@ -106,8 +106,10 @@ std::istream& operator>>(std::istream& is, SFMLCursesChar& cursesChar)
 		is>>backR>>backG>>backB>>backA;
 		char c[2] = {static_cast<char>(std::atoi(character.c_str())), '\0'}; //convert multi-char integer string into one char value
 		cursesChar.setCharacter(std::string(c));
-		cursesChar.setCharColor(sf::Color(charR,charG,charB,charA));
-		cursesChar.setBackgroundColor(sf::Color(backR,backG,backB,backA));
+		cursesChar.setCharColor(sf::Color(
+			static_cast<sf::Uint8>(charR),static_cast<sf::Uint8>(charG),static_cast<sf::Uint8>(charB),static_cast<sf::Uint8>(charA)));
+		cursesChar.setBackgroundColor(sf::Color(
+			static_cast<sf::Uint8>(backR),static_cast<sf::Uint8>(backG),static_cast<sf::Uint8>(backB),static_cast<sf::Uint8>(backA)));
 	}
 	return is;
 }

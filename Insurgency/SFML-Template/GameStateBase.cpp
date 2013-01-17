@@ -3,7 +3,7 @@
 #include <algorithm>
 
 GameStateBase::GameStateBase(const sf::Window& window)
-	:m_window(window),
+	:m_window(&window),
 	 m_messages(),
 	m_transparent(false),
 	m_allowSubUpdate(false),

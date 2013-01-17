@@ -18,7 +18,7 @@ void GameState_CreatureMenu::OnAwake(const SFMLStateInfo* lStateInfo)
 	//if the info is valid (inventory component)
 	if(const StateInfo_CreatureMenu* creatureMenuInfo = dynamic_cast<const StateInfo_CreatureMenu*>(lStateInfo))
 	{
-		std::unique_ptr<SFMLUIMenu_Creature> creatureMenu(new SFMLUIMenu_Creature(m_window,
+		std::unique_ptr<SFMLUIMenu_Creature> creatureMenu(new SFMLUIMenu_Creature(*m_window,
 			*creatureMenuInfo->m_gameTurnTimer,creatureMenuInfo->m_creature));
 		m_creatureMenu = creatureMenu.get();
 		addGUIElement(std::move(creatureMenu));

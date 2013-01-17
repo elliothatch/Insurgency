@@ -110,7 +110,7 @@ void SFMLCursesTextBox::updateTextBox()
 				lastLineEnd = lineEnd;
 			//backtrack, print, next line
 			unsigned int col = 0;
-			unsigned int spacePadding = 0;
+			//unsigned int spacePadding = 0;
 			unsigned int wordCount = std::count(lineBegin, lastLineEnd, ' ') + 1;
 			unsigned int wordCountRemaining = wordCount;
 			unsigned int extraSpace = m_cursesSize.y - (lastLineEnd - lineBegin);

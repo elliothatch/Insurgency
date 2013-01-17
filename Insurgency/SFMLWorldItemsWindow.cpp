@@ -6,7 +6,7 @@ SFMLWorldItemsWindow::SFMLWorldItemsWindow(const sf::Window& window, const sf::V
 	const GameWorld& lGameWorld, std::pair<int,int> lWorldPoint)
 	:SFMLGUIElement(window),
      m_cursesWindow(window, lCharSize),
-	 m_gameWorld(lGameWorld),
+	 m_gameWorld(&lGameWorld),
 	 m_worldPoint(lWorldPoint)
 {
 	update(lWorldPoint); 
@@ -35,7 +35,7 @@ sf::FloatRect SFMLWorldItemsWindow::getGlobalBounds(void) const
 void SFMLWorldItemsWindow::update(std::pair<int,int> lWorldPoint)
 {
 	m_worldPoint = lWorldPoint;
-	std::vector<GameItem*>* gameItemPile(m_gameWorld.getItemPile(m_worldPoint));
+	std::vector<GameItem*>* gameItemPile(m_gameWorld->getItemPile(m_worldPoint));
 	m_cursesWindow.clearTiles();
 	if(gameItemPile)
 	{

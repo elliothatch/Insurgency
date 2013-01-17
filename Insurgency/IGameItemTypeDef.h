@@ -12,7 +12,7 @@ public:
 	{
 	}
 
-	virtual const GameItemType& getTileType(GameItemTypeID lTypeID) const = 0;
+	virtual const GameItemType& getItemType(GameItemTypeID lTypeID) const = 0;
 	//virtual void registerItemype(GameItemType lItemType) = 0;
 };
 

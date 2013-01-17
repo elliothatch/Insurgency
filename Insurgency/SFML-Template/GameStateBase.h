@@ -70,7 +70,7 @@ private:
 
 protected:
 	std::vector<SFMLStateMessage*> m_messages;
-	const sf::Window& m_window;
+	const sf::Window* m_window;
 private:
 	std::vector<std::unique_ptr<sf::Drawable>> m_displayList;
 	std::vector<SFMLGUIElement*> m_GUIElements;

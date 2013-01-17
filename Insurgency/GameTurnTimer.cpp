@@ -3,7 +3,7 @@
 
 
 GameTurnTimer::GameTurnTimer(GameWorld& gameWorld)
-	:m_gameWorld(gameWorld),
+	:m_gameWorld(&gameWorld),
 	m_curTurn(0)
 {
 }
@@ -16,7 +16,7 @@ GameTurnTimer::~GameTurnTimer(void)
 void GameTurnTimer::advanceTurn(void)
 {
 	//get the list of creatures and iterate through, updating each ones' turn
-	std::set<Creature::ptr>& creatureList = m_gameWorld.getCreatureSet();
+	std::set<Creature::ptr>& creatureList = m_gameWorld->getCreatureSet();
 	for(std::set<Creature::ptr>::iterator creatureIt = creatureList.begin();
 		creatureIt != creatureList.end(); creatureIt++)
 	{
@@ -77,7 +77,7 @@ std::vector<Creature*> GameTurnTimer::getCreaturesCanMove(void) const
 	//the vector we return
 	std::vector<Creature*> movableCreatures;
 	//temp set
-	std::set<Creature::ptr>& creatureList = m_gameWorld.getCreatureSet();
+	std::set<Creature::ptr>& creatureList = m_gameWorld->getCreatureSet();
 	for(std::set<Creature::ptr>::iterator creatureIt = creatureList.begin();
 		creatureIt != creatureList.end(); creatureIt++)
 	{
@@ -101,7 +101,7 @@ unsigned int GameTurnTimer::getTurnCount() const
 
 bool GameTurnTimer::moveCreature(Creature& creature, std::pair<int,int> loc)
 {
-	if(m_gameWorld.moveCreature(creature, loc))
+	if(m_gameWorld->moveCreature(creature, loc))
 	{
 		creature.changeActTurnRem(creature.getSpeed());
 		return true;
@@ -136,7 +136,7 @@ bool GameTurnTimer::moveCreatureDown(Creature& creature)
 
 bool GameTurnTimer::creaturePickUpItem(Creature& creature, GameItem& gameItem)
 {
-	if(m_gameWorld.putEntityInInventory(*creature.getInventoryComponent(), gameItem))
+	if(m_gameWorld->putEntityInInventory(*creature.getInventoryComponent(), gameItem))
 	{
 		creature.changeActTurnRem(3);
 		return true;
@@ -148,14 +148,14 @@ bool GameTurnTimer::creatureDropItem(Creature& creature, GameItem& gameItem)
 {
 	if(creature.getEquipSlotsComponent()->isEntityEquipped(gameItem))
 	{
-		if(m_gameWorld.entityUnequipEntity(creature, gameItem) && 
-			m_gameWorld.removeEntityFromInventory(*creature.getInventoryComponent(), gameItem))
+		if(m_gameWorld->entityUnequipEntity(creature, gameItem) && 
+			m_gameWorld->removeEntityFromInventory(*creature.getInventoryComponent(), gameItem))
 		{
 			creature.changeActTurnRem(3);
 			return true;
 		}
 	}
-	if(m_gameWorld.removeEntityFromInventory(*creature.getInventoryComponent(), gameItem))
+	if(m_gameWorld->removeEntityFromInventory(*creature.getInventoryComponent(), gameItem))
 	{
 		creature.changeActTurnRem(3);
 		return true;
@@ -170,7 +170,7 @@ void GameTurnTimer::waitCreature(Creature& creature)
 
 bool GameTurnTimer::creatureEquipItem(Creature& creature, GameItem& gameItem, const GameEntityEquipGroups::EquipGroup& equipGroup)
 {
-	if(m_gameWorld.entityEquipEntity(creature, gameItem, equipGroup))
+	if(m_gameWorld->entityEquipEntity(creature, gameItem, equipGroup))
 	{
 		creature.changeActTurnRem(3);
 		return true;
@@ -180,7 +180,7 @@ bool GameTurnTimer::creatureEquipItem(Creature& creature, GameItem& gameItem, co
 
 bool GameTurnTimer::creatureUnequipItem(Creature& creature, GameItem& gameItem)
 {
-	if(m_gameWorld.entityUnequipEntity(creature, gameItem))
+	if(m_gameWorld->entityUnequipEntity(creature, gameItem))
 	{
 		creature.changeActTurnRem(3);
 		return true;

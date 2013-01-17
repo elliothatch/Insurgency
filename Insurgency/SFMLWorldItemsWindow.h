@@ -20,7 +20,7 @@ public:
 
 private:
 	SFMLCursesWindow m_cursesWindow;
-	const GameWorld& m_gameWorld;
+	const GameWorld* m_gameWorld;
 	std::pair<int,int> m_worldPoint;
 };
 

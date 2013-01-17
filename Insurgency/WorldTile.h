@@ -15,6 +15,6 @@ public:
 	std::string getTitle(void) const;
 
 private:
-	const WorldTileType& m_type;
+	const WorldTileType* m_type;
 };
 

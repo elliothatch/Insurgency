@@ -27,7 +27,7 @@ public:
 	GameEntity* getEntity();
 
 private:
-	const EntityComponentID::E m_type;
+	EntityComponentID::E m_type; //const
 	GameEntity* m_entity;
 };
 

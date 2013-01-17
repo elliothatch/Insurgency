@@ -87,7 +87,8 @@ void SFMLUIMenu::moveCursorUp()
 }
 void SFMLUIMenu::moveCursorDown()
 {
-	if(m_selection ==  m_UIMenu->m_currentMenuList->m_options.size() - 1 || m_UIMenu->m_currentMenuList->m_options.size() == 1)
+	if(m_selection ==  static_cast<int>(m_UIMenu->m_currentMenuList->m_options.size() - 1) || 
+			m_UIMenu->m_currentMenuList->m_options.size() == 1)
 		moveSelection(0);
 	else
 		moveSelection(m_selection+1);

@@ -65,7 +65,7 @@ GameItemTypeDef::~GameItemTypeDef(void)
 {
 }
 
-const GameItemType& GameItemTypeDef::getTileType(GameItemTypeID lTypeID) const
+const GameItemType& GameItemTypeDef::getItemType(GameItemTypeID lTypeID) const
 {
 	return itemTypes[lTypeID];
 }

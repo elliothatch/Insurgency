@@ -5,9 +5,9 @@
 GameWorld::GameWorld(const IWorldTileTypeDef& lWorldTileTypeDef,
 					 const ICreatureTypeDef& lCreatureTypeDef,
 					 const IGameItemTypeDef& lGameItemTypeDef)
-	:m_tileTypeDef(lWorldTileTypeDef),
-	 m_creatureTypeDef(lCreatureTypeDef),
-	 m_itemTypeDef(lGameItemTypeDef),
+	:m_tileTypeDef(&lWorldTileTypeDef),
+	 m_creatureTypeDef(&lCreatureTypeDef),
+	 m_itemTypeDef(&lGameItemTypeDef),
 	 m_playerCreature(nullptr)
 {
 	
@@ -72,7 +72,7 @@ void GameWorld::removeCreatureFromWorld(Creature& lCreature)
 //create/destroy
 GameItem& GameWorld::createItem(GameItemTypeID lTypeID)
 {   
-	return **m_gameItems.insert(new GameItem(m_itemTypeDef.getTileType(lTypeID))).first;
+	return **m_gameItems.insert(new GameItem(m_itemTypeDef->getItemType(lTypeID))).first;
 }
 void GameWorld::destroyItem(GameItem& lGameItem)
 {
@@ -92,7 +92,7 @@ void GameWorld::destroyItem(GameItem& lGameItem)
 }
 Creature& GameWorld::createCreature(CreatureTypeID lTypeID)
 {
-	return **m_creatures.insert(new Creature(m_creatureTypeDef.getCreatureType(lTypeID))).first;
+	return **m_creatures.insert(new Creature(m_creatureTypeDef->getCreatureType(lTypeID))).first;
 }
 void GameWorld::destroyCreature(Creature& lCreature)
 {
@@ -341,7 +341,7 @@ void GameWorld::fillArea(std::pair<int,int> point1, std::pair<int,int> point2)
 				{
 					for(int l =0; l<10; l++)
 					{
-						WorldTile::ptr tile(new WorldTile(m_tileTypeDef.getTileType(WorldTileTypeID(0))));
+						WorldTile::ptr tile(new WorldTile(m_tileTypeDef->getTileType(WorldTileTypeID(0))));
 						temp->setTile(std::pair<int,int>(k,l),std::move(tile));
 					}
 				}

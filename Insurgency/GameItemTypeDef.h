@@ -9,7 +9,7 @@ public:
 	GameItemTypeDef(void);
 	virtual ~GameItemTypeDef(void);
 
-	virtual const GameItemType& getTileType(GameItemTypeID lTypeID) const;
+	virtual const GameItemType& getItemType(GameItemTypeID lTypeID) const;
 private:
 	std::array<GameItemType, kMaxItemTypes> itemTypes;
 };

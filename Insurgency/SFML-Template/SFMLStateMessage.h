@@ -27,7 +27,7 @@ public:
 	const SFMLStateMessage::Type::E getType(void) {return type;}
 
 private:
-	const SFMLStateMessage::Type::E type;
+	SFMLStateMessage::Type::E type; //const
 };
 
 class SFMLStateMessage_Close : public SFMLStateMessage

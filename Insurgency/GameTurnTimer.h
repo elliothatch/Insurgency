@@ -43,7 +43,7 @@ private:
 	//void processNPCTurn(void);
 
 private:
-	GameWorld& m_gameWorld;
+	GameWorld* m_gameWorld;
 	unsigned long m_curTurn;
 	std::vector<Creature*> m_actingCreatures;
 };

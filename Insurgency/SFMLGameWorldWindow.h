@@ -19,7 +19,7 @@ public:
 
 private:
 	SFMLCursesWindow m_cursesWindow;
-	const GameWorld& m_gameWorld;
+	const GameWorld* m_gameWorld;
 	sf::IntRect m_worldRect;
 };
 
