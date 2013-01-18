@@ -4,7 +4,7 @@ class SFMLEvent
 {
 public:
 	SFMLEvent(void);
-	~SFMLEvent(void);
+	virtual ~SFMLEvent(void);
 
 	void OnEvent(sf::Event& Event);
 
