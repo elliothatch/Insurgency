@@ -44,7 +44,7 @@ void UIMenuList_Entities::addEntity(GameEntity& entity)
 	m_entities.push_back(&entity);
 	std::unique_ptr<UIMenuList> actionList(new UIMenuList());
 	std::unique_ptr<UIMenuOption> listOption(new UIMenuOption(entity.getSName(), actionList.get()));
-	std::set<EntityActionID::E> actions = m_actor->getPerformableActions(&entity);
+	std::set<EntityActionID::E> actions = m_actor->getPerformableActions(entity);
 	for(std::set<EntityActionID::E>::iterator actionIt(actions.begin()); actionIt != actions.end(); actionIt++)
 	{
 		actionList->m_options.push_back(UIMenuOption_EntityActionDef::getMenuOption(*actionIt));

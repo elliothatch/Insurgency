@@ -38,7 +38,7 @@ public:
 	void setGameEntityEquipGroups(GameEntityEquipGroups equipGroups);
 	const GameEntityEquipGroups& getGameEntityEquipGroups() const;
 
-	std::set<EntityActionID::E> getPerformableActions(GameEntity* target) const;
+	std::set<EntityActionID::E> getPerformableActions(const GameEntity& target) const;
 
 protected:
 	std::map<EntityComponentID::E, std::unique_ptr<EntityComponent>> m_components;

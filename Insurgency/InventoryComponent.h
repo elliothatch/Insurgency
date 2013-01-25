@@ -20,9 +20,9 @@ public:
 	int getNumEntities() const;
 	std::vector<GameEntity*> getItemList() const;
 
-	bool isEntityContained(GameEntity& lEntity) const;
+	bool isEntityContained(const GameEntity& lEntity) const;
 
-	bool canAddEntity(GameEntity& lEntity) const;
+	bool canAddEntity(const GameEntity& lEntity) const;
 
 private:
 	std::vector<GameEntity*> m_storage;

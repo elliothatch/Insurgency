@@ -128,32 +128,32 @@ const GameEntityEquipGroups& GameEntity::getGameEntityEquipGroups() const
 	return m_equipGroups;
 }
 
-std::set<EntityActionID::E> GameEntity::getPerformableActions(GameEntity* target) const
+std::set<EntityActionID::E> GameEntity::getPerformableActions(const GameEntity& target) const
 {
 	std::set<EntityActionID::E> returnSet;
-	if(target->getEnclosingEntity() == nullptr) //target is in the world
+	if(target.getEnclosingEntity() == nullptr) //target is in the world
 	{
 		//check for stuff
-		returnSet = target->getGameEntityActions().getWorldActions();
+		returnSet = target.getGameEntityActions().getWorldActions();
 	}
-	if(target->getEnclosingEntity() == this) //it is in my possession
+	if(target.getEnclosingEntity() == this) //it is in my possession
 	{
 		//in my inventory
 		if(InventoryComponent* invComponent = dynamic_cast<InventoryComponent*>(getComponent(EntityComponentID::Inventory)))
 		{
-			if(invComponent->isEntityContained(*target))
+			if(invComponent->isEntityContained(target))
 			{
-			returnSet = target->getGameEntityActions().getInventoryActions();
+			returnSet = target.getGameEntityActions().getInventoryActions();
 			//check what I can do
 			}
 		}
 		//equipped
 		if(EquipSlotsComponent* equipComponent = dynamic_cast<EquipSlotsComponent*>(getComponent(EntityComponentID::EquipSlots)))
 		{
-			if(equipComponent->isEntityEquipped(*target))
+			if(equipComponent->isEntityEquipped(target))
 			{
 				//check what I can do
-				returnSet = target->getGameEntityActions().getEquippedActions();
+				returnSet = target.getGameEntityActions().getEquippedActions();
 			}
 		}
 	}

@@ -53,7 +53,7 @@ std::vector<GameEntity*> InventoryComponent::getItemList() const
 	return m_storage;
 }
 
-bool InventoryComponent::isEntityContained(GameEntity& lEntity) const
+bool InventoryComponent::isEntityContained(const GameEntity& lEntity) const
 {
 	if(std::find(m_storage.begin(), m_storage.end(), &lEntity) != m_storage.end())
 		return true;
@@ -61,7 +61,7 @@ bool InventoryComponent::isEntityContained(GameEntity& lEntity) const
 		return false;
 }
 
-bool InventoryComponent::canAddEntity(GameEntity& lEntity) const
+bool InventoryComponent::canAddEntity(const GameEntity& lEntity) const
 {
 	//TODO: add implementation
 	return true;

@@ -18,9 +18,9 @@ public:
 			  const IGameItemTypeDef& lGameItemTypeDef);
 	~GameWorld(void);
 	
-	void addItemToWorld(GameItem& lGameItem, std::pair<int,int> loc);	  //DOES NOT CREATE ITEM
+	void addItemToWorld(GameItem& lGameItem, const std::pair<int,int>& loc);	  //DOES NOT CREATE ITEM
 	void removeItemFromWorld(GameItem& lGameItem); //DOES NOT DELETE ITEM
-	void addCreatureToWorld(Creature& lCreature, std::pair<int,int> loc); //does not create creature
+	void addCreatureToWorld(Creature& lCreature, const std::pair<int,int>& loc); //does not create creature
 	void removeCreatureFromWorld(Creature& lCreature); //does not delete creature
 
 	//create/destroy
@@ -30,8 +30,8 @@ public:
 	void destroyCreature(Creature& lCreature);
 
 	//get entities
-	std::vector<GameItem*>* getItemPile(std::pair<int,int> loc) const;
-	Creature* getCreature(std::pair<int,int> loc) const;
+	std::vector<GameItem*>* getItemPile(const std::pair<int,int>& loc) const;
+	Creature* getCreature(const std::pair<int,int>& loc) const;
 
 	std::set<Creature::ptr>& getCreatureSet(void) const;
 	
@@ -39,8 +39,8 @@ public:
 	void setPlayerCreature(Creature& lCreature);
 
 	//events in the world
-	void moveGameItem(GameItem& lGameItem, std::pair<int,int> loc);
-	bool moveCreature(Creature& lCreature, std::pair<int,int> loc);
+	void moveGameItem(GameItem& lGameItem, const std::pair<int,int>& loc);
+	bool moveCreature(Creature& lCreature, const std::pair<int,int>& loc);
 	bool putEntityInInventory(InventoryComponent& lContainer, GameEntity& lTarget);
 	bool removeEntityFromInventory(InventoryComponent& lContainer, GameEntity& lTarget);
 
@@ -48,14 +48,14 @@ public:
 	bool entityUnequipEntity(GameEntity& holder, GameEntity& target);
 
 	//public for testing
-	WorldTile& lookupTile(std::pair<int,int> loc) const;
-	void setTile(std::pair<int,int> loc, WorldTile::ptr lTile); //assumes the region exists
+	WorldTile& lookupTile(const std::pair<int,int>& loc) const;
+	void setTile(const std::pair<int,int>& loc, WorldTile::ptr lTile); //assumes the region exists
 	//testing
-	void test(std::pair<int,int> point1, std::pair<int,int> point2){fillArea(point1, point2);}
+	void test(const std::pair<int,int>& point1, const std::pair<int,int>& point2){fillArea(point1, point2);}
 private:
-	void fillArea(std::pair<int,int> point1, std::pair<int,int> point2);
-	std::pair<int,int> lookupRegion(std::pair<int,int> loc) const;
-	std::pair<int,int> lookupRegionTilePos(std::pair<int,int> loc) const;
+	void fillArea(const std::pair<int,int>& point1, const std::pair<int,int>& point2);
+	std::pair<int,int> lookupRegion(const std::pair<int,int>& loc) const;
+	std::pair<int,int> lookupRegionTilePos(const std::pair<int,int>& loc) const;
 
 	//members
 	//tile type definitions

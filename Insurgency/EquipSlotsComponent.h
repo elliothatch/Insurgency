@@ -15,7 +15,7 @@ public:
 	void equipEntity(GameEntity& target, const GameEntityEquipGroups::EquipGroup& equipGroup);
 	void unequipEntity(GameEntity& target);
 	std::map<GameEntity*,GameEntityEquipGroups::EquipGroup> getEquippedEntities() const;
-	bool isEntityEquipped(GameEntity& target) const;
+	bool isEntityEquipped(const GameEntity& target) const;
 
 	void addEquipSlot(EntityEquipSlotID::E slot);
 	bool hasEquipSlot(EntityEquipSlotID::E slot) const;

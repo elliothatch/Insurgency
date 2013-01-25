@@ -53,9 +53,9 @@ std::map<GameEntity*,GameEntityEquipGroups::EquipGroup> EquipSlotsComponent::get
 	return m_equippedEntities;
 }
 
-bool EquipSlotsComponent::isEntityEquipped(GameEntity& target) const
+bool EquipSlotsComponent::isEntityEquipped(const GameEntity& target) const
 {
-	return (m_equippedEntities.find(&target) != m_equippedEntities.end());
+	return (m_equippedEntities.find(const_cast<GameEntity*>(&target)) != m_equippedEntities.end());
 }
 
 void EquipSlotsComponent::addEquipSlot(EntityEquipSlotID::E slot)

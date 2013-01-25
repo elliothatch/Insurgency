@@ -17,7 +17,7 @@ GameWorld::~GameWorld(void)
 }
 
 //add/remove
-void GameWorld::addItemToWorld(GameItem& lGameItem, std::pair<int,int> loc)
+void GameWorld::addItemToWorld(GameItem& lGameItem, const std::pair<int,int>& loc)
 {
 	std::map<std::pair<int,int>,std::vector<GameItem*>>::iterator pileIt(m_gameItemCoord.find(loc));
 	//if there is no pile there
@@ -50,7 +50,7 @@ void GameWorld::removeItemFromWorld(GameItem& lGameItem)
 			}
 		}
 }
-void GameWorld::addCreatureToWorld(Creature& lCreature, std::pair<int,int> loc)
+void GameWorld::addCreatureToWorld(Creature& lCreature, const std::pair<int,int>& loc)
 {
 	//add it to the vector
 	//creatureList.push_back(lCreature);
@@ -111,7 +111,7 @@ void GameWorld::destroyCreature(Creature& lCreature)
 		m_creatures.erase(creatureIt);
 }
 //get entities
-std::vector<GameItem*>* GameWorld::getItemPile(std::pair<int,int> loc) const
+std::vector<GameItem*>* GameWorld::getItemPile(const std::pair<int,int>& loc) const
 {
 	std::map<std::pair<int,int>,std::vector<GameItem*>>::const_iterator pileIt = m_gameItemCoord.find(loc);
 		//if there is a pile there
@@ -122,7 +122,7 @@ std::vector<GameItem*>* GameWorld::getItemPile(std::pair<int,int> loc) const
 		else
 			return nullptr;
 }
-Creature* GameWorld::getCreature(std::pair<int,int> loc) const
+Creature* GameWorld::getCreature(const std::pair<int,int>& loc) const
 {
 	std::map<std::pair<int,int>, Creature*>::const_iterator creatureIt = m_creatureCoord.find(loc);
 	//if there is a creature there
@@ -147,12 +147,12 @@ void GameWorld::setPlayerCreature(Creature& lCreature)
 	m_playerCreature = &lCreature;
 }
 //events
-void GameWorld::moveGameItem(GameItem& lGameItem, std::pair<int,int> loc)
+void GameWorld::moveGameItem(GameItem& lGameItem, const std::pair<int,int>& loc)
 {
 	removeItemFromWorld(lGameItem);
 	addItemToWorld(lGameItem, loc);
 }
-bool GameWorld::moveCreature(Creature& lCreature, std::pair<int,int> loc)
+bool GameWorld::moveCreature(Creature& lCreature, const std::pair<int,int>& loc)
 {
 	//if it is passable
 	if(lookupTile(loc).isPassable() && !getCreature(loc))
@@ -288,17 +288,17 @@ bool GameWorld::entityUnequipEntity(GameEntity& holder, GameEntity& target)
 }
 
 //lookup world-space
-WorldTile& GameWorld::lookupTile(std::pair<int,int> loc) const
+WorldTile& GameWorld::lookupTile(const std::pair<int,int>& loc) const
 {
 	std::pair<int,int> tileLoc (lookupRegionTilePos(loc));
 	return m_regionCoord.find(lookupRegion(loc))->second->getTile(tileLoc);
 }
-std::pair<int,int> GameWorld::lookupRegion(std::pair<int,int> loc) const 
+std::pair<int,int> GameWorld::lookupRegion(const std::pair<int,int>& loc) const 
 {
 	return std::pair<int,int>  (int(floor(float(loc.first)/float(WorldRegion::kRegionSize))),
 								int(floor(float(loc.second)/float(WorldRegion::kRegionSize))));
 }
-std::pair<int,int> GameWorld::lookupRegionTilePos(std::pair<int,int> loc) const
+std::pair<int,int> GameWorld::lookupRegionTilePos(const std::pair<int,int>& loc) const
 {
 	std::pair<int,int> tileLoc;
 	//xcoord
@@ -318,7 +318,7 @@ std::pair<int,int> GameWorld::lookupRegionTilePos(std::pair<int,int> loc) const
 	return tileLoc;
 }
 //set world-space
-void GameWorld::fillArea(std::pair<int,int> point1, std::pair<int,int> point2)
+void GameWorld::fillArea(const std::pair<int,int>& point1, const std::pair<int,int>& point2)
 {
 	const int x1 = point1.first;
 	const int x2 = point2.first;
@@ -349,7 +349,7 @@ void GameWorld::fillArea(std::pair<int,int> point1, std::pair<int,int> point2)
 			}
 		}
 }
-void GameWorld::setTile(std::pair<int,int> loc, WorldTile::ptr lTile)
+void GameWorld::setTile(const std::pair<int,int>& loc, WorldTile::ptr lTile)
 {
 	std::pair<int,int> regionLoc = lookupRegion(loc);
 	std::pair<int,int> tileLoc = lookupRegionTilePos(loc);
