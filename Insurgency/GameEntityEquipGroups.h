@@ -7,6 +7,7 @@ struct EntityEquipSlotID
 	{
 		HeldRight = 0, //held in your hand
 		HeldLeft,
+		//armor slots
 		HandRight,     //gloves, etc.
 		HandLeft,
 		ForearmRight,
@@ -25,6 +26,24 @@ struct EntityEquipSlotID
 		ShinLeft,
 		FootRight,
 		FootLeft,
+		//on top of armor e.g. holster
+		OnHandRight,
+		OnHandLeft,
+		OnForearmRight,
+		OnForearmLeft,
+		OnShoulderRight,
+		OnShoulderLeft,
+		OnNeck,
+		OnHead,
+		OnChest,
+		OnAbdomen,
+		OnGroin,
+		OnThighRight,
+		OnThighLeft,
+		OnShinRight,
+		OnShinLeft,
+		OnFootRight,
+		OnFootLeft,
 		Count
 	};
 };
