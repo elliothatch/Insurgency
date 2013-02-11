@@ -27,11 +27,7 @@ GameItemTypeDef::GameItemTypeDef(void)
 	handgunEquipGroups.addEquipGroup(EntityEquipSlotID::HeldLeft);
 
 	GameEntityEquipGroups::EquipGroup equipPants;
-	equipPants.m_equipSlots.insert(EntityEquipSlotID::Groin);
-	equipPants.m_equipSlots.insert(EntityEquipSlotID::ThighRight);
-	equipPants.m_equipSlots.insert(EntityEquipSlotID::ThighLeft);
-	equipPants.m_equipSlots.insert(EntityEquipSlotID::ShinRight);
-	equipPants.m_equipSlots.insert(EntityEquipSlotID::ShinLeft);
+	equipPants.m_equipSlots.insert(EntityEquipSlotID::Pants);
 	GameEntityEquipGroups pantsEquipGroups;
 	pantsEquipGroups.addEquipGroup(equipPants);
 

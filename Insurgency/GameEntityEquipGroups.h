@@ -7,7 +7,12 @@ struct EntityEquipSlotID
 	{
 		HeldRight = 0, //held in your hand
 		HeldLeft,
-		//armor slots
+		//armor
+		Shirt,
+		Pants,
+		Shoes,
+		Gloves,
+		//"on" equip slots
 		HandRight,     //gloves, etc.
 		HandLeft,
 		ForearmRight,
@@ -26,24 +31,6 @@ struct EntityEquipSlotID
 		ShinLeft,
 		FootRight,
 		FootLeft,
-		//on top of armor e.g. holster
-		OnHandRight,
-		OnHandLeft,
-		OnForearmRight,
-		OnForearmLeft,
-		OnShoulderRight,
-		OnShoulderLeft,
-		OnNeck,
-		OnHead,
-		OnChest,
-		OnAbdomen,
-		OnGroin,
-		OnThighRight,
-		OnThighLeft,
-		OnShinRight,
-		OnShinLeft,
-		OnFootRight,
-		OnFootLeft,
 		Count
 	};
 };
@@ -53,10 +40,20 @@ class GameEntityEquipGroups
 public:
 	struct EquipGroup
 	{
-		EquipGroup():m_equipSlots(){}
-		EquipGroup(EntityEquipSlotID::E equipSlot):m_equipSlots(){m_equipSlots.insert(equipSlot);}
-		EquipGroup(std::set<EntityEquipSlotID::E> equipSlots):m_equipSlots(equipSlots){}
+		//ctors
+		EquipGroup():m_equipSlots(), m_name(""){}
+		EquipGroup(EntityEquipSlotID::E equipSlot):m_equipSlots(),m_name(""){m_equipSlots.insert(equipSlot);}
+		EquipGroup(std::set<EntityEquipSlotID::E> equipSlots):m_equipSlots(equipSlots),m_name(""){}
+		EquipGroup(const std::string& name):m_equipSlots(), m_name(name){}
+		EquipGroup(EntityEquipSlotID::E equipSlot,const std::string& name):m_equipSlots(),m_name(name){m_equipSlots.insert(equipSlot);}
+		EquipGroup(std::set<EntityEquipSlotID::E> equipSlots,const std::string& name):m_equipSlots(equipSlots),m_name(name){}
+
+		std::string getName() const;
+		std::string setName(const std::string& name) {m_name = name;}
+		
 		std::set<EntityEquipSlotID::E> m_equipSlots;
+	private:
+		std::string m_name;
 	};
 
 	GameEntityEquipGroups(void);
@@ -65,6 +62,8 @@ public:
 	void addEquipGroup(EquipGroup equipGroup);
 	void setEquipGroups(std::vector<EquipGroup> equipGroups);
 	const std::vector<EquipGroup>& getEquipGroups() const;
+
+	static std::string getEquipSlotName(EntityEquipSlotID::E id);
 
 private:
 	std::vector<EquipGroup> m_equipGroups;
