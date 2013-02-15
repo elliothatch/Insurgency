@@ -1,5 +1,6 @@
 #pragma once
 #include "GameItemType.h"
+#include "EntityComponentIncludes.h"
 class IGameItemTypeDef
 {
 public:

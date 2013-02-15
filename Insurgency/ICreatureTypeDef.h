@@ -1,7 +1,8 @@
 #pragma once
 #include "CreatureType.h"
-#include "InventoryComponent.h"
-#include "EquipSlotsComponent.h"
+
+#include "EntityComponentIncludes.h"
+
 class ICreatureTypeDef
 {
 public:

@@ -7,7 +7,7 @@ struct EntityComponentID
 	{
 		Inventory,
 		EquipSlots,
-		Gun,
+		RangedWeapon,
 		Count
 	};
 };

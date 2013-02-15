@@ -125,6 +125,7 @@ xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
     <ClInclude Include="CreatureStatEffect.h" />
     <ClInclude Include="CreatureType.h" />
     <ClInclude Include="CreatureTypeDef.h" />
+    <ClInclude Include="EntityComponentIncludes.h" />
     <ClInclude Include="EquipSlotsComponent.h" />
     <ClInclude Include="GameEntityActions.h" />
     <ClInclude Include="EntityComponent.h" />
@@ -148,6 +149,7 @@ xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
     <ClInclude Include="InputSourceListCurses.h" />
     <ClInclude Include="InventoryComponent.h" />
     <ClInclude Include="IWorldTileTypeDef.h" />
+    <ClInclude Include="RangedWeaponComponent.h" />
     <ClInclude Include="SFML-Template\AnimatedSprite.h" />
     <ClInclude Include="SFML-Template\FontManager.h" />
     <ClInclude Include="SFML-Template\Functor.h" />
@@ -205,6 +207,7 @@ xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Insurgency.cpp" />
     <ClCompile Include="InventoryComponent.cpp" />
+    <ClCompile Include="RangedWeaponComponent.cpp" />
     <ClCompile Include="SFML-Template\AnimatedSprite.cpp" />
     <ClCompile Include="SFML-Template\FontManager.cpp" />
     <ClCompile Include="SFML-Template\GameStateBase.cpp" />
