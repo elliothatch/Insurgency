@@ -182,8 +182,9 @@ void SFMLUIMenu::addMenuListTextBox(UIMenuList* list, int branchLevel, bool acce
 
 		textBox.setText((*optionIt)->m_name);
 		float yOffset = 0.0f;
-		if(branchLevel > 0)
-			yOffset = static_cast<float>(m_UIMenu->m_branch[branchLevel-1]->m_selection) * 12.0f;
+		for(int i = 0; i<branchLevel; i++)
+			yOffset += static_cast<float>(m_UIMenu->m_branch.at(i)->m_selection) * 12.0f;
+
 		textBox.setPosition(static_cast<float>(branchLevel)*8.0f*20.0f,static_cast<float>(optionIndex)*12.0f+yOffset);
 		m_menuOptionTextBoxes.at(branchLevel).push_back(textBox);
 	}
