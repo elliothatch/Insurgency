@@ -37,6 +37,7 @@ std::string GameEntityEquipGroups::EquipGroup::getName() const
 		retVal += ", ";
 	}
 	retVal.pop_back();
+	retVal.pop_back();
 	return retVal;
 }
 
