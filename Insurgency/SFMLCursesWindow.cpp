@@ -84,8 +84,8 @@ void SFMLCursesWindow::setBorder(const SFMLCursesChar& top, const SFMLCursesChar
 }
 void SFMLCursesWindow::setTile(const SFMLCursesChar& cursesChar, const sf::Vector2i& tilePos)
 {
-	m_tiles[tilePos.x][tilePos.y] = cursesChar;
-	m_tiles[tilePos.x][tilePos.y].setPosition(static_cast<float>(tilePos.y)*8.0f, static_cast<float>(tilePos.x)*12.0f);
+	m_tiles.at(tilePos.x).at(tilePos.y) = cursesChar;
+	m_tiles.at(tilePos.x).at(tilePos.y).setPosition(static_cast<float>(tilePos.y)*8.0f, static_cast<float>(tilePos.x)*12.0f);
 }
 void SFMLCursesWindow::setTiles(const std::string& text, const sf::Color& textColor, const sf::Color& backColor, const sf::Vector2i& tilePos)
 {
@@ -133,7 +133,7 @@ std::ostream& operator<<(std::ostream& os, const SFMLCursesWindow& cursesWindow)
 	{
 		for(int j = 0; j<cursesWindow.m_cursesSize.y; j++) //columns
 		{
-			os<<cursesWindow.m_tiles[i][j];
+			os<<cursesWindow.m_tiles.at(i).at(j);
 		}
 	}
 	return os;
