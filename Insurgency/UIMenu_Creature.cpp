@@ -39,57 +39,60 @@ void UIMenu_Creature::changeSelection()
 int UIMenu_Creature::executeSelection()
 {
 	UIMenuOption* option = m_currentMenuList->m_options[m_selection];
+	int selectionStep = option->m_selectionStep;
 
-	if(option == UIMenuOption_EntityActionDef::getMenuOption(EntityActionID::Drop))
+	if(option->m_tag == GameEntityActions::getActionName(EntityActionID::Drop))
 	{
 		UIMenuList_Entities* entityMenuList = dynamic_cast<UIMenuList_Entities*>(m_previousMenuList);
 		if(m_gameTurnTimer->creatureDropItem(*m_creature, 
 			*dynamic_cast<GameItem*>(entityMenuList->m_entities.at(m_previousMenuList->m_selection))))
 		{
-			entityMenuList->removeEntityMenuOption(m_previousMenuList->m_options[m_previousMenuList->m_selection]);
+			entityMenuList->removeEntity(m_previousMenuList->m_selection);
 		}
 	}
-	else if(option == UIMenuOption_EntityActionDef::getMenuOption(EntityActionID::Equip))
+	else if(option->m_tag == "GameEntityEquipGroup")
 	{
-		GameEntity* entity = m_inventoryMenuList.m_entities.at(m_inventoryMenuList.m_selection);
-		std::set<GameEntity*> oldEntities;
-		const GameEntityEquipGroups::EquipGroup& equipGroup = *entity->getGameEntityEquipGroups().getEquipGroups().begin();
-		for(auto slotIt(equipGroup.m_equipSlots.begin()); slotIt != equipGroup.m_equipSlots.end(); slotIt++)
+		if(m_previousMenuList->m_options[m_previousMenuList->m_selection]->m_tag == GameEntityActions::getActionName(EntityActionID::Equip))
 		{
-			if(GameEntity* oldEntity = m_creature->getEquipSlotsComponent()->getEntityEquippedInSlot(*slotIt))
-				oldEntities.insert(oldEntity);
-		}
-		if(m_gameTurnTimer->creatureEquipItem(*m_creature,*dynamic_cast<GameItem*>(entity),equipGroup))
-		{
-			m_inventoryMenuList.removeEntityMenuOption(m_previousMenuList->m_options[m_previousMenuList->m_selection]);
-			for(auto oldEntityIt(oldEntities.begin()); oldEntityIt != oldEntities.end(); oldEntityIt++)
+			GameEntity* entity = m_inventoryMenuList.m_entities.at(m_inventoryMenuList.m_selection);
+			std::set<GameEntity*> oldEntities;
+			const GameEntityEquipGroups::EquipGroup& equipGroup = entity->getGameEntityEquipGroups().getEquipGroups().at(m_selection);
+			for(auto slotIt(equipGroup.m_equipSlots.begin()); slotIt != equipGroup.m_equipSlots.end(); slotIt++)
 			{
-				int entityIndex = m_equipMenuList.getEntitySelection(**oldEntityIt);
-				//if(entityIndex != -1) should always succeed.
-				m_equipMenuList.removeEntityMenuOption(m_equipMenuList.m_options[entityIndex]);
-				m_inventoryMenuList.addEntity(**oldEntityIt);
+				if(GameEntity* oldEntity = m_creature->getEquipSlotsComponent()->getEntityEquippedInSlot(*slotIt))
+					oldEntities.insert(oldEntity);
 			}
-			m_equipMenuList.addEntity(*entity);
-		}
-		else
-		{
-			return 1;
+			if(m_gameTurnTimer->creatureEquipItem(*m_creature,*dynamic_cast<GameItem*>(entity),equipGroup))
+			{
+				m_inventoryMenuList.removeEntity(m_branch.at(m_branch.size()-3)->m_selection);
+				for(auto oldEntityIt(oldEntities.begin()); oldEntityIt != oldEntities.end(); oldEntityIt++)
+				{
+					int entityIndex = m_equipMenuList.getEntitySelection(**oldEntityIt);
+					//if(entityIndex != -1) should always succeed.
+					m_equipMenuList.removeEntity(entityIndex);
+					m_inventoryMenuList.addEntity(**oldEntityIt);
+				}
+				m_equipMenuList.addEntity(*entity);
+			}
+			else
+			{
+				return 1;
+			}
 		}
 	}
-	else if(option == UIMenuOption_EntityActionDef::getMenuOption(EntityActionID::Unequip))
+	else if(option->m_tag == GameEntityActions::getActionName(EntityActionID::Unequip))
 	{
 		GameEntity* entity = m_equipMenuList.m_entities.at(m_equipMenuList.m_selection);
-		if(m_gameTurnTimer->creatureUnequipItem(*m_creature,
-			*dynamic_cast<GameItem*>(entity)))
+		if(m_gameTurnTimer->creatureUnequipItem(*m_creature, *dynamic_cast<GameItem*>(entity)))
 		{
 			if(m_creature->getInventoryComponent()->isEntityContained(*entity))
 				m_inventoryMenuList.addEntity(*entity);
-			m_equipMenuList.removeEntityMenuOption(m_previousMenuList->m_options[m_previousMenuList->m_selection]);
+			m_equipMenuList.removeEntity(m_previousMenuList->m_selection);
 		}
 		else
 		{
 			return 1;
 		}
 	}
-	return option->m_selectionStep;
+	return selectionStep;
 }

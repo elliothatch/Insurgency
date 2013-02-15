@@ -89,11 +89,19 @@ void UIMenu::stepRight()
 						}
 					}
 					// the step back and forth shakes out select events and updates the labels
+					/*
 					while(selectionStep--)
 					{
 						stepLeft();
 					}
 					stepRight();
+					*/
+					int trunkDepth = m_branch.size() - selectionStep;
+					setTrunk(m_branch[0]);
+					while(trunkDepth--)
+					{
+						stepRight();
+					}
 				}
 			}
 		}

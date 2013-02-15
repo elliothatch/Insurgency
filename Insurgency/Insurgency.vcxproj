@@ -168,7 +168,6 @@ xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
     <ClInclude Include="SFMLUIMenu_Creature.h" />
     <ClInclude Include="StateInfo_CreatureMenu.h" />
     <ClInclude Include="StateInfo_EntityActions.h" />
-    <ClInclude Include="UIMenuOption_EntityActionDef.h" />
     <ClInclude Include="UIMenu_Creature.h" />
     <ClInclude Include="UIMenuList_Entities.h" />
     <ClInclude Include="UIMenu.h" />
@@ -227,7 +226,6 @@ xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
     <ClCompile Include="SFMLCursesTextBox.cpp" />
     <ClCompile Include="SFMLUIMenu.cpp" />
     <ClCompile Include="SFMLUIMenu_Creature.cpp" />
-    <ClCompile Include="UIMenuOption_EntityActionDef.cpp" />
     <ClCompile Include="UIMenu_Creature.cpp" />
     <ClCompile Include="UIMenuList_Entities.cpp" />
     <ClCompile Include="UIMenu.cpp" />

@@ -3,15 +3,13 @@
 
 
 UIMenuList_Entities::UIMenuList_Entities(void)
-	:m_entityOptions(),
-	 m_entities(),
+	:m_entities(),
 	 m_actor(nullptr)
 {
 }
 
 UIMenuList_Entities::UIMenuList_Entities(InventoryComponent& inventory, GameEntity& actor)
-	:m_entityOptions(),
-	 m_entities(),
+	:m_entities(),
 	 m_actor(&actor)
 {
 	m_accessible = false;
@@ -23,8 +21,7 @@ UIMenuList_Entities::UIMenuList_Entities(InventoryComponent& inventory, GameEnti
 }
 
 UIMenuList_Entities::UIMenuList_Entities(EquipSlotsComponent& equipSlots, GameEntity& actor)
-	:m_entityOptions(),
-	 m_entities(),
+	:m_entities(),
 	 m_actor(&actor)
 {
 	m_accessible = false;
@@ -47,27 +44,37 @@ void UIMenuList_Entities::addEntity(GameEntity& entity)
 	std::set<EntityActionID::E> actions = m_actor->getPerformableActions(entity);
 	for(std::set<EntityActionID::E>::iterator actionIt(actions.begin()); actionIt != actions.end(); actionIt++)
 	{
-		actionList->m_options.push_back(UIMenuOption_EntityActionDef::getMenuOption(*actionIt));
+		std::unique_ptr<UIMenuOption> actionOption(new UIMenuOption(GameEntityActions::getActionName(*actionIt)));
+		actionOption->m_selectionStep = GameEntityActions::getActionSelectionStep(*actionIt);
+		actionOption->m_tag = actionOption->m_name;
+		std::unique_ptr<UIMenuList> subActionList(nullptr);
+
+		//push equip groups
+		if(actionOption->m_tag == GameEntityActions::getActionName(EntityActionID::Equip))
+		{
+			subActionList.reset(new UIMenuList());
+			auto& equipGroups = entity.getGameEntityEquipGroups().getEquipGroups();
+			for(auto entityIt = equipGroups.begin(); entityIt != equipGroups.end(); entityIt++)
+			{
+				std::unique_ptr<UIMenuOption> equipGroupOption(new UIMenuOption(entityIt->getName(),nullptr,"GameEntityEquipGroup"));
+				equipGroupOption->m_selectionStep = GameEntityActions::getActionSelectionStep(EntityActionID::Equip);
+				subActionList->pushNewMenuOption(std::unique_ptr<UIMenuList>(nullptr), std::move(equipGroupOption));
+			}
+		}
+		actionOption->m_target = subActionList.get();
+		actionList->pushNewMenuOption(std::move(subActionList), std::move(actionOption));
+		//pushNewMenuOption(std::move(actionList),std::move(listOption));
 	}
 	if(actionList->m_options.size() == 0)
 		actionList->m_accessible = false;
-	m_options.push_back(listOption.get());
-	m_entityOptions.push_back(std::make_pair<std::unique_ptr<UIMenuList>,std::unique_ptr<UIMenuOption>>(
-		std::move(actionList),std::move(listOption)));
+	pushNewMenuOption(std::move(actionList), std::move(listOption));
 	m_accessible = true;
 }
 
-void UIMenuList_Entities::removeEntityMenuOption(UIMenuOption* menuOption)
+void UIMenuList_Entities::removeEntity(int index)
 {
-	std::vector<UIMenuOption*>::iterator optionIt = std::find(m_options.begin(), m_options.end(), menuOption);
-	int optionIndex = optionIt - m_options.begin();
-	m_options.erase(optionIt);
-	m_entities.erase(m_entities.begin() + optionIndex);
-	m_entityOptions.erase(m_entityOptions.begin() + optionIndex);
-	if(m_selection >= static_cast<int>(m_options.size()) && m_selection != 0)
-		m_selection = m_options.size()-1;
-	if(m_options.size() == 0)
-		m_accessible = false;
+	m_entities.erase(m_entities.begin() + index);
+	eraseMenuOption(index);
 }
 
 int UIMenuList_Entities::getEntitySelection(const GameEntity& entity)

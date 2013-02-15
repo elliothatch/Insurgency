@@ -56,3 +56,34 @@ std::set<EntityActionID::E> GameEntityActions::getWorldActions() const
 {
 	return m_actionsWorld;
 }
+
+std::string GameEntityActions::getActionName(EntityActionID::E id)
+{
+	switch(id)
+	{
+	case EntityActionID::PickUp:
+		return "Pick Up";
+	case EntityActionID::Drop:
+		return "Drop";
+	case EntityActionID::Equip:
+		return "Equip";
+	case EntityActionID::Unequip:
+		return "Unequip";
+	}
+	std::string name = "EntityAction" + std::to_string(static_cast<long long>(id));
+	return name;
+}
+
+int GameEntityActions::getActionSelectionStep(EntityActionID::E id)
+{
+	switch(id)
+	{
+	case EntityActionID::Drop:
+	case EntityActionID::Unequip:
+		return 2;	
+	case EntityActionID::Equip:
+		return 3;
+	default:
+		return 1;
+	}
+}

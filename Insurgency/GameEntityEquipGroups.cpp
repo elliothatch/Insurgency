@@ -36,6 +36,7 @@ std::string GameEntityEquipGroups::EquipGroup::getName() const
 		retVal += getEquipSlotName(*slotIt);
 		retVal += ", ";
 	}
+	retVal.pop_back();
 	return retVal;
 }
 

@@ -18,6 +18,7 @@ GameItemTypeDef::GameItemTypeDef(void)
 	GameEntityEquipGroups::EquipGroup equipBothHands;
 	equipBothHands.m_equipSlots.insert(EntityEquipSlotID::HeldRight);
 	equipBothHands.m_equipSlots.insert(EntityEquipSlotID::HeldLeft);
+	equipBothHands.setName("Both Hands");
 
 	GameEntityEquipGroups assaultRifleEquipGroups;
 	assaultRifleEquipGroups.addEquipGroup(equipBothHands);

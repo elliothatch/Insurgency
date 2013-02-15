@@ -1,5 +1,6 @@
 #pragma once
 #include <set>
+#include <string>
 struct EntityActionID
 {
 	enum E
@@ -19,6 +20,10 @@ public:
 	GameEntityActions(std::set<EntityActionID::E> inventoryActions, std::set<EntityActionID::E> equippedActions, 
 		std::set<EntityActionID::E> worldActions);
 	~GameEntityActions();
+
+	static std::string getActionName(EntityActionID::E id);
+	static int getActionSelectionStep(EntityActionID::E id);
+
 	void setInventoryActions(std::set<EntityActionID::E> actions);
 	void setEquippedActions(std::set<EntityActionID::E> actions);
 	void setWorldActions(std::set<EntityActionID::E> actions);

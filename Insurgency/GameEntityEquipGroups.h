@@ -49,7 +49,7 @@ public:
 		EquipGroup(std::set<EntityEquipSlotID::E> equipSlots,const std::string& name):m_equipSlots(equipSlots),m_name(name){}
 
 		std::string getName() const;
-		std::string setName(const std::string& name) {m_name = name;}
+		void setName(const std::string& name) {m_name = name;}
 		
 		std::set<EntityEquipSlotID::E> m_equipSlots;
 	private:

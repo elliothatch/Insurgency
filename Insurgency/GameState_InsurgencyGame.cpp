@@ -37,6 +37,8 @@ void GameState_InsurgencyGame::OnAwake(const SFMLStateInfo* lStateInfo)
 	m_gameWorld.addItemToWorld(item3, std::pair<int,int>(-1,-1));
 	GameItem& pistol1(m_gameWorld.createItem(3));
 	m_gameWorld.addItemToWorld(pistol1, std::pair<int,int>(1,1));
+	GameItem& pistol2(m_gameWorld.createItem(3));
+	m_gameWorld.addItemToWorld(pistol2, std::pair<int,int>(2,1));
 	GameItem& pants1(m_gameWorld.createItem(4));
 	m_gameWorld.addItemToWorld(pants1, std::pair<int,int>(2,1));
 
