@@ -3,8 +3,34 @@
 
 GameEntityType::GameEntityType(void)
 	:m_lName("lName"), m_sName("sName"), m_dName("dName"),
-	 m_actions(), m_equipGroups()
+	 m_components(), m_actions(), m_equipGroups()
 {
+}
+
+GameEntityType::GameEntityType(GameEntityType&& other)
+	:m_lName(), m_sName(), m_dName(),
+	 m_components(), m_actions(), m_equipGroups()
+{
+	*this = std::move(other);
+}
+
+GameEntityType& GameEntityType::operator=(GameEntityType&& other)
+{
+	if(this != &other)
+	{
+		m_lName = std::move(other.m_lName);
+		m_sName = std::move(other.m_sName);
+		m_dName = std::move(other.m_dName);
+		m_components = std::move(other.m_components);
+		m_actions = std::move(other.m_actions);
+		m_equipGroups = std::move(other.m_equipGroups);
+
+		//other.m_lName = "";
+		//other.m_sName = "";
+		//other.m_dName = "";
+		
+	}
+	return *this;
 }
 
 GameEntityType::~GameEntityType(void)

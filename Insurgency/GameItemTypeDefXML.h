@@ -13,7 +13,7 @@ public:
 	virtual const GameItemType& getItemType(GameItemTypeID lTypeID) const;
 
 private:
-	std::vector<std::unique_ptr<GameItemType>> m_itemTypes;
+	std::vector<GameItemType> m_itemTypes;
 
 };
 

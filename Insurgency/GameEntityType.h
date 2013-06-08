@@ -12,6 +12,8 @@ class GameEntityType
 public:
 
 	GameEntityType(void);
+	GameEntityType(GameEntityType&& other);
+	GameEntityType& operator=(GameEntityType&& other);
 	~GameEntityType(void);
 
 	//getters

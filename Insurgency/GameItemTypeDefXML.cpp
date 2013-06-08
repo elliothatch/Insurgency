@@ -26,8 +26,7 @@ GameItemTypeDefXML::GameItemTypeDefXML(void)
 	for(pugi::xml_node_iterator nodeIt = document.begin()->begin(); nodeIt != document.begin()->end(); nodeIt++)
 	{
 		
-		std::unique_ptr<GameItemType> itemTypePtr(new GameItemType());
-		GameItemType& itemType = *itemTypePtr.get();
+		GameItemType itemType;
 		itemType.setTypeID(m_itemTypes.size());
 		//names
 		pugi::xml_node namesNode = nodeIt->child("Names");
@@ -66,7 +65,7 @@ GameItemTypeDefXML::GameItemTypeDefXML(void)
 		}
 		itemType.setGameEntityEquipGroups(equipGroups);
 
-		m_itemTypes.push_back(std::move(itemTypePtr));
+		m_itemTypes.push_back(std::move(itemType));
 	}
 	
 }
@@ -78,5 +77,5 @@ GameItemTypeDefXML::~GameItemTypeDefXML(void)
 
 const GameItemType& GameItemTypeDefXML::getItemType(GameItemTypeID lTypeID) const
 {
-	return *m_itemTypes.at(lTypeID);
+	return m_itemTypes.at(lTypeID);
 }

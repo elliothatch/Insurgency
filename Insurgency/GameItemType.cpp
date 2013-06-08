@@ -8,6 +8,21 @@ GameItemType::GameItemType(void)
 {
 }
 
+GameItemType::GameItemType(GameItemType&& other)
+	:GameEntityType(std::move(other)),
+	m_type(std::move(other.m_type)),
+	m_class(std::move(other.m_class))
+{
+}
+
+GameItemType& GameItemType::operator=(GameItemType&& other)
+{
+	GameEntityType::operator=(static_cast<GameEntityType&&>(other));
+	m_type = std::move(other.m_type);
+	m_class = std::move(other.m_class);
+	return *this;
+}
+
 GameItemType::~GameItemType(void)
 {
 }
