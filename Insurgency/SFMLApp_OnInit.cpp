@@ -42,14 +42,15 @@ bool SFMLApp::OnInit(void)
 			k++;
 		}
 	}
+	//TODO: DO ALL THIS LOADING FROM THE XML FILES
 	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,".",sf::Color(130,54,21,255),sf::Color::Black),"dirt ground");
 	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,"#",sf::Color(173,74,21,255),sf::Color::Black),"dirt wall");
 	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,"#",sf::Color(150,150,150,255),sf::Color::Black),"concrete wall");
 	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,"@"),"insurgent");
 	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,")",sf::Color(255,100,100,255),sf::Color::Black),"AK-47");
 	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,")",sf::Color(100,100,255,255),sf::Color::Black),"P90");
-	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,")",sf::Color(255,255,255,255),sf::Color::Black),"1911");
-	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,"]",sf::Color(255,50,50,255),sf::Color::Black),"Cargo Pants");
+	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,")",sf::Color(255,255,255,255),sf::Color::Black),"M1911");
+	cursesCharManager.addCursesChar(SFMLCursesChar(m_mainWindow,"]",sf::Color(255,50,50,255),sf::Color::Black),"Parachute Pants");
 	
 	/*
 	sf::Sprite dirtground(cursesA, sf::IntRect(14*8,2*12,8,12));

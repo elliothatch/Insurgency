@@ -294,6 +294,9 @@
     <ClInclude Include="pugixml.hpp">
       <Filter>Third Party</Filter>
     </ClInclude>
+    <ClInclude Include="GameItemTypeDefXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -463,6 +466,9 @@
     </ClCompile>
     <ClCompile Include="pugixml.cpp">
       <Filter>Third Party</Filter>
+    </ClCompile>
+    <ClCompile Include="GameItemTypeDefXML.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

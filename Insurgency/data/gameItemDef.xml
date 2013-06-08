@@ -1,0 +1,67 @@
+<StandardItems>
+	<Item>
+		<Names>
+			<Long>AK-47</Long>
+			<Short>AK-47</Short>
+			<Description>AK-47</Description>
+		</Names>
+		<Description>The AK-47 is a selective-fire, gas-operated 7.62×39mm assault rifle, first developed in the USSR by Mikhail Kalashnikov. It is officially known as Avtomat Kalashnikova.</Description>
+		<ClassID>AssaultRifle01</ClassID>
+		<EquipGroups>
+			<Group>
+				<Name>Both Hands</Name>
+				<Slots>HeldRight,HeldLeft</Slots>
+			</Group>
+		</EquipGroups>
+	</Item>
+	<Item>
+		<Names>
+			<Long>P90</Long>
+			<Short>P90</Short>
+			<Description>P90</Description>
+		</Names>
+		<Description>The FN P90 is a selective fire personal defense weapon (PDW) designed and manufactured by FN Herstal in Belgium. The P90 was created in response to NATO requests for a replacement for 9×19mm Parabellum firearms; it was designed as a compact but powerful firearm for vehicle crews, operators of crew-served weapons, support personnel, special forces and counter-terrorist groups.</Description>
+		<ClassID>AssaultRifle01</ClassID>
+		<EquipGroups>
+			<Group>
+				<Name>Both Hands</Name>
+				<Slots>HeldRight,HeldLeft</Slots>
+			</Group>
+		</EquipGroups>
+	</Item>
+	<Item>
+		<Names>
+			<Long>M1911</Long>
+			<Short>M1911</Short>
+			<Description>M1911</Description>
+		</Names>
+		<Description>The M1911 is a single-action, semi-automatic, magazine-fed, recoil-operated pistol chambered for the .45 ACP cartridge, which served as the standard-issue side arm for the United States armed forces from 1911 to 1985.</Description>
+		<ClassID>Handgun01</ClassID>
+		<EquipGroups>
+			<Group>
+				<Name>Both Hands</Name>
+				<Slots>HeldRight,HeldLeft</Slots>
+			</Group>
+			<Group>
+				<Slots>HeldRight</Slots>
+			</Group>
+			<Group>
+				<Slots>HeldLeft</Slots>
+			</Group>
+		</EquipGroups>
+	</Item>
+	<Item>
+		<Names>
+			<Long>Parachute Pants</Long>
+			<Short>Parachute Pants</Short>
+			<Description>Parachute Pants</Description>
+		</Names>
+		<Description>These parachute pants are lookin' pretty fly.</Description>
+		<ClassID>Pants01</ClassID>
+		<EquipGroups>
+			<Group>
+				<Slots>Pants</Slots>
+			</Group>
+		</EquipGroups>
+	</Item>
+</StandardItems>

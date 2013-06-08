@@ -135,6 +135,7 @@ xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
     <ClInclude Include="GameItem.h" />
     <ClInclude Include="GameItemType.h" />
     <ClInclude Include="GameItemTypeDef.h" />
+    <ClInclude Include="GameItemTypeDefXML.h" />
     <ClInclude Include="GameState_InsurgencyEntityActions.h" />
     <ClInclude Include="GameState_InsurgencyGame.h" />
     <ClInclude Include="GameState_CreatureMenu.h" />
@@ -202,6 +203,7 @@ xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
     <ClCompile Include="GameItem.cpp" />
     <ClCompile Include="GameItemType.cpp" />
     <ClCompile Include="GameItemTypeDef.cpp" />
+    <ClCompile Include="GameItemTypeDefXML.cpp" />
     <ClCompile Include="GameState_InsurgencyEntityActions.cpp" />
     <ClCompile Include="GameState_InsurgencyGame.cpp" />
     <ClCompile Include="GameState_CreatureMenu.cpp" />

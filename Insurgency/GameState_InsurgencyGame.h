@@ -4,7 +4,8 @@
 #include "SFMLWorldItemsWindow.h"
 #include "WorldTileTypeDef.h"
 #include "CreatureTypeDef.h"
-#include "GameItemTypeDef.h"
+//#include "GameItemTypeDef.h"
+#include "GameItemTypeDefXML.h"
 #include "GameWorld.h"
 #include "GameTurnTimer.h"
 
@@ -32,7 +33,7 @@ public:
 private:
 	WorldTileTypeDef m_tileTypeDef;
 	CreatureTypeDef m_creatureTypeDef;
-	GameItemTypeDef m_itemTypeDef;
+	GameItemTypeDefXML m_itemTypeDef;
 	GameWorld m_gameWorld;
 	GameTurnTimer m_turnTimer;
 	SFMLGameWorldWindow* m_gameWorldWindow;

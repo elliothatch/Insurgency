@@ -32,29 +32,29 @@ GameItemTypeDef::GameItemTypeDef(void)
 	GameEntityEquipGroups pantsEquipGroups;
 	pantsEquipGroups.addEquipGroup(equipPants);
 
-	itemTypes[1].setLName("AK-47");
-	itemTypes[1].setSName("AK-47");
-	itemTypes[1].setDName("AK-47");
+	itemTypes[0].setLName("AK-47");
+	itemTypes[0].setSName("AK-47");
+	itemTypes[0].setDName("AK-47");
+	itemTypes[0].setClassID(GameItemClassID::AssaultRifle01);
+	itemTypes[0].setGameEntityEquipGroups(assaultRifleEquipGroups);
+
+	itemTypes[1].setLName("P90");
+	itemTypes[1].setSName("P90");
+	itemTypes[1].setDName("P90");
 	itemTypes[1].setClassID(GameItemClassID::AssaultRifle01);
 	itemTypes[1].setGameEntityEquipGroups(assaultRifleEquipGroups);
 
-	itemTypes[2].setLName("P90");
-	itemTypes[2].setSName("P90");
-	itemTypes[2].setDName("P90");
-	itemTypes[2].setClassID(GameItemClassID::AssaultRifle01);
-	itemTypes[2].setGameEntityEquipGroups(assaultRifleEquipGroups);
+	itemTypes[2].setLName("M1911");
+	itemTypes[2].setSName("M1911");
+	itemTypes[2].setDName("M1911");
+	itemTypes[2].setClassID(GameItemClassID::Handgun01);
+	itemTypes[2].setGameEntityEquipGroups(handgunEquipGroups);
 
-	itemTypes[3].setLName("1911");
-	itemTypes[3].setSName("1911");
-	itemTypes[3].setDName("1911");
-	itemTypes[3].setClassID(GameItemClassID::Handgun01);
-	itemTypes[3].setGameEntityEquipGroups(handgunEquipGroups);
-
-	itemTypes[4].setLName("Cargo Pants");
-	itemTypes[4].setSName("Cargo Pants");
-	itemTypes[4].setDName("Cargo Pants");
-	itemTypes[4].setClassID(GameItemClassID::Pants01);
-	itemTypes[4].setGameEntityEquipGroups(pantsEquipGroups);
+	itemTypes[3].setLName("Parachute Pants");
+	itemTypes[3].setSName("Parachute Pants");
+	itemTypes[3].setDName("Parachute Pants");
+	itemTypes[3].setClassID(GameItemClassID::Pants01);
+	itemTypes[3].setGameEntityEquipGroups(pantsEquipGroups);
 }
 
 

@@ -1,6 +1,8 @@
 #pragma once
 #include <set>
 #include <vector>
+#include <unordered_map>
+#include <string>
 struct EntityEquipSlotID
 {
 	enum E
@@ -64,6 +66,7 @@ public:
 	const std::vector<EquipGroup>& getEquipGroups() const;
 
 	static std::string getEquipSlotName(EntityEquipSlotID::E id);
+	static EntityEquipSlotID::E getEquipSlotID(const std::string& slotStr);
 
 private:
 	std::vector<EquipGroup> m_equipGroups;

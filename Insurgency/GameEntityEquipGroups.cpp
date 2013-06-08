@@ -98,3 +98,48 @@ std::string GameEntityEquipGroups::getEquipSlotName(EntityEquipSlotID::E id)
 	std::string name = "EntityEquipSlot" + id;
 	return name;
 }
+
+//static
+EntityEquipSlotID::E GameEntityEquipGroups::getEquipSlotID(const std::string& slotStr)
+{
+	static std::unordered_map<std::string, EntityEquipSlotID::E> s_equipSlotMap;
+	if(s_equipSlotMap.size() == 0)
+	{
+		//init
+		s_equipSlotMap["HeldRight"] = EntityEquipSlotID::HeldRight;
+		s_equipSlotMap["HeldLeft"] = EntityEquipSlotID::HeldLeft;
+		s_equipSlotMap["Shirt"] = EntityEquipSlotID::Shirt;
+		s_equipSlotMap["Pants"] = EntityEquipSlotID::Pants;
+		s_equipSlotMap["Shoes"] = EntityEquipSlotID::Shoes;
+		s_equipSlotMap["Gloves"] = EntityEquipSlotID::Gloves;
+		s_equipSlotMap["HandRight"] = EntityEquipSlotID::HandRight;
+		s_equipSlotMap["HandLeft"] = EntityEquipSlotID::HandLeft;
+		s_equipSlotMap["ForearmRight"] = EntityEquipSlotID::ForearmRight;
+		s_equipSlotMap["ForearmLeft"] = EntityEquipSlotID::ForearmLeft;
+		s_equipSlotMap["ShoulderRight"] = EntityEquipSlotID::ShoulderRight;
+		s_equipSlotMap["ShoulderLeft"] = EntityEquipSlotID::ShoulderLeft;
+		s_equipSlotMap["Neck"] = EntityEquipSlotID::Neck;
+		s_equipSlotMap["Head"] = EntityEquipSlotID::Head;
+		s_equipSlotMap["Eyes"] = EntityEquipSlotID::Eyes;
+		s_equipSlotMap["Chest"] = EntityEquipSlotID::Chest;
+		s_equipSlotMap["Abdomen"] = EntityEquipSlotID::Abdomen;
+		s_equipSlotMap["Groin"] = EntityEquipSlotID::Groin;
+		s_equipSlotMap["ThighRight"] = EntityEquipSlotID::ThighRight;
+		s_equipSlotMap["ThighLeft"] = EntityEquipSlotID::ThighLeft;
+		s_equipSlotMap["ShinRight"] = EntityEquipSlotID::ShinRight;
+		s_equipSlotMap["ShinLeft"] = EntityEquipSlotID::ShinLeft;
+		s_equipSlotMap["FootRight"] = EntityEquipSlotID::FootRight;
+		s_equipSlotMap["FootLeft"] = EntityEquipSlotID::FootLeft;
+	}
+
+	std::unordered_map<std::string, EntityEquipSlotID::E>::iterator mapIt = s_equipSlotMap.find(slotStr);
+	if(mapIt != s_equipSlotMap.end())
+	{
+		return mapIt->second;
+	}
+	else
+	{
+		printf("EQUIP SLOT ID NOT FOUND - %s", slotStr.c_str());
+		return EntityEquipSlotID::Count;
+	}
+}

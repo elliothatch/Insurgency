@@ -31,17 +31,17 @@ void GameState_InsurgencyGame::OnAwake(const SFMLStateInfo* lStateInfo)
 	m_gameWorld.setTile(std::pair<int,int>(-2,-4),std::move(tile03));
 	m_gameWorld.setTile(std::pair<int,int>(12,5),std::move(tile04));
 
-	GameItem& item1(m_gameWorld.createItem(1));
+	GameItem& item1(m_gameWorld.createItem(0));
 	m_gameWorld.addItemToWorld(item1, std::pair<int,int>(1,0));
-	GameItem& item2(m_gameWorld.createItem(2));
+	GameItem& item2(m_gameWorld.createItem(1));
 	m_gameWorld.addItemToWorld(item2, std::pair<int,int>(1,3));
-	GameItem& item3(m_gameWorld.createItem(1));
+	GameItem& item3(m_gameWorld.createItem(0));
 	m_gameWorld.addItemToWorld(item3, std::pair<int,int>(-1,-1));
-	GameItem& pistol1(m_gameWorld.createItem(3));
+	GameItem& pistol1(m_gameWorld.createItem(2));
 	m_gameWorld.addItemToWorld(pistol1, std::pair<int,int>(1,1));
-	GameItem& pistol2(m_gameWorld.createItem(3));
+	GameItem& pistol2(m_gameWorld.createItem(2));
 	m_gameWorld.addItemToWorld(pistol2, std::pair<int,int>(2,1));
-	GameItem& pants1(m_gameWorld.createItem(4));
+	GameItem& pants1(m_gameWorld.createItem(3));
 	m_gameWorld.addItemToWorld(pants1, std::pair<int,int>(2,1));
 
 	Creature& creature1(m_gameWorld.createCreature(1));
