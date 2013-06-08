@@ -7,10 +7,12 @@ GameItemTypeDefXML::GameItemTypeDefXML(void)
 {
 	//load xml file
 	pugi::xml_document document;
-	pugi::xml_parse_result loadResult = document.load_file("data/gameItemDef.xml");
+	pugi::xml_parse_result loadResult = document.load_file("data/item_data.xml");
 	if(loadResult.status != pugi::status_ok)
 	{
 		printf(loadResult.description());
+		printf("ITEM LOADING ABORTED\n");
+		return;
 	}
 
 	GameEntityActions defaultActions;
