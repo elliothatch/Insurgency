@@ -12,6 +12,23 @@ CreatureType::CreatureType(void)
 	}
 }
 
+CreatureType::CreatureType(CreatureType&& other)
+	:GameEntityType(std::move(other)),
+	m_type(std::move(other.m_type)),
+	m_class(std::move(other.m_class)),
+	m_baseStats(std::move(other.m_baseStats))
+{
+}
+
+CreatureType& CreatureType::operator=(CreatureType&& other)
+{
+	GameEntityType::operator=(static_cast<GameEntityType&&>(other));
+	m_type = std::move(other.m_type);
+	m_class = std::move(other.m_class);
+	m_baseStats = std::move(other.m_baseStats);
+	return *this;
+}
+
 CreatureType::~CreatureType()
 {
 }

@@ -1,0 +1,21 @@
+<StandardCreatures>
+	<Creature>
+		<Names>
+			<Long>insurgent</Long>
+			<Short>Elliot Hatch</Short>
+			<Description>insurgent</Description>
+		</Names>
+		<Description>An active insergent fighting against the police-state.</Description>
+		<ClassID>Insurgent01</ClassID>
+		<Stats>
+			<Speed>5</Speed>
+			<Strength>6</Strength>
+		</Stats>
+		<Components>
+			<Inventory>
+			</Inventory>
+			<EquipSlots>
+			</EquipSlots>
+		</Components>
+	</Creature>
+</StandardCreatures>

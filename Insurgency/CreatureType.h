@@ -20,6 +20,8 @@ class CreatureType : public GameEntityType
 public:
 
 	CreatureType(void);
+	CreatureType(CreatureType&& other);
+	CreatureType& operator=(CreatureType&& other);
 	~CreatureType(void);
 
 	//getters

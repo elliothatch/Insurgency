@@ -125,6 +125,7 @@ xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
     <ClInclude Include="CreatureStatEffect.h" />
     <ClInclude Include="CreatureType.h" />
     <ClInclude Include="CreatureTypeDef.h" />
+    <ClInclude Include="CreatureTypeDefXML.h" />
     <ClInclude Include="EntityComponentIncludes.h" />
     <ClInclude Include="EquipSlotsComponent.h" />
     <ClInclude Include="GameEntityActions.h" />
@@ -194,6 +195,7 @@ xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
     <ClCompile Include="CreatureStatEffect.cpp" />
     <ClCompile Include="CreatureType.cpp" />
     <ClCompile Include="CreatureTypeDef.cpp" />
+    <ClCompile Include="CreatureTypeDefXML.cpp" />
     <ClCompile Include="EntityComponent.cpp" />
     <ClCompile Include="EquipSlotsComponent.cpp" />
     <ClCompile Include="GameEntity.cpp" />

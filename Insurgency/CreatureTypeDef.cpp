@@ -16,12 +16,12 @@ CreatureTypeDef::CreatureTypeDef(void)
 		creatureTypes[i].addComponent(std::move(inv1));
 		creatureTypes[i].addComponent(std::move(equip1));
 	}
-	creatureTypes[1].setLName("insurgent");
-	creatureTypes[1].setSName("Elliot Hatch");
-	creatureTypes[1].setDName("insurgent");
-	creatureTypes[1].setClassID(CreatureClassID::Insurgent01);
-	creatureTypes[1].setSpeed(5);
-	creatureTypes[1].setStrength(6);
+	creatureTypes[0].setLName("insurgent");
+	creatureTypes[0].setSName("Elliot Hatch");
+	creatureTypes[0].setDName("insurgent");
+	creatureTypes[0].setClassID(CreatureClassID::Insurgent01);
+	creatureTypes[0].setSpeed(5);
+	creatureTypes[0].setStrength(6);
 }
 
 

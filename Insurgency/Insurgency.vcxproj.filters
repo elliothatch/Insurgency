@@ -297,6 +297,9 @@
     <ClInclude Include="GameItemTypeDefXML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CreatureTypeDefXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -468,6 +471,9 @@
       <Filter>Third Party</Filter>
     </ClCompile>
     <ClCompile Include="GameItemTypeDefXML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CreatureTypeDefXML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

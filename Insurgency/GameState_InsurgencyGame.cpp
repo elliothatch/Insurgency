@@ -44,10 +44,10 @@ void GameState_InsurgencyGame::OnAwake(const SFMLStateInfo* lStateInfo)
 	GameItem& pants1(m_gameWorld.createItem(3));
 	m_gameWorld.addItemToWorld(pants1, std::pair<int,int>(2,1));
 
-	Creature& creature1(m_gameWorld.createCreature(1));
+	Creature& creature1(m_gameWorld.createCreature(0));
 	m_gameWorld.addCreatureToWorld(creature1,std::pair<int,int>(2,0));
 	m_gameWorld.setPlayerCreature(creature1);
-	Creature& creature2(m_gameWorld.createCreature(1));
+	Creature& creature2(m_gameWorld.createCreature(0));
 	m_gameWorld.addCreatureToWorld(creature2, std::pair<int,int>(-5,5));
 
 	std::unique_ptr<SFMLGameWorldWindow> gameWorldWindow(new SFMLGameWorldWindow(*m_window, m_gameWorld,std::pair<int,int>(0,0),std::pair<int,int>(30,20)));
