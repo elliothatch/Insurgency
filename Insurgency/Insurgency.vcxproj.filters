@@ -85,6 +85,9 @@
     <Filter Include="SFML-Insurgency\Source Files\GameStates">
       <UniqueIdentifier>{20a5f37c-3bb6-490c-84e0-940727e06543}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Third Party">
+      <UniqueIdentifier>{dbb9fd68-b924-40ad-abd6-15f00f33d25d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -285,6 +288,12 @@
     <ClInclude Include="EntityComponentIncludes.h">
       <Filter>InsurgencyGame\Header Files\GameEntity\EntityComponent</Filter>
     </ClInclude>
+    <ClInclude Include="pugiconfig.hpp">
+      <Filter>Third Party</Filter>
+    </ClInclude>
+    <ClInclude Include="pugixml.hpp">
+      <Filter>Third Party</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -451,6 +460,9 @@
     </ClCompile>
     <ClCompile Include="RangedWeaponComponent.cpp">
       <Filter>InsurgencyGame\Source Files\GameEntity\EntityComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="pugixml.cpp">
+      <Filter>Third Party</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
