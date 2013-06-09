@@ -113,7 +113,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(ProjectDir)*.dll" "$(OutDir)" /d /exclude:$(SolutionDir)DependenciesExclude.txt
-xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
+xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d
+xcopy /y "$(ProjectDir)data" "$(OutDir)data" /i /s /e /d</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
