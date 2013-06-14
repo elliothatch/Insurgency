@@ -149,6 +149,7 @@ xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
     <ClInclude Include="InputSourceListCurses.h" />
     <ClInclude Include="InventoryComponent.h" />
     <ClInclude Include="IWorldTileTypeDef.h" />
+    <ClInclude Include="Line.h" />
     <ClInclude Include="RangedWeaponComponent.h" />
     <ClInclude Include="SFML-Template\AnimatedSprite.h" />
     <ClInclude Include="SFML-Template\FontManager.h" />
@@ -207,6 +208,7 @@ xcopy /y "$(ProjectDir)assets" "$(OutDir)assets" /i /s /e /d</Command>
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Insurgency.cpp" />
     <ClCompile Include="InventoryComponent.cpp" />
+    <ClCompile Include="Line.cpp" />
     <ClCompile Include="RangedWeaponComponent.cpp" />
     <ClCompile Include="SFML-Template\AnimatedSprite.cpp" />
     <ClCompile Include="SFML-Template\FontManager.cpp" />
