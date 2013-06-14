@@ -3,14 +3,24 @@
 
 #include "stdafx.h"
 #include "SFMLApp.h"
-#include <iostream>
+#ifdef _WIN32
+#ifdef _DEBUG
+#include <Windows.h>
+#endif
+#endif
 
 int main(int argc, _TCHAR* argv[])
 {
 	//testing stuff
 	{
 		SFMLApp app;
-		return app.OnExecute();
+		int ret = app.OnExecute();
+#ifdef _WIN32
+#ifdef _DEBUG
+		TerminateProcess(GetCurrentProcess(), EXIT_SUCCESS);
+#endif
+#endif
+		return ret;
 	}
 		/*
 	WorldTileTypeDef tileTypeDef;
