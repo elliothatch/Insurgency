@@ -31,6 +31,13 @@ void GameState_InsurgencyGame::OnAwake(const SFMLStateInfo* lStateInfo)
 	m_gameWorld.setTile(std::pair<int,int>(-2,-4),std::move(tile03));
 	m_gameWorld.setTile(std::pair<int,int>(12,5),std::move(tile04));
 
+	Line line(7,2,18,-5);
+	auto points = line.getPoints();
+	for(auto pointIt(points.begin()); pointIt != points.end(); pointIt++)
+	{
+		m_gameWorld.setTile(*pointIt, WorldTile::ptr(new WorldTile(m_gameWorld.m_tileTypeDef->getTileType(130))));
+	}
+
 	GameItem& item1(m_gameWorld.createItem(1));
 	m_gameWorld.addItemToWorld(item1, std::pair<int,int>(1,0));
 	GameItem& item2(m_gameWorld.createItem(2));

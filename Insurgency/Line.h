@@ -9,6 +9,10 @@ public:
 
 	~Line(void);
 
+	std::pair<int,int> getBeginPoint() const {return m_point1;}
+	std::pair<int,int> getEndPoint() const {return m_point2;}
+	const std::vector<std::pair<int,int>>& getPoints() const {return m_points;}
+
 private:
 	std::vector<std::pair<int,int>> calculatePoints(std::pair<int,int> p1, std::pair<int,int> p2);
 

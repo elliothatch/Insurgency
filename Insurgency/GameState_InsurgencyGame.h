@@ -7,6 +7,7 @@
 #include "GameItemTypeDef.h"
 #include "GameWorld.h"
 #include "GameTurnTimer.h"
+#include "Line.h"
 
 #include "StateInfo_CreatureMenu.h"
 
