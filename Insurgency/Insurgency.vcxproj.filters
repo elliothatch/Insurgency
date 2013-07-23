@@ -285,9 +285,6 @@
     <ClInclude Include="RangedWeaponComponent.h">
       <Filter>InsurgencyGame\Header Files\GameEntity\EntityComponent</Filter>
     </ClInclude>
-    <ClInclude Include="EntityComponentIncludes.h">
-      <Filter>InsurgencyGame\Header Files\GameEntity\EntityComponent</Filter>
-    </ClInclude>
     <ClInclude Include="pugiconfig.hpp">
       <Filter>Third Party</Filter>
     </ClInclude>
@@ -298,6 +295,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CreatureTypeDefXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentDef.h">
+      <Filter>InsurgencyGame\Header Files\GameEntity\EntityComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -474,6 +477,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CreatureTypeDefXML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityComponentFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

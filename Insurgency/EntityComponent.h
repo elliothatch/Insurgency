@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 class GameEntity;
 struct EntityComponentID
 {
@@ -11,6 +12,13 @@ struct EntityComponentID
 		Count
 	};
 };
+const std::array<std::pair<const EntityComponentID::E,const std::string>, EntityComponentID::Count> s_componentNames =
+{
+	std::make_pair(EntityComponentID::Inventory, "Inventory"),
+	std::make_pair(EntityComponentID::EquipSlots, "EquipSlots"),
+	std::make_pair(EntityComponentID::RangedWeapon, "RangedWeapon")
+};
+
 
 class EntityComponent
 {

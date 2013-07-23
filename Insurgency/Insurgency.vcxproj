@@ -127,7 +127,8 @@ xcopy /y "$(ProjectDir)data" "$(OutDir)data" /i /s /e /d</Command>
     <ClInclude Include="CreatureType.h" />
     <ClInclude Include="CreatureTypeDef.h" />
     <ClInclude Include="CreatureTypeDefXML.h" />
-    <ClInclude Include="EntityComponentIncludes.h" />
+    <ClInclude Include="EntityComponentDef.h" />
+    <ClInclude Include="EntityComponentFactory.h" />
     <ClInclude Include="EquipSlotsComponent.h" />
     <ClInclude Include="GameEntityActions.h" />
     <ClInclude Include="EntityComponent.h" />
@@ -198,6 +199,7 @@ xcopy /y "$(ProjectDir)data" "$(OutDir)data" /i /s /e /d</Command>
     <ClCompile Include="CreatureTypeDef.cpp" />
     <ClCompile Include="CreatureTypeDefXML.cpp" />
     <ClCompile Include="EntityComponent.cpp" />
+    <ClCompile Include="EntityComponentFactory.cpp" />
     <ClCompile Include="EquipSlotsComponent.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameEntityActions.cpp" />

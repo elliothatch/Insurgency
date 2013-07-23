@@ -34,8 +34,34 @@ CreatureTypeDefXML::CreatureTypeDefXML(void)
 
 		//components
 		//TODO:push out EntityTypeDef common functions into another class e.g. names, components, etc.
-		//TODO:parse component and set enum
-		//NOTE: consider changing component and classID storage to strings, not enums
+		pugi::xml_node componentsNode = nodeIt->child("Components");
+		for(pugi::xml_node_iterator componentNodeIt(componentsNode.begin()); componentNodeIt != componentsNode.end(); componentNodeIt++)
+		{
+			std::string componentName(componentNodeIt->name());
+			if(componentName == EntityComponentFactory::IDToString(EntityComponentID::Inventory))
+			{
+				creatureType.addComponent(std::unique_ptr<InventoryComponent>(new InventoryComponent()));
+			}
+			if(componentName == EntityComponentFactory::IDToString(EntityComponentID::EquipSlots))
+			{
+				std::unique_ptr<EquipSlotsComponent> equipSlots(new EquipSlotsComponent());
+				std::string equipSlotsStr = componentNodeIt->child_value();
+				if(std::string().substr(0,6) == "Preset")
+				{
+					//TODO: SET UP PRESETS IN AN XML FILE
+					if(std::string(equipSlotsStr).substr(6,equipSlotsStr.length() - 6) == "Human")
+					{
+						for(int j = 0; j<EntityEquipSlotID::Count; j++)
+						{
+							equipSlots->addEquipSlot(EntityEquipSlotID::E(j));
+						}
+					}
+				}
+				creatureType.addComponent(std::move(equipSlots));
+			}
+		}
+		
+		/*
 		creatureType.addComponent(std::unique_ptr<InventoryComponent> (new InventoryComponent()));
 		std::unique_ptr<EquipSlotsComponent> equip1(new EquipSlotsComponent());
 		for(int j = 0; j<EntityEquipSlotID::Count; j++)
@@ -43,7 +69,7 @@ CreatureTypeDefXML::CreatureTypeDefXML(void)
 			equip1->addEquipSlot(EntityEquipSlotID::E(j));
 		}
 		creatureType.addComponent(std::move(equip1));
-		
+		*/
 		m_creatureTypes.push_back(std::move(creatureType));
 	}
 }

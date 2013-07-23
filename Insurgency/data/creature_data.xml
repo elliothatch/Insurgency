@@ -14,8 +14,7 @@
 		<Components>
 			<Inventory>
 			</Inventory>
-			<EquipSlots>
-			</EquipSlots>
+			<EquipSlots>PresetHuman</EquipSlots>
 		</Components>
 	</Creature>
 </StandardCreatures>
