@@ -46,7 +46,7 @@ CreatureTypeDefXML::CreatureTypeDefXML(void)
 			{
 				std::unique_ptr<EquipSlotsComponent> equipSlots(new EquipSlotsComponent());
 				std::string equipSlotsStr = componentNodeIt->child_value();
-				if(std::string().substr(0,6) == "Preset")
+				if(equipSlotsStr.substr(0,6) == "Preset")
 				{
 					//TODO: SET UP PRESETS IN AN XML FILE
 					if(std::string(equipSlotsStr).substr(6,equipSlotsStr.length() - 6) == "Human")
