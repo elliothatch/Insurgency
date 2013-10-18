@@ -58,9 +58,11 @@ void GameState_InsurgencyGame::OnAwake(const SFMLStateInfo* lStateInfo)
 
 	std::unique_ptr<sf::Text> turnCounter(new sf::Text());
 	turnCounter->setPosition(300,300);
+	turnCounter->setFont(FontManager::getInstance().getFont("FONTNOTFOUND")); //default font
 	m_turnCounter = turnCounter.get();
 	std::unique_ptr<sf::Text> playerCoord(new sf::Text());
 	playerCoord->setPosition(300,100);
+	playerCoord->setFont(FontManager::getInstance().getFont("FONTNOTFOUND")); //default font
 	m_playerCoord = playerCoord.get();
 	addDrawable(std::move(gameWorldWindow));
 	addDrawable(std::move(worldItemsWindow));

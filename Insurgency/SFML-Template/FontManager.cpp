@@ -17,9 +17,7 @@ FontManager& FontManager::getInstance(void)
 	if(s_FontManager == NULL)
 	{
 		s_FontManager = new FontManager();
-		sf::Font fontNotFound;
-		fontNotFound = sf::Font::getDefaultFont();
-		s_FontManager->addFont(fontNotFound, "FONTNOTFOUND");
+		s_FontManager->addFontFromFile("assets/fonts/arial.ttf", "FONTNOTFOUND");
 	}
 	return *s_FontManager;
 }
